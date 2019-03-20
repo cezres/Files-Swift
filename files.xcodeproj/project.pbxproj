@@ -8,12 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		17847D9E5097A3C59AEA1F03 /* Pods_FilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB6A7CCD11D7B0FF249AAB5 /* Pods_FilesTests.framework */; };
+		D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5103F672240EEFF0014B6E6 /* PhotoFileType.swift */; };
+		D510412822410AE30014B6E6 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510412722410AE30014B6E6 /* PhotoBrowserViewController.swift */; };
+		D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510412F22411E1D0014B6E6 /* ArrayExtension.swift */; };
+		D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51041312241DFE10014B6E6 /* UIImageExtension.swift */; };
+		D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510430522423B1C0014B6E6 /* FileThumbnailCache.swift */; };
+		D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */; };
 		D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8762223F712700B81EE0 /* AppDelegate.swift */; };
 		D51A8765223F712700B81EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8764223F712700B81EE0 /* ViewController.swift */; };
 		D51A8768223F712700B81EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51A8766223F712700B81EE0 /* Main.storyboard */; };
 		D51A876A223F712800B81EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51A8769223F712800B81EE0 /* Assets.xcassets */; };
 		D51A876D223F712800B81EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51A876B223F712800B81EE0 /* LaunchScreen.storyboard */; };
 		D51A8778223F712900B81EE0 /* FilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8777223F712900B81EE0 /* FilesTests.swift */; };
+		D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8785223F76E300B81EE0 /* DocumentBrowserViewController.swift */; };
+		D51A878A223F7B3C00B81EE0 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8789223F7B3C00B81EE0 /* Document.swift */; };
+		D51A878C223F7B6300B81EE0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A878B223F7B6300B81EE0 /* File.swift */; };
+		D51A878F223F7C3A00B81EE0 /* ListUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A878E223F7C3A00B81EE0 /* ListUpdate.swift */; };
+		D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8790223F7CF700B81EE0 /* Consts.swift */; };
+		D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8793223F7D9500B81EE0 /* StringExtension.swift */; };
+		D51A8798223F8C8400B81EE0 /* DocumentContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8797223F8C8400B81EE0 /* DocumentContentsView.swift */; };
+		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +48,12 @@
 		7854526AC75D5750F1586C58 /* Pods-Files.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Files.debug.xcconfig"; path = "Target Support Files/Pods-Files/Pods-Files.debug.xcconfig"; sourceTree = "<group>"; };
 		A4D154D616A4DB3C3AFEA06A /* Pods-FilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilesTests.release.xcconfig"; path = "Target Support Files/Pods-FilesTests/Pods-FilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		C943B72D50EECA540CC89945 /* Pods_Files.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5103F672240EEFF0014B6E6 /* PhotoFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFileType.swift; sourceTree = "<group>"; };
+		D510412722410AE30014B6E6 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
+		D510412F22411E1D0014B6E6 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		D51041312241DFE10014B6E6 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		D510430522423B1C0014B6E6 /* FileThumbnailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileThumbnailCache.swift; sourceTree = "<group>"; };
+		D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPrefetchManager.swift; sourceTree = "<group>"; };
 		D51A875F223F712700B81EE0 /* Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Files.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A8762223F712700B81EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51A8764223F712700B81EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +64,14 @@
 		D51A8773223F712900B81EE0 /* FilesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A8777223F712900B81EE0 /* FilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTests.swift; sourceTree = "<group>"; };
 		D51A8779223F712900B81EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D51A8785223F76E300B81EE0 /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
+		D51A8789223F7B3C00B81EE0 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		D51A878B223F7B6300B81EE0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		D51A878E223F7C3A00B81EE0 /* ListUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdate.swift; sourceTree = "<group>"; };
+		D51A8790223F7CF700B81EE0 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		D51A8793223F7D9500B81EE0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D51A8797223F8C8400B81EE0 /* DocumentContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentContentsView.swift; sourceTree = "<group>"; };
+		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +114,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D5103BDB224087C70014B6E6 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				D5103F672240EEFF0014B6E6 /* PhotoFileType.swift */,
+				D510412722410AE30014B6E6 /* PhotoBrowserViewController.swift */,
+				D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		D51A8756223F712700B81EE0 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +147,9 @@
 		D51A8761223F712700B81EE0 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				D51A8792223F7D6300B81EE0 /* Extensions */,
+				D51A8784223F73D400B81EE0 /* File */,
+				D5103BDB224087C70014B6E6 /* Photo */,
 				D51A8762223F712700B81EE0 /* AppDelegate.swift */,
 				D51A8764223F712700B81EE0 /* ViewController.swift */,
 				D51A8766223F712700B81EE0 /* Main.storyboard */,
@@ -126,6 +167,55 @@
 				D51A8779223F712900B81EE0 /* Info.plist */,
 			);
 			path = FilesTests;
+			sourceTree = "<group>";
+		};
+		D51A8784223F73D400B81EE0 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				D51A878D223F7C0E00B81EE0 /* Common */,
+				D51A8796223F8C7B00B81EE0 /* Type */,
+				D51A8795223F8C7B00B81EE0 /* View */,
+				D51A8785223F76E300B81EE0 /* DocumentBrowserViewController.swift */,
+				D51A8789223F7B3C00B81EE0 /* Document.swift */,
+				D51A878B223F7B6300B81EE0 /* File.swift */,
+				D510430522423B1C0014B6E6 /* FileThumbnailCache.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		D51A878D223F7C0E00B81EE0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D51A878E223F7C3A00B81EE0 /* ListUpdate.swift */,
+				D51A8790223F7CF700B81EE0 /* Consts.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D51A8792223F7D6300B81EE0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D51A8793223F7D9500B81EE0 /* StringExtension.swift */,
+				D510412F22411E1D0014B6E6 /* ArrayExtension.swift */,
+				D51041312241DFE10014B6E6 /* UIImageExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D51A8795223F8C7B00B81EE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D51A8797223F8C8400B81EE0 /* DocumentContentsView.swift */,
+				D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D51A8796223F8C7B00B81EE0 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Type;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +353,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaHTTPServer/CocoaHTTPServer.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/FastImageCache/FastImageCache.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -272,6 +363,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaHTTPServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastImageCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +383,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaHTTPServer/CocoaHTTPServer.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/FastImageCache/FastImageCache.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -300,6 +393,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaHTTPServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastImageCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,8 +430,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D510412822410AE30014B6E6 /* PhotoBrowserViewController.swift in Sources */,
 				D51A8765223F712700B81EE0 /* ViewController.swift in Sources */,
+				D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */,
+				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
+				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
+				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
+				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,
+				D51A878C223F7B6300B81EE0 /* File.swift in Sources */,
+				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
+				D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */,
 				D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */,
+				D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */,
+				D51A878F223F7C3A00B81EE0 /* ListUpdate.swift in Sources */,
+				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
+				D51A8798223F8C8400B81EE0 /* DocumentContentsView.swift in Sources */,
+				D51A878A223F7B3C00B81EE0 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
