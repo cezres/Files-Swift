@@ -14,6 +14,12 @@
 		D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51041312241DFE10014B6E6 /* UIImageExtension.swift */; };
 		D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510430522423B1C0014B6E6 /* FileThumbnailCache.swift */; };
 		D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */; };
+		D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510430C224331B90014B6E6 /* MusicFileType.swift */; };
+		D510430F224361850014B6E6 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510430E224361850014B6E6 /* MusicPlayerViewController.swift */; };
+		D5104311224371420014B6E6 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104310224371420014B6E6 /* MusicPlayer.swift */; };
+		D51043132243728D0014B6E6 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51043122243728D0014B6E6 /* Music.swift */; };
+		D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */; };
+		D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */; };
 		D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8762223F712700B81EE0 /* AppDelegate.swift */; };
 		D51A8765223F712700B81EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8764223F712700B81EE0 /* ViewController.swift */; };
 		D51A8768223F712700B81EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51A8766223F712700B81EE0 /* Main.storyboard */; };
@@ -26,7 +32,6 @@
 		D51A878F223F7C3A00B81EE0 /* ListUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A878E223F7C3A00B81EE0 /* ListUpdate.swift */; };
 		D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8790223F7CF700B81EE0 /* Consts.swift */; };
 		D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8793223F7D9500B81EE0 /* StringExtension.swift */; };
-		D51A8798223F8C8400B81EE0 /* DocumentContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8797223F8C8400B81EE0 /* DocumentContentsView.swift */; };
 		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +59,12 @@
 		D51041312241DFE10014B6E6 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		D510430522423B1C0014B6E6 /* FileThumbnailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileThumbnailCache.swift; sourceTree = "<group>"; };
 		D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPrefetchManager.swift; sourceTree = "<group>"; };
+		D510430C224331B90014B6E6 /* MusicFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicFileType.swift; sourceTree = "<group>"; };
+		D510430E224361850014B6E6 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
+		D5104310224371420014B6E6 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		D51043122243728D0014B6E6 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerInfoView.swift; sourceTree = "<group>"; };
+		D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerControlView.swift; sourceTree = "<group>"; };
 		D51A875F223F712700B81EE0 /* Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Files.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A8762223F712700B81EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51A8764223F712700B81EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +81,6 @@
 		D51A878E223F7C3A00B81EE0 /* ListUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdate.swift; sourceTree = "<group>"; };
 		D51A8790223F7CF700B81EE0 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		D51A8793223F7D9500B81EE0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		D51A8797223F8C8400B81EE0 /* DocumentContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentContentsView.swift; sourceTree = "<group>"; };
 		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +134,27 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		D510430B224331A60014B6E6 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				D51044E62243B2740014B6E6 /* View */,
+				D510430C224331B90014B6E6 /* MusicFileType.swift */,
+				D510430E224361850014B6E6 /* MusicPlayerViewController.swift */,
+				D5104310224371420014B6E6 /* MusicPlayer.swift */,
+				D51043122243728D0014B6E6 /* Music.swift */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		D51044E62243B2740014B6E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */,
+				D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D51A8756223F712700B81EE0 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +181,7 @@
 				D51A8792223F7D6300B81EE0 /* Extensions */,
 				D51A8784223F73D400B81EE0 /* File */,
 				D5103BDB224087C70014B6E6 /* Photo */,
+				D510430B224331A60014B6E6 /* Music */,
 				D51A8762223F712700B81EE0 /* AppDelegate.swift */,
 				D51A8764223F712700B81EE0 /* ViewController.swift */,
 				D51A8766223F712700B81EE0 /* Main.storyboard */,
@@ -205,7 +237,6 @@
 		D51A8795223F8C7B00B81EE0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D51A8797223F8C8400B81EE0 /* DocumentContentsView.swift */,
 				D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */,
 			);
 			path = View;
@@ -431,20 +462,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				D510412822410AE30014B6E6 /* PhotoBrowserViewController.swift in Sources */,
+				D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */,
 				D51A8765223F712700B81EE0 /* ViewController.swift in Sources */,
 				D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */,
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
+				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
 				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,
+				D51043132243728D0014B6E6 /* Music.swift in Sources */,
+				D510430F224361850014B6E6 /* MusicPlayerViewController.swift in Sources */,
 				D51A878C223F7B6300B81EE0 /* File.swift in Sources */,
 				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
 				D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */,
 				D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */,
 				D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */,
+				D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */,
 				D51A878F223F7C3A00B81EE0 /* ListUpdate.swift in Sources */,
+				D5104311224371420014B6E6 /* MusicPlayer.swift in Sources */,
 				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
-				D51A8798223F8C8400B81EE0 /* DocumentContentsView.swift in Sources */,
 				D51A878A223F7B3C00B81EE0 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

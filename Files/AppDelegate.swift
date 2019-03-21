@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         File.register(type: PhotoFileType())
-
+        File.register(type: MusicFileType())
         return true
     }
 

@@ -31,6 +31,11 @@ class DocumentBrowserViewController: UIViewController {
         document.loadContents()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
     // MARK: - View
 
     var collectionView: UICollectionView!
