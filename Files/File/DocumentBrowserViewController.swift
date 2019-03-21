@@ -35,7 +35,6 @@ class DocumentBrowserViewController: UIViewController {
 
     var collectionView: UICollectionView!
 
-
     func setupUI() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = UICollectionView.ScrollDirection.vertical

@@ -21,8 +21,15 @@ struct PhotoFileType: FileType {
     }
 
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
-        let results = document.contents.filter({ $0.type is PhotoFileType })
-        let photoBrowser = PhotoBrowserViewController(files: results)
+        var files = [File]()
+        var index: Int?
+        document.contents.forEach({
+            guard $0.type is PhotoFileType else { return }
+            files.append($0)
+            guard index == nil && file == $0 else { return }
+            index = files.count - 1
+        })
+        let photoBrowser = PhotoBrowserViewController(files: files, index: index!)
         controller.navigationController?.pushViewController(photoBrowser, animated: true)
     }
 }

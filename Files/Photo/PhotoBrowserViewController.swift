@@ -18,8 +18,9 @@ class PhotoBrowserViewController: UIViewController {
     }
     private var prefetchManager = PhotoPrefetchManager()
 
-    init(files: [File]) {
+    init(files: [File], index: Int = 0) {
         self.files = files
+        self.index = index
         super.init(nibName: nil, bundle: nil)
         title = "\(index+1)/\(files.count)"
     }
@@ -30,9 +31,14 @@ class PhotoBrowserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        prefetchManager.prefetch(url: files[index].url)
         setupUI()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.layoutIfNeeded()
+        collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: false)
     }
 
     // MARK: - Views
@@ -95,15 +101,6 @@ extension PhotoBrowserViewController: UICollectionViewDataSourcePrefetching {
 }
 
 extension PhotoBrowserViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > CGFloat(index+1) * scrollView.frame.width {
-            index += 1
-        }
-        else if scrollView.contentOffset.x < CGFloat(index-1) * scrollView.frame.width {
-            index -= 1
-        }
-    }
-
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard index != Int(scrollView.contentOffset.x / scrollView.frame.size.width) else {
             return

@@ -68,6 +68,12 @@ class File {
     }()
 }
 
+extension File: Equatable {
+    static func == (lhs: File, rhs: File) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}
+
 protocol FileType {
     var pathExtensions: [String] { get }
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void)
