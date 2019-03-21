@@ -13,8 +13,8 @@ struct PhotoFileType: FileType {
     var pathExtensions: [String] = ["jpg",  "png"]
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
-        FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage in
-            return UIImage(contentsOfFile: file.url.path)!
+        FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage? in
+            return UIImage(contentsOfFile: file.url.path)
         }) { (_, image) in
             completion(image!)
         }

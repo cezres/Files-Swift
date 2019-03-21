@@ -23,9 +23,10 @@ class FileThumbnailCache: NSObject {
         let format = FICImageFormat(name: formatName, family: formatFamily, imageSize: CGSize(width: 160, height: 160), style: .style32BitBGR, maximumCount: 200, devices: .phone, protectionMode: .none)!
         imageCache.setFormats([format])
         imageCache.delegate = self
+//        imageCache.reset()
     }
 
-    func retrieveImage(identifier: String, sourceImage: @escaping () -> UIImage, completion: @escaping CompletionBlock) {
+    func retrieveImage(identifier: String, sourceImage: @escaping () -> UIImage?, completion: @escaping CompletionBlock) {
         let entity = FileThumbnail(identifier: identifier, sourceImage: sourceImage)
         let completionBlock: FICImageCacheCompletionBlock = { (entity, _, image) in
             guard let entity = entity as? FileThumbnail else { return }
@@ -46,9 +47,9 @@ extension FileThumbnailCache: FICImageCacheDelegate {
 
 private class FileThumbnail: NSObject, FICEntity {
     var identifier: String
-    var sourceImage: () -> UIImage
+    var sourceImage: () -> UIImage?
 
-    init(identifier: String, sourceImage: @escaping () -> UIImage) {
+    init(identifier: String, sourceImage: @escaping () -> UIImage?) {
         self.identifier = identifier
         self.sourceImage = sourceImage
     }
@@ -81,8 +82,22 @@ private class FileThumbnail: NSObject, FICEntity {
             context.setFillColor(UIColor.white.cgColor)
             context.fill(contextBounds)
 
+            var drawRect = CGRect.zero
+            let imageSize = image.size
+            let contextAspectRatio = contextSize.width / contextSize.height
+            let imageAspectRatio = imageSize.width / imageSize.height
+            if contextAspectRatio == imageAspectRatio {
+                drawRect = contextBounds
+            } else if contextAspectRatio > imageAspectRatio {
+                let drawWidth = contextSize.height * imageAspectRatio
+                drawRect = CGRect(x: (contextSize.width - drawWidth) / 2, y: 0, width: drawWidth, height: contextSize.height)
+            } else {
+                let drawHeight = contextSize.width * imageSize.height / imageSize.width
+                drawRect = CGRect(x: 0, y: (contextSize.height - drawHeight) / 2, width: contextSize.width, height: drawHeight)
+            }
+
             UIGraphicsPushContext(context)
-            image.square().draw(in: contextBounds)
+            image.draw(in: drawRect)
             UIGraphicsPopContext()
         }
     }
