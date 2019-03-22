@@ -25,7 +25,7 @@ struct MusicFileType: FileType {
         guard let music = Music(url: file.url) else { return }
 
         if MusicPlayer.shared.music == music {
-            if MusicPlayer.shared.status == .paused {
+            if MusicPlayer.shared.state == .paused {
                 MusicPlayer.shared.play()
             } else {
                 MusicPlayer.shared.pause()

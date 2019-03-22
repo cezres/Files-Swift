@@ -12,10 +12,10 @@ import MediaPlayer
 
 class MusicPlayer: NSObject {
     static let shared = MusicPlayer()
-    private(set) var status: Status = .stopped {
+    private(set) var state: State = .stopped {
         didSet {
             configNowPlayingInfoCenter()
-            NotificationCenter.default.post(name: Notification.statusChanged, object: nil)
+            NotificationCenter.default.post(name: Notification.stateChanged, object: nil)
         }
     }
     private(set) var music: Music? {
@@ -60,7 +60,7 @@ class MusicPlayer: NSObject {
     func play() -> Bool {
         guard let player = player else { return false }
         if player.play() {
-            status = .playing
+            state = .playing
             return true
         } else {
             return false
@@ -72,13 +72,13 @@ class MusicPlayer: NSObject {
         player.stop()
         self.player = nil
         self.music = nil
-        status = .stopped
+        state = .stopped
     }
 
     func pause() {
         guard let player = player else { return }
         player.pause()
-        status = .paused
+        state = .paused
     }
 
     // MARK: - Private
@@ -92,12 +92,12 @@ class MusicPlayer: NSObject {
 
 extension MusicPlayer: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        status = .stopped
+        state = .stopped
     }
 }
 
 extension MusicPlayer {
-    enum Status {
+    enum State {
         case playing
         case stopped
         case paused
@@ -112,7 +112,7 @@ extension MusicPlayer {
 
 extension MusicPlayer {
     struct Notification {
-        static let statusChanged = NSNotification.Name("MusicPlayer_Status_Changed")
+        static let stateChanged = NSNotification.Name("MusicPlayer_State_Changed")
         static let musicChanged = NSNotification.Name("MusicPlayer_Music_Changed")
     }
 }
@@ -165,12 +165,7 @@ extension MusicPlayer {
         info[MPMediaItemPropertyPlaybackDuration] = NSNumber(value: music.duration)
         info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: currentTime)
         if let artworkImage = music.artwork {
-            let artwork = MPMediaItemArtwork(boundsSize: artworkImage.size) { (size) -> UIImage in
-                print(size)
-                return artworkImage
-            }
-//            let artwork = MPMediaItemArtwork(image: artworkImage)
-            info[MPMediaItemPropertyArtwork] = artwork
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size, requestHandler: { _ in artworkImage })
         }
     }
 }

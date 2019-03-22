@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class PhotoBrowserViewController: UIViewController {
-    var files: [File]
+    private var files: [File]
     private(set) var index: Int = 0 {
         didSet {
              title = "\(index+1)/\(files.count)"
@@ -43,7 +43,7 @@ class PhotoBrowserViewController: UIViewController {
 
     // MARK: - Views
 
-    var collectionView: UICollectionView!
+    private var collectionView: UICollectionView!
 
     func setupUI() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -90,21 +90,17 @@ extension PhotoBrowserViewController: UICollectionViewDataSource, UICollectionVi
 
 extension PhotoBrowserViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print("\(#function): \(indexPaths.map({ $0.row }).ns.componentsJoined(by: " "))")
         prefetchManager.prefetch(urls: indexPaths.map({ files[$0.row].url }))
     }
 
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        print("\(#function): \(indexPaths.map({ $0.row }).ns.componentsJoined(by: " "))")
         prefetchManager.cancelPrefetching(urls: indexPaths.map({ files[$0.row].url }))
     }
 }
 
 extension PhotoBrowserViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard index != Int(scrollView.contentOffset.x / scrollView.frame.size.width) else {
-            return
-        }
+        guard index != Int(scrollView.contentOffset.x / scrollView.frame.size.width) else { return }
         index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }
@@ -112,7 +108,6 @@ extension PhotoBrowserViewController: UIScrollViewDelegate {
 private class PhotoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints { (maker) in
             maker.edges.equalTo(UIEdgeInsets.zero)

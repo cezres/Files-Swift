@@ -14,7 +14,7 @@ class MusicPlayerViewController: UIViewController {
         view.backgroundColor = UIColor.white
         setupUI()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerStateChangedNotification), name: MusicPlayer.Notification.statusChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerStateChangedNotification), name: MusicPlayer.Notification.stateChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerMusicChangedNotification), name: MusicPlayer.Notification.musicChanged, object: nil)
 
         handlePlayerMusicChangedNotification()
@@ -50,14 +50,14 @@ class MusicPlayerViewController: UIViewController {
 
     // MARK: - Notification
     @objc func handlePlayerStateChangedNotification() {
-        let status = MusicPlayer.shared.status
-        if status == .playing {
+        let state = MusicPlayer.shared.state
+        if state == .playing {
             infoView.start()
         }
-        else if status == .paused {
+        else if state == .paused {
             infoView.pause()
         }
-        else if status == .stopped {
+        else if state == .stopped {
             infoView.stop()
         }
     }

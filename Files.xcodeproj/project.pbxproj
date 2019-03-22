@@ -20,6 +20,7 @@
 		D51043132243728D0014B6E6 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51043122243728D0014B6E6 /* Music.swift */; };
 		D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */; };
 		D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */; };
+		D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */; };
 		D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8762223F712700B81EE0 /* AppDelegate.swift */; };
 		D51A8765223F712700B81EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8764223F712700B81EE0 /* ViewController.swift */; };
 		D51A8768223F712700B81EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51A8766223F712700B81EE0 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		D51043122243728D0014B6E6 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerInfoView.swift; sourceTree = "<group>"; };
 		D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerControlView.swift; sourceTree = "<group>"; };
+		D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIndicatorView.swift; sourceTree = "<group>"; };
 		D51A875F223F712700B81EE0 /* Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Files.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A8762223F712700B81EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51A8764223F712700B81EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */,
 				D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */,
+				D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaHTTPServer/CocoaHTTPServer.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/ESTMusicIndicator/ESTMusicIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/FastImageCache/FastImageCache.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
@@ -394,6 +398,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaHTTPServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTMusicIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastImageCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -467,6 +472,7 @@
 				D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */,
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
+				D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */,
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
 				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,

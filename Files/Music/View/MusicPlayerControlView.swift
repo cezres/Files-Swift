@@ -20,7 +20,7 @@ class MusicPlayerControlView: UIView {
         backgroundColor = UIColor(white: 0.4, alpha: 0.4)
         initSubviews()
         handlePlayStateChangedNotification()
-        NotificationCenter.default.addObserver(self, selector: #selector(MusicPlayerControlView.handlePlayStateChangedNotification), name: MusicPlayer.Notification.statusChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MusicPlayerControlView.handlePlayStateChangedNotification), name: MusicPlayer.Notification.stateChanged, object: nil)
     }
 
     deinit {
@@ -32,7 +32,7 @@ class MusicPlayerControlView: UIView {
     }
 
     @objc func clickPlay() {
-        if MusicPlayer.shared.status == .playing {
+        if MusicPlayer.shared.state == .playing {
             MusicPlayer.shared.pause()
         }
         else {
@@ -47,13 +47,13 @@ class MusicPlayerControlView: UIView {
     }
 
     @objc func handlePlayStateChangedNotification() {
-        if MusicPlayer.shared.status == .playing {
+        if MusicPlayer.shared.state == .playing {
             playButton.setImage(#imageLiteral(resourceName: "icon-pause"), for: .normal)
         }
-        else if MusicPlayer.shared.status == .paused {
+        else if MusicPlayer.shared.state == .paused {
             playButton.setImage(#imageLiteral(resourceName: "icon-play"), for: .normal)
         }
-        else if MusicPlayer.shared.status == .stopped {
+        else if MusicPlayer.shared.state == .stopped {
             playButton.setImage(#imageLiteral(resourceName: "icon-play"), for: .normal)
         }
     }

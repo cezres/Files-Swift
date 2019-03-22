@@ -6,11 +6,13 @@ PODS:
   - CocoaLumberjack (3.5.1):
     - CocoaLumberjack/Core (= 3.5.1)
   - CocoaLumberjack/Core (3.5.1)
+  - ESTMusicIndicator (0.2.0)
   - FastImageCache (1.5.1)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - CocoaHTTPServer (from `https://github.com/cezres/CocoaHTTPServer.git`, commit `acc036960f14ae1e5f09eb80a95a91489ad52f7a`)
+  - ESTMusicIndicator
   - FastImageCache
   - SnapKit
 
@@ -18,6 +20,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CocoaAsyncSocket
     - CocoaLumberjack
+    - ESTMusicIndicator
     - FastImageCache
     - SnapKit
 
@@ -35,9 +38,10 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaHTTPServer: 5624681fc3473d43b18202f635f9b3abb013b530
   CocoaLumberjack: 2101f8a5508197a305e737d16c5c2e9e2157628c
+  ESTMusicIndicator: 80a123b51a7de3caa44dc91829b9619185dad0f6
   FastImageCache: 2e7a6f677b15336eb3d1a4092a494676256c891d
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 8a8f15352f5cb50c4f3cfa743ad4b626fb9fee5c
+PODFILE CHECKSUM: f30cee7b100c2fb2c10673bf59adb85b83b99c22
 
 COCOAPODS: 1.6.1

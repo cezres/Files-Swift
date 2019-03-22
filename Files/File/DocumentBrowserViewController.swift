@@ -25,10 +25,9 @@ class DocumentBrowserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         setupUI()
         document.loadContents()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: MusicIndicatorView())
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +37,7 @@ class DocumentBrowserViewController: UIViewController {
 
     // MARK: - View
 
-    var collectionView: UICollectionView!
+    private var collectionView: UICollectionView!
 
     func setupUI() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -61,7 +60,6 @@ class DocumentBrowserViewController: UIViewController {
             maker.bottom.equalTo(0)
         }
     }
-
 }
 
 extension DocumentBrowserViewController: DocumentDelegate {
