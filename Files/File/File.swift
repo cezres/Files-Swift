@@ -37,8 +37,11 @@ class File {
         self.pathExtension = pathExtension
     }
 
-    func thumbnail(completion: @escaping (UIImage) -> Void) {
-        type.thumbnail(file: self, completion: completion)
+    func thumbnail(completion: @escaping (File, UIImage) -> Void) {
+        type.thumbnail(file: self) { [weak self](image) in
+            guard let self = self else { return }
+            completion(self, image)
+        }
     }
 
     func open(document: Document, controller: DocumentBrowserViewController) {

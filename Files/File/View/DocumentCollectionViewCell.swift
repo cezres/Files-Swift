@@ -30,7 +30,9 @@ class DocumentCollectionViewCell: UICollectionViewCell {
     var file: File! {
         didSet {
             iconImageView.image = nil
-            file.thumbnail { (result) in
+            file.thumbnail { [weak self](file, result) in
+                guard let self = self else { return }
+                guard self.file == file else { return }
                 self.iconImageView.image = result
             }
             nameLabel.text = file.name
