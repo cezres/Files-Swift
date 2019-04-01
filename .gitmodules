@@ -1,0 +1,4 @@
+[submodule "ijkplayer"]
+	path = ijkplayer
+	url = https://github.com/bilibili/ijkplayer.git
+	branch = k0.8.8
