@@ -34,6 +34,7 @@
 		D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8790223F7CF700B81EE0 /* Consts.swift */; };
 		D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8793223F7D9500B81EE0 /* StringExtension.swift */; };
 		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
+		D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		D51A8790223F7CF700B81EE0 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		D51A8793223F7D9500B81EE0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
+		D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				D51A8793223F7D9500B81EE0 /* StringExtension.swift */,
 				D510412F22411E1D0014B6E6 /* ArrayExtension.swift */,
 				D51041312241DFE10014B6E6 /* UIImageExtension.swift */,
+				D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */,
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
+				D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */,
 				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,
 				D51043132243728D0014B6E6 /* Music.swift in Sources */,
 				D510430F224361850014B6E6 /* MusicPlayerViewController.swift in Sources */,
