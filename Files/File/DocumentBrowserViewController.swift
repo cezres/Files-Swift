@@ -63,8 +63,8 @@ class DocumentBrowserViewController: UIViewController {
 }
 
 extension DocumentBrowserViewController: DocumentDelegate {
-    func document(document: Document, contentsDidUpdate update: ListUpdate) {
-        collectionView.reloadData()
+    func document(document: Document, contentsDidUpdate update: TableUpdate) {
+        collectionView.tableUpdate(update: update)
     }
 }
 
