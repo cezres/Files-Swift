@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 
 extension UIImage {
-    func decode() -> UIImage? {
-        guard let cgImage = self.cgImage else {
-            return nil
-        }
+    func decode() -> UIImage {
+        guard let cgImage = self.cgImage else { return self }
         let width = cgImage.width
         let height = cgImage.height
         let bitsPerComponent = cgImage.bitsPerComponent
