@@ -9,6 +9,38 @@
 import UIKit
 
 extension UIResponder {
+    func eventStrategy<T>() -> T? {
+        if let eventStrategy: T = self as? T {
+            return eventStrategy
+        } else {
+            return next?.eventStrategy()
+        }
+    }
+}
+
+extension UIResponder {
+    func routerEvent(with eventName: String, userInfo: Any?) {
+        if let action = eventStrategyDict[eventName] {
+            action.perform(target: self, userInfo: userInfo)
+        } else {
+            next?.routerEvent(with: eventName, userInfo: userInfo)
+        }
+    }
+
+    func registerEventStrategy(with eventName: String, action: Selector) {
+        eventStrategyDict[eventName] = EventStrategy(selector: action)
+    }
+
+    func registerEventStrategy(with eventName: String, block: @escaping Block) {
+        eventStrategyDict[eventName] = EventStrategy(block: block)
+    }
+
+    func registerEventStrategy(with eventName: String, userInfoBlock: @escaping UserInfoBlock) {
+        eventStrategyDict[eventName] = EventStrategy(userInfoBlock: userInfoBlock)
+    }
+}
+
+extension UIResponder {
     typealias Block = () -> Void
     typealias UserInfoBlock = (_ userInfo: Any?) -> Void
 
@@ -51,36 +83,6 @@ extension UIResponder {
         }
         set {
             objc_setAssociatedObject(self, &UIResponder.eventStrategyAssiciationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-}
-
-extension UIResponder {
-    func routerEvent(with eventName: String, userInfo: Any?) {
-        if let action = eventStrategyDict[eventName] {
-            action.perform(target: self, userInfo: userInfo)
-        } else {
-            next?.routerEvent(with: eventName, userInfo: userInfo)
-        }
-    }
-
-    func registerEventStrategy(with eventName: String, action: Selector) {
-        eventStrategyDict[eventName] = EventStrategy(selector: action)
-    }
-
-    func registerEventStrategy(with eventName: String, block: @escaping Block) {
-        eventStrategyDict[eventName] = EventStrategy(block: block)
-    }
-
-    func registerEventStrategy(with eventName: String, userInfoBlock: @escaping UserInfoBlock) {
-        eventStrategyDict[eventName] = EventStrategy(userInfoBlock: userInfoBlock)
-    }
-
-    func eventStrategy<T>() -> T? {
-        if let eventStrategy: T = self as? T {
-            return eventStrategy
-        } else {
-            return next?.eventStrategy()
         }
     }
 }
