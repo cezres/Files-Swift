@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DocumentDelegate: class {
-    func document(document: Document, contentsDidUpdate update: ListUpdate)
+    func document(document: Document, contentsDidUpdate update: TableUpdate)
 }
 
 class Document: NSObject {
