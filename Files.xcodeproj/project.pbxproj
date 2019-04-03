@@ -38,6 +38,8 @@
 		D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8790223F7CF700B81EE0 /* Consts.swift */; };
 		D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8793223F7D9500B81EE0 /* StringExtension.swift */; };
 		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
+		D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8BE22523040009C8C45 /* VideoPlayer.swift */; };
+		D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C0225305E7009C8C45 /* VideoFileType.swift */; };
 		D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */; };
 		D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */; };
 		D53CF8C72254800C009C8C45 /* DocumentBrowserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C62254800C009C8C45 /* DocumentBrowserProtocol.swift */; };
@@ -95,6 +97,8 @@
 		D51A8790223F7CF700B81EE0 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		D51A8793223F7D9500B81EE0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
+		D53CF8BE22523040009C8C45 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		D53CF8C0225305E7009C8C45 /* VideoFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileType.swift; sourceTree = "<group>"; };
 		D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtensions.swift; sourceTree = "<group>"; };
 		D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D53CF8C62254800C009C8C45 /* DocumentBrowserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserProtocol.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				D51A8784223F73D400B81EE0 /* File */,
 				D5103BDB224087C70014B6E6 /* Photo */,
 				D510430B224331A60014B6E6 /* Music */,
+				D53CF8B12251FCD9009C8C45 /* Video */,
 				D51A8762223F712700B81EE0 /* AppDelegate.swift */,
 				D51A8764223F712700B81EE0 /* ViewController.swift */,
 				D51A8766223F712700B81EE0 /* Main.storyboard */,
@@ -271,6 +276,15 @@
 			children = (
 			);
 			path = Type;
+			sourceTree = "<group>";
+		};
+		D53CF8B12251FCD9009C8C45 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				D53CF8C0225305E7009C8C45 /* VideoFileType.swift */,
+				D53CF8BE22523040009C8C45 /* VideoPlayer.swift */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,12 +504,14 @@
 				D510412822410AE30014B6E6 /* PhotoBrowserViewController.swift in Sources */,
 				D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */,
 				D51A8765223F712700B81EE0 /* ViewController.swift in Sources */,
+				D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */,
 				D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */,
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
 				D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */,
 				D53CF8C72254800C009C8C45 /* DocumentBrowserProtocol.swift in Sources */,
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
+				D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
 				D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */,
 				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,

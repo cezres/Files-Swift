@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         File.register(type: PhotoFileType())
         File.register(type: MusicFileType())
+        File.register(type: VideoFileType())
         return true
     }
 
