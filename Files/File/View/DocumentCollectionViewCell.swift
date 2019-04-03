@@ -41,7 +41,7 @@ class DocumentCollectionViewCell: UICollectionViewCell {
 
     // MARK: - View
     func setupUI() {
-        self.contentView.addSubview(nameLabel)
+        contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(0)
             make.right.equalTo(0)
@@ -49,7 +49,7 @@ class DocumentCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(nameLabel.font.lineHeight*2)
         }
 
-        self.contentView.addSubview(iconImageView)
+        contentView.addSubview(iconImageView)
         iconImageView.snp.makeConstraints { (make) in
             make.left.equalTo(10)
             make.right.equalTo(-10)
