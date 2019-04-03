@@ -41,7 +41,7 @@ class MusicIndicatorView: UIView {
     }
 
     @objc func tapMusicIndicator() {
-        guard let navigationController = UIApplication.shared.keyWindow?.rootViewController?.navigationController else { return }
+        guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
         navigationController.pushViewController(MusicPlayerViewController(), animated: true)
     }
 

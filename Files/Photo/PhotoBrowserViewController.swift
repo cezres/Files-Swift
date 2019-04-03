@@ -33,12 +33,19 @@ class PhotoBrowserViewController: UIViewController {
         super.viewDidLoad()
         prefetchManager.prefetch(url: files[index].url)
         setupUI()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(clickPhotoList))
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.layoutIfNeeded()
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: false)
+    }
+
+    @objc func clickPhotoList() {
+        let controller = PhotoListViewController(photos: files, prefetchManager: prefetchManager)
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     // MARK: - Views
@@ -77,7 +84,7 @@ extension PhotoBrowserViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Photo", for: indexPath) as! PhotoCollectionViewCell
         cell.imageView.image = nil
-        prefetchManager.loadPhoto(url: files[indexPath.row].url) { (result) in
+        prefetchManager.requestImage(url: files[indexPath.row].url) { (result) in
             cell.imageView.image = result
         }
         return cell
