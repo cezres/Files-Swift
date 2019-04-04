@@ -76,10 +76,11 @@ extension TableUpdateProtocol where Self: UICollectionView {
         case .reload:
             reloadItems(at: update.indexs.map({ IndexPath(row: $0, section: 0) }))
         case .move:
-            for moveIndex in update.moveIndexs {
-                let indexPath = IndexPath(row: moveIndex.index, section: 0)
-                let newIndexPath = IndexPath(row: moveIndex.newIndex, section: 0)
-                moveItem(at: indexPath, to: newIndexPath)
+            update.moveIndexs.map {(
+                index: IndexPath(row: $0.index, section: 0),
+                newIndex: IndexPath(row: $0.newIndex, section: 0)
+            )}.forEach {
+                moveItem(at: $0.index, to: $0.newIndex)
             }
         case .reloadVisible:
             reloadItems(at: visibleCells.map({ indexPath(for: $0)! }))
@@ -101,10 +102,11 @@ extension TableUpdateProtocol where Self: UITableView {
         case .reload:
             reloadRows(at: update.indexs.map({ IndexPath(row: $0, section: 0) }), with: .none)
         case .move:
-            for moveIndex in update.moveIndexs {
-                let indexPath = IndexPath(row: moveIndex.index, section: 0)
-                let newIndexPath = IndexPath(row: moveIndex.newIndex, section: 0)
-                moveRow(at: indexPath, to: newIndexPath)
+            update.moveIndexs.map {(
+                index: IndexPath(row: $0.index, section: 0),
+                newIndex: IndexPath(row: $0.newIndex, section: 0)
+            )}.forEach {
+                moveRow(at: $0.index, to: $0.newIndex)
             }
         case .reloadVisible:
             reloadRows(at: visibleCells.map({ indexPath(for: $0)! }), with: .none)
