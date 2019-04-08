@@ -35,13 +35,13 @@ class MusicPlayerViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default
         navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController?.navigationBar.barStyle = .black
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barStyle = .black
     }
 
     @objc func popController() {

@@ -10,13 +10,13 @@ import UIKit
 
 protocol DocumentBrowserControlViewEvent {
     func newDirectory()
-    func photoBrowser()
+    func fileList()
+    func photoList()
 }
 
 class DocumentBrowserControlView: UIView {
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 375, height: 44))
-//        backgroundColor = UIColor.orange
 
         let newButton = UIButton(type: .system)
         newButton.setTitle("New", for: .normal)
@@ -31,6 +31,7 @@ class DocumentBrowserControlView: UIView {
 
         let photoButton = UIButton(type: .system)
         photoButton.setTitle("Photo", for: .normal)
+        photoButton.addTarget(self, action: #selector(photoList(button:)), for: .touchUpInside)
         addSubview(photoButton)
         photoButton.snp.makeConstraints { (maker) in
             maker.right.equalTo(-12)
@@ -45,14 +46,20 @@ class DocumentBrowserControlView: UIView {
     }
 
     @objc func newDirectory() {
-        if let event: DocumentBrowserControlViewEvent = eventStrategy() {
-            event.newDirectory()
-        }
+        guard let event: DocumentBrowserControlViewEvent = eventStrategy() else { return }
+        event.newDirectory()
     }
 
-    @objc func photoBrowser() {
-        if let event: DocumentBrowserControlViewEvent = eventStrategy() {
-            event.photoBrowser()
+    @objc func photoList(button: UIButton) {
+        guard let eventStrategy: DocumentBrowserControlViewEvent = eventStrategy() else { return }
+        if button.tag == 0 {
+            eventStrategy.photoList()
+            button.setTitle("File", for: .normal)
+            button.tag = 1
+        } else {
+            eventStrategy.fileList()
+            button.setTitle("Photo", for: .normal)
+            button.tag = 0
         }
     }
 }

@@ -33,19 +33,12 @@ class PhotoBrowserViewController: UIViewController {
         super.viewDidLoad()
         prefetchManager.prefetch(url: files[index].url)
         setupUI()
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: self, action: #selector(clickPhotoList))
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.layoutIfNeeded()
         collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: false)
-    }
-
-    @objc func clickPhotoList() {
-        let controller = PhotoListViewController(photos: files, prefetchManager: prefetchManager)
-        navigationController?.pushViewController(controller, animated: true)
     }
 
     // MARK: - Views

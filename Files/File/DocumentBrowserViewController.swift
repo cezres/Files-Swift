@@ -10,9 +10,7 @@ import UIKit
 import SnapKit
 
 class DocumentBrowserViewController: UIViewController {
-    var document: Document!
-    typealias BrowserView = DocumentBrowserProtocol & UIView
-    var contentView: BrowserView!
+    private(set) var document: Document!
 
     init(directory: URL = DocumentDirectory) {
         super.init(nibName: nil, bundle: nil)
@@ -27,7 +25,8 @@ class DocumentBrowserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        setupContentView(contentView: DocumentBrowserView())
+        setupView()
+        document.registerDelegate(delegate: self)
         document.loadContents()
     }
 
@@ -36,13 +35,105 @@ class DocumentBrowserViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    func setupContentView(contentView: BrowserView) {
-        self.contentView = contentView
-        self.contentView.document = document
-        navigationItem.setRightBarButtonItems(self.contentView.rightBarButtonItems, animated: true)
-        view.addSubview(self.contentView)
-        self.contentView.snp.makeConstraints { (maker) in
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        controlView.snp.updateConstraints { (maker) in
+            maker.bottom.equalTo(collectionView.snp.top).offset(collectionView.safeAreaInsets.top)
+        }
+    }
+
+    private var collectionView: UICollectionView!
+    private var controlView: DocumentBrowserControlView!
+    private var controlMaskView: UIView!
+    private var flowLayout: UICollectionViewFlowLayout & DocumentBrowserFlowLayout = FileListFlowLayout() {
+        didSet {
+            flowLayout.delegate = self
+            collectionView?.reloadData()
+            collectionView?.setCollectionViewLayout(flowLayout, animated: true)
+        }
+    }
+
+    private func setupView() {
+        flowLayout.delegate = self
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.alwaysBounceVertical = true
+        collectionView.register(DocumentCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "file")
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { (maker) in
             maker.edges.equalTo(view)
+        }
+
+        controlView = DocumentBrowserControlView()
+        view.addSubview(controlView)
+        controlView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(0)
+            maker.right.equalTo(0)
+            maker.bottom.equalTo(collectionView.snp.top).offset(0)
+            maker.height.equalTo(controlView.bounds.size.height)
+        }
+
+        controlMaskView = UIView()
+        controlMaskView.backgroundColor = UIColor.white
+        view.addSubview(controlMaskView)
+        controlMaskView.snp.makeConstraints { (maker) in
+            maker.edges.equalTo(controlView)
+        }
+
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: MusicIndicatorView())]
+    }
+}
+
+extension DocumentBrowserViewController: DocumentBrowserControlViewEvent {
+    func newDirectory() {
+    }
+
+    func photoList() {
+        flowLayout = PhotoListFlowLayout()
+    }
+
+    func fileList() {
+        flowLayout = FileListFlowLayout()
+    }
+}
+
+extension DocumentBrowserViewController: DocumentDelegate {
+    func document(document: Document, contentsDidUpdate update: TableUpdate) {
+        collectionView.tableUpdate(update: update)
+    }
+}
+
+extension DocumentBrowserViewController: DocumentBrowserFlowLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return document.contents.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return flowLayout.cellForItem(at: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        document.contents[indexPath.row].open(document: document, controller: self)
+    }
+
+    func flowLayout(_ flowLayout: DocumentBrowserFlowLayout, fileForItemAt indexPath: IndexPath) -> File {
+        return document.contents[indexPath.row]
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y + scrollView.adjustedContentInset.top - collectionView.contentInset.top
+        controlView.transform = CGAffineTransform(translationX: 0, y: -offset)
+        controlMaskView.transform = CGAffineTransform(translationX: 0, y: min(-offset, 0))
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y + scrollView.adjustedContentInset.top < -(controlView.height) {
+            collectionView.contentInset = UIEdgeInsets(top: controlView.bounds.size.height, left: 0, bottom: 0, right: 0)
+        } else {
+            collectionView.contentInset = UIEdgeInsets.zero
         }
     }
 }

@@ -22,9 +22,6 @@
 		D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */; };
 		D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */; };
 		D51044EE2244E4100014B6E6 /* DocumentBrowserControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */; };
-		D51087D9224A2925004427BB /* DocumentBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51087D8224A2925004427BB /* DocumentBrowserView.swift */; };
-		D51087DB224A446F004427BB /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51087DA224A446F004427BB /* PhotoListViewController.swift */; };
-		D51087DD224A44F4004427BB /* PhotoListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51087DC224A44F4004427BB /* PhotoListFlowLayout.swift */; };
 		D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8762223F712700B81EE0 /* AppDelegate.swift */; };
 		D51A8765223F712700B81EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8764223F712700B81EE0 /* ViewController.swift */; };
 		D51A8768223F712700B81EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51A8766223F712700B81EE0 /* Main.storyboard */; };
@@ -38,11 +35,13 @@
 		D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8790223F7CF700B81EE0 /* Consts.swift */; };
 		D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8793223F7D9500B81EE0 /* StringExtension.swift */; };
 		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
+		D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */; };
+		D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */; };
 		D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8BE22523040009C8C45 /* VideoPlayer.swift */; };
 		D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C0225305E7009C8C45 /* VideoFileType.swift */; };
 		D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */; };
 		D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */; };
-		D53CF8C72254800C009C8C45 /* DocumentBrowserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C62254800C009C8C45 /* DocumentBrowserProtocol.swift */; };
+		D53CFA9D2254B225009C8C45 /* FileListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,9 +76,6 @@
 		D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerControlView.swift; sourceTree = "<group>"; };
 		D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIndicatorView.swift; sourceTree = "<group>"; };
 		D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserControlView.swift; sourceTree = "<group>"; };
-		D51087D8224A2925004427BB /* DocumentBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserView.swift; sourceTree = "<group>"; };
-		D51087DA224A446F004427BB /* PhotoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
-		D51087DC224A44F4004427BB /* PhotoListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListFlowLayout.swift; sourceTree = "<group>"; };
 		D51A875F223F712700B81EE0 /* Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Files.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A8762223F712700B81EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51A8764223F712700B81EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,11 +93,13 @@
 		D51A8790223F7CF700B81EE0 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		D51A8793223F7D9500B81EE0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
+		D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListFlowLayout.swift; sourceTree = "<group>"; };
+		D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserFlowLayout.swift; sourceTree = "<group>"; };
 		D53CF8BE22523040009C8C45 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		D53CF8C0225305E7009C8C45 /* VideoFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileType.swift; sourceTree = "<group>"; };
 		D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtensions.swift; sourceTree = "<group>"; };
 		D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
-		D53CF8C62254800C009C8C45 /* DocumentBrowserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserProtocol.swift; sourceTree = "<group>"; };
+		D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +148,6 @@
 				D5103F672240EEFF0014B6E6 /* PhotoFileType.swift */,
 				D510412722410AE30014B6E6 /* PhotoBrowserViewController.swift */,
 				D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */,
-				D51087DA224A446F004427BB /* PhotoListViewController.swift */,
-				D51087DC224A44F4004427BB /* PhotoListFlowLayout.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -265,8 +261,9 @@
 			children = (
 				D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */,
 				D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */,
-				D53CF8C62254800C009C8C45 /* DocumentBrowserProtocol.swift */,
-				D51087D8224A2925004427BB /* DocumentBrowserView.swift */,
+				D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */,
+				D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */,
+				D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -509,7 +506,6 @@
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
 				D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */,
-				D53CF8C72254800C009C8C45 /* DocumentBrowserProtocol.swift in Sources */,
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
@@ -518,19 +514,19 @@
 				D51043132243728D0014B6E6 /* Music.swift in Sources */,
 				D510430F224361850014B6E6 /* MusicPlayerViewController.swift in Sources */,
 				D51A878C223F7B6300B81EE0 /* File.swift in Sources */,
+				D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */,
 				D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */,
 				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
+				D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */,
 				D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */,
 				D51044EE2244E4100014B6E6 /* DocumentBrowserControlView.swift in Sources */,
 				D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */,
 				D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */,
-				D51087D9224A2925004427BB /* DocumentBrowserView.swift in Sources */,
 				D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */,
-				D51087DD224A44F4004427BB /* PhotoListFlowLayout.swift in Sources */,
-				D51087DB224A446F004427BB /* PhotoListViewController.swift in Sources */,
 				D51A878F223F7C3A00B81EE0 /* TableUpdate.swift in Sources */,
 				D5104311224371420014B6E6 /* MusicPlayer.swift in Sources */,
 				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
+				D53CFA9D2254B225009C8C45 /* FileListFlowLayout.swift in Sources */,
 				D51A878A223F7B3C00B81EE0 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

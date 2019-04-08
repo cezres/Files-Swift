@@ -24,6 +24,7 @@ class Document: NSObject {
 
     func registerDelegate(delegate: DocumentDelegate) {
         delegates.add(delegate)
+        delegate.document(document: self, contentsDidUpdate: .reloadAll)
     }
 
     func loadContents() {
