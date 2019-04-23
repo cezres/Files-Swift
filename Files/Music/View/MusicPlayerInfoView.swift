@@ -89,6 +89,11 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
         singerLabel.text = MusicPlayer.shared.music?.singer
         currentTime = MusicPlayer.shared.currentTime
         duration = MusicPlayer.shared.duration
+        handleTimer()
+        remainedTimeLabel.snp.updateConstraints { (maker) in
+            let textWidth = remainedTimeLabel.textRect(forBounds: CGRect(x: 0, y: 0, width: 140, height: 30), limitedToNumberOfLines: 1).size.width + 8
+            maker.width.equalTo(textWidth)
+        }
     }
 
     // MARK: - Handle
@@ -125,6 +130,7 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
         else if diameter >= 30 {
             diameterOffset = -0.2
         }
+
         diameter += diameterOffset
         currentTime = MusicPlayer.shared.currentTime
         setNeedsDisplay()
@@ -155,10 +161,7 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
-        // Drawing code
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
+        guard let context = UIGraphicsGetCurrentContext() else { return }
         draw(size: rect.size, context: context)
     }
 
@@ -223,7 +226,7 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
 
         elapsedTimeLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self.snp.centerX).offset(-8)
-            make.width.equalTo(60)
+            make.width.equalTo(remainedLabel.snp.width)
             make.centerY.equalTo(self).offset(30)
             make.height.equalTo(20)
         }
