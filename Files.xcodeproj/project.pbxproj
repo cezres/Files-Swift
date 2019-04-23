@@ -16,7 +16,6 @@
 		D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */; };
 		D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510430C224331B90014B6E6 /* MusicFileType.swift */; };
 		D510430F224361850014B6E6 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D510430E224361850014B6E6 /* MusicPlayerViewController.swift */; };
-		D5104311224371420014B6E6 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5104310224371420014B6E6 /* MusicPlayer.swift */; };
 		D51043132243728D0014B6E6 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51043122243728D0014B6E6 /* Music.swift */; };
 		D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */; };
 		D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */; };
@@ -37,6 +36,7 @@
 		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
 		D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */; };
 		D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */; };
+		D532D4702265AE0B00689C21 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532D46F2265AE0B00689C21 /* MusicPlayer.swift */; };
 		D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8BE22523040009C8C45 /* VideoPlayer.swift */; };
 		D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C0225305E7009C8C45 /* VideoFileType.swift */; };
 		D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */; };
@@ -70,7 +70,6 @@
 		D5104309224271A50014B6E6 /* PhotoPrefetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPrefetchManager.swift; sourceTree = "<group>"; };
 		D510430C224331B90014B6E6 /* MusicFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicFileType.swift; sourceTree = "<group>"; };
 		D510430E224361850014B6E6 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
-		D5104310224371420014B6E6 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		D51043122243728D0014B6E6 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		D51044E72243B28A0014B6E6 /* MusicPlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerInfoView.swift; sourceTree = "<group>"; };
 		D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerControlView.swift; sourceTree = "<group>"; };
@@ -95,6 +94,7 @@
 		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListFlowLayout.swift; sourceTree = "<group>"; };
 		D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserFlowLayout.swift; sourceTree = "<group>"; };
+		D532D46F2265AE0B00689C21 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		D53CF8BE22523040009C8C45 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		D53CF8C0225305E7009C8C45 /* VideoFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileType.swift; sourceTree = "<group>"; };
 		D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtensions.swift; sourceTree = "<group>"; };
@@ -155,10 +155,10 @@
 		D510430B224331A60014B6E6 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				D532D46E2265AE0B00689C21 /* MusicPlayer */,
 				D51044E62243B2740014B6E6 /* View */,
 				D510430C224331B90014B6E6 /* MusicFileType.swift */,
 				D510430E224361850014B6E6 /* MusicPlayerViewController.swift */,
-				D5104310224371420014B6E6 /* MusicPlayer.swift */,
 				D51043122243728D0014B6E6 /* Music.swift */,
 			);
 			path = Music;
@@ -273,6 +273,14 @@
 			children = (
 			);
 			path = Type;
+			sourceTree = "<group>";
+		};
+		D532D46E2265AE0B00689C21 /* MusicPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D532D46F2265AE0B00689C21 /* MusicPlayer.swift */,
+			);
+			path = MusicPlayer;
 			sourceTree = "<group>";
 		};
 		D53CF8B12251FCD9009C8C45 /* Video */ = {
@@ -506,6 +514,7 @@
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
 				D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */,
+				D532D4702265AE0B00689C21 /* MusicPlayer.swift in Sources */,
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
@@ -524,7 +533,6 @@
 				D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */,
 				D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */,
 				D51A878F223F7C3A00B81EE0 /* TableUpdate.swift in Sources */,
-				D5104311224371420014B6E6 /* MusicPlayer.swift in Sources */,
 				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
 				D53CFA9D2254B225009C8C45 /* FileListFlowLayout.swift in Sources */,
 				D51A878A223F7B3C00B81EE0 /* Document.swift in Sources */,
@@ -693,6 +701,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PBL67DWM43;
 				INFOPLIST_FILE = Files/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -712,6 +721,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PBL67DWM43;
 				INFOPLIST_FILE = Files/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

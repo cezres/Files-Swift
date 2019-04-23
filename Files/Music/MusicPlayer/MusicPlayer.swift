@@ -10,12 +10,15 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class MusicPlayer: NSObject {
+class MusicPlayer {
     static let shared = MusicPlayer()
     private(set) var state: State = .stopped {
         didSet {
-            configNowPlayingInfoCenter()
-            NotificationCenter.default.post(name: Notification.stateChanged, object: nil)
+            guard state != oldValue else { return }
+            DispatchQueue.main.async {
+                self.configNowPlayingInfoCenter()
+                NotificationCenter.default.post(name: Notification.stateChanged, object: nil)
+            }
         }
     }
     private(set) var music: Music? {
@@ -23,76 +26,118 @@ class MusicPlayer: NSObject {
             NotificationCenter.default.post(name: Notification.musicChanged, object: nil)
         }
     }
-    var currentTime: TimeInterval {
-        get {
-            return player?.currentTime ?? 0
-        }
-        set {
-            player?.currentTime = newValue
-        }
-    }
-    var duration: TimeInterval {
-        configNowPlayingInfoCenter()
-        return player?.duration ?? 0
-    }
-    var isPlaying: Bool {
-        return player?.isPlaying ?? false
-    }
 
     @discardableResult
     func play(_ music: Music) -> Bool {
-        guard music.url != player?.url else { return play() }
-        stop()
+        player.isPlaying ? player.stop() : nil
         do {
             try AVAudioSession.sharedInstance().setActive(true)
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             UIApplication.shared.beginReceivingRemoteControlEvents()
-            player = try AVAudioPlayer(contentsOf: music.url)
-            player?.delegate = self
+
+            audioFile = try AVAudioFile(forReading: music.url)
+            player.scheduleFile(audioFile!, at: nil) { [weak self] in
+                self?.scheduleCompletionHandler()
+            }
+            player.play()
+
             self.music = music
-            return play()
+            startingFrame = 0
+            state = .playing
+            return true
         } catch {
             return false
         }
     }
 
-    @discardableResult
-    func play() -> Bool {
-        guard let player = player else { return false }
-        if player.play() {
+    func seek(to time: TimeInterval) {
+        guard let audioFile = audioFile else { return }
+        guard let lastNodeTime = player.lastRenderTime, let playerTime = player.playerTime(forNodeTime: lastNodeTime) else { return }
+        let sampleRate = playerTime.sampleRate
+        let newSampleTime = AVAudioFramePosition(sampleRate * time)
+        let framestoplay = AVAudioFrameCount(audioFile.length - newSampleTime)
+
+        guard framestoplay > 1000 else { return }
+        player.stop()
+        player.scheduleSegment(audioFile, startingFrame: newSampleTime, frameCount: framestoplay, at: nil) { [weak self] in
+            self?.scheduleCompletionHandler()
+        }
+        player.play()
+        startingFrame = newSampleTime
+    }
+
+    @discardableResult func play() -> Bool {
+        switch state {
+        case .playing:
+            return true
+        case .paused:
+            player.play()
             state = .playing
             return true
-        } else {
-            return false
+        case .stopped:
+            if let music = music {
+                return play(music)
+            } else {
+                return false
+            }
         }
     }
 
     func stop() {
-        guard let player = player else { return }
         player.stop()
-        self.player = nil
-        self.music = nil
         state = .stopped
     }
 
     func pause() {
-        guard let player = player else { return }
+        pausePlayTime = player.lastPlayTime
         player.pause()
         state = .paused
     }
 
     // MARK: - Private
-    private var player: AVAudioPlayer?
+    private let engine = AVAudioEngine()
+    private let player: AVAudioPlayerNode = AVAudioPlayerNode()
+    private var audioFile: AVAudioFile?
+    private var startingFrame: AVAudioFramePosition = 0
+    private var pausePlayTime: AVAudioTime?
 
-    private override init() {
-        super.init()
+    private init(bufferSize: Int = 2048) {
         configRemoteComtrol()
+        engine.attach(player)
+        engine.connect(player, to: engine.mainMixerNode, format: nil)
+        engine.prepare()
+        try! engine.start()
+        engine.mainMixerNode.removeTap(onBus: 0)
+        engine.mainMixerNode.installTap(onBus: 0, bufferSize: AVAudioFrameCount(bufferSize), format: nil) { (buffer, when) in
+        }
+    }
+
+    private func scheduleCompletionHandler() {
+        if duration - currentTime < 2 {
+            state = .stopped
+        }
     }
 }
 
-extension MusicPlayer: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        state = .stopped
+extension MusicPlayer {
+    var currentTime: TimeInterval {
+        get {
+            if state == .paused || state == .stopped {
+                guard let playTime = pausePlayTime else { return 0}
+                return Double(playTime.sampleTime + startingFrame) / playTime.sampleRate
+            }
+            guard let playTime = player.lastPlayTime else { return 0 }
+            return min(Double(playTime.sampleTime + startingFrame) / playTime.sampleRate, duration)
+        }
+        set {
+            seek(to: newValue)
+        }
+    }
+    var duration: TimeInterval {
+        return audioFile?.duration ?? 0
+    }
+    var isPlaying: Bool {
+        return player.isPlaying
     }
 }
 
@@ -167,5 +212,24 @@ extension MusicPlayer {
         if let artworkImage = music.artwork {
             info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size, requestHandler: { _ in artworkImage })
         }
+    }
+}
+
+extension AVAudioTime {
+    var timeInterval: TimeInterval {
+        return Double(sampleTime) / sampleRate
+    }
+}
+
+extension AVAudioPlayerNode {
+    var lastPlayTime: AVAudioTime? {
+        guard let nodeTime = lastRenderTime else { return nil }
+        return playerTime(forNodeTime: nodeTime)
+    }
+}
+
+extension AVAudioFile {
+    var duration: TimeInterval {
+        return TimeInterval(length) / fileFormat.sampleRate
     }
 }
