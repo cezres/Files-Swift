@@ -47,7 +47,7 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
 
         if displayLink == nil {
             displayLink = CADisplayLink(target: self, selector: #selector(MusicPlayerInfoView.handleDisplayLink))
-            displayLink?.preferredFramesPerSecond = 30
+            displayLink?.preferredFramesPerSecond = 20
             displayLink?.add(to: .current, forMode: .default)
         }
         if timer == nil {
@@ -131,8 +131,8 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
     }
 
     @objc func handleTimer() {
-        elapsedTimeLabel.text = timeToString(time: currentTime)
-        remainedTimeLabel.text = timeToString(time: duration - currentTime)
+        elapsedTimeLabel.text = currentTime.formatterToTime()
+        remainedTimeLabel.text = (duration - currentTime).formatterToTime()
     }
 
     // MARK: - UIGestureRecognizerDelegate
@@ -272,13 +272,17 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
     }
 }
 
-
-func timeToString(time: TimeInterval) -> String {
-    guard time >= 0 else {
-        return "--:--"
+extension TimeInterval {
+    func formatterToTime() -> String {
+        let time = lround(self)
+        let hour = time / 3600
+        let minute = (time - hour * 3600) / 60
+        let second = time - hour * 3600 - minute * 60
+        if hour > 0 {
+            return String(format: "%02d:%02d:%02d", hour, minute, second)
+        } else {
+            return String(format: "%02d:%02d", minute, second)
+        }
     }
-    let iTime = Int(time)
-    let minute = iTime / 60
-    return String(format: "%02d:%02d", minute, iTime - minute*60)
 }
 
