@@ -17,13 +17,13 @@ class MusicPlayer {
             guard state != oldValue else { return }
             DispatchQueue.main.async {
                 self.configNowPlayingInfoCenter()
-                NotificationCenter.default.post(name: Notification.stateChanged, object: nil)
+                NotificationCenter.default.post(name: Notification.didChangeState, object: nil)
             }
         }
     }
     private(set) var music: Music? {
         didSet {
-            NotificationCenter.default.post(name: Notification.musicChanged, object: nil)
+            NotificationCenter.default.post(name: Notification.didChangeMusic, object: nil)
         }
     }
 
@@ -157,8 +157,8 @@ extension MusicPlayer {
 
 extension MusicPlayer {
     struct Notification {
-        static let stateChanged = NSNotification.Name("MusicPlayer_State_Changed")
-        static let musicChanged = NSNotification.Name("MusicPlayer_Music_Changed")
+        static let didChangeState = NSNotification.Name("MusicPlayer.didChangeState")
+        static let didChangeMusic = NSNotification.Name("MusicPlayer.didChangeMusic")
     }
 }
 

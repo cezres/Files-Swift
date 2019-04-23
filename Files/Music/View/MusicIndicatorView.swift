@@ -25,7 +25,7 @@ class MusicIndicatorView: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapMusicIndicator))
         addGestureRecognizer(tap)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerStateChangedNotification), name: MusicPlayer.Notification.stateChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerStateChangedNotification), name: MusicPlayer.Notification.didChangeState, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

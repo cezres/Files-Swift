@@ -20,7 +20,7 @@ class MusicPlayerControlView: UIView {
         backgroundColor = UIColor(white: 0.4, alpha: 0.4)
         initSubviews()
         handlePlayStateChangedNotification()
-        NotificationCenter.default.addObserver(self, selector: #selector(MusicPlayerControlView.handlePlayStateChangedNotification), name: MusicPlayer.Notification.stateChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MusicPlayerControlView.handlePlayStateChangedNotification), name: MusicPlayer.Notification.didChangeState, object: nil)
     }
 
     deinit {

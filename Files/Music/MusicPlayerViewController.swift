@@ -14,8 +14,8 @@ class MusicPlayerViewController: UIViewController {
         view.backgroundColor = UIColor.white
         setupUI()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerStateChangedNotification), name: MusicPlayer.Notification.stateChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerMusicChangedNotification), name: MusicPlayer.Notification.musicChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerStateChangedNotification), name: MusicPlayer.Notification.didChangeState, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerMusicChangedNotification), name: MusicPlayer.Notification.didChangeMusic, object: nil)
 
         handlePlayerMusicChangedNotification()
         handlePlayerStateChangedNotification()
