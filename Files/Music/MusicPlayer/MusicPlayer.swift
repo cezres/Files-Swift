@@ -27,8 +27,7 @@ class MusicPlayer {
         }
     }
 
-    @discardableResult
-    func play(_ music: Music) -> Bool {
+    @discardableResult func play(_ music: Music) -> Bool {
         player.isPlaying ? player.stop() : nil
         do {
             try AVAudioSession.sharedInstance().setActive(true)
@@ -100,8 +99,10 @@ class MusicPlayer {
     private var audioFile: AVAudioFile?
     private var startingFrame: AVAudioFramePosition = 0
     private var pausePlayTime: AVAudioTime?
+    let bufferSize: Int
 
     private init(bufferSize: Int = 2048) {
+        self.bufferSize = bufferSize
         configRemoteComtrol()
         engine.attach(player)
         engine.connect(player, to: engine.mainMixerNode, format: nil)
@@ -109,6 +110,9 @@ class MusicPlayer {
         try! engine.start()
         engine.mainMixerNode.removeTap(onBus: 0)
         engine.mainMixerNode.installTap(onBus: 0, bufferSize: AVAudioFrameCount(bufferSize), format: nil) { (buffer, when) in
+            guard self.state == .playing else { return }
+            buffer.frameLength = AVAudioFrameCount(self.bufferSize)
+            NotificationCenter.default.post(name: Notification.didReceivePCMBuffer, object: nil, userInfo: ["buffer": buffer])
         }
     }
 
@@ -138,80 +142,6 @@ extension MusicPlayer {
     }
     var isPlaying: Bool {
         return player.isPlaying
-    }
-}
-
-extension MusicPlayer {
-    enum State {
-        case playing
-        case stopped
-        case paused
-    }
-
-    enum PlayMode {
-        case loopAll
-        case loopSingle
-        case random
-    }
-}
-
-extension MusicPlayer {
-    struct Notification {
-        static let didChangeState = NSNotification.Name("MusicPlayer.didChangeState")
-        static let didChangeMusic = NSNotification.Name("MusicPlayer.didChangeMusic")
-    }
-}
-
-// MARK: - RemoteComtrol
-extension MusicPlayer {
-    func configRemoteComtrol() {
-        MPRemoteCommandCenter.shared().pauseCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-            self?.pause()
-            return MPRemoteCommandHandlerStatus.success
-        }
-        MPRemoteCommandCenter.shared().playCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-            guard let weakself = self else {
-                return MPRemoteCommandHandlerStatus.commandFailed
-            }
-            if weakself.play() {
-                return MPRemoteCommandHandlerStatus.success
-            }
-            else {
-                return MPRemoteCommandHandlerStatus.commandFailed
-            }
-        }
-        MPRemoteCommandCenter.shared().stopCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-            self?.stop()
-            return MPRemoteCommandHandlerStatus.success
-        }
-
-        // MARK: Previous/Next
-        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-//            self?.next()
-            return MPRemoteCommandHandlerStatus.success
-        }
-        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-//            self?.previous()
-            return MPRemoteCommandHandlerStatus.success
-        }
-    }
-}
-
-extension MusicPlayer {
-    func configNowPlayingInfoCenter() {
-        var info = [String: Any]()
-        defer {
-            MPNowPlayingInfoCenter.default().nowPlayingInfo = info
-        }
-        guard let music = music else { return }
-        info[MPMediaItemPropertyTitle] = music.song
-        info[MPMediaItemPropertyArtist] = music.singer
-        info[MPMediaItemPropertyAlbumTitle] = music.albumName
-        info[MPMediaItemPropertyPlaybackDuration] = NSNumber(value: music.duration)
-        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: currentTime)
-        if let artworkImage = music.artwork {
-            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size, requestHandler: { _ in artworkImage })
-        }
     }
 }
 

@@ -27,8 +27,10 @@ struct MusicFileType: FileType {
         if MusicPlayer.shared.music == music {
             if MusicPlayer.shared.state == .paused {
                 MusicPlayer.shared.play()
-            } else {
+            } else if MusicPlayer.shared.state == .playing {
                 MusicPlayer.shared.pause()
+            } else {
+                MusicPlayer.shared.play(music)
             }
         } else {
             MusicPlayer.shared.play(music)
@@ -36,6 +38,7 @@ struct MusicFileType: FileType {
 
         if MusicPlayer.shared.isPlaying {
             controller.navigationController?.pushViewController(MusicPlayerViewController(), animated: true)
+//            controller.present(MusicPlayerViewController(), animated: true, completion: nil)
         }
     }
 }

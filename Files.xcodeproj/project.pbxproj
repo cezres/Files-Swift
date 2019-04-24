@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,11 @@
 		D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */; };
 		D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */; };
 		D51044EE2244E4100014B6E6 /* DocumentBrowserControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */; };
+		D51816D32270343F002D8B41 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51816D12270343F002D8B41 /* SpectrumView.swift */; };
+		D51816D42270343F002D8B41 /* SpectrumAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51816D22270343F002D8B41 /* SpectrumAnalysis.swift */; };
+		D51816D6227034DF002D8B41 /* MusicPlayer+MPNowPlayingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51816D5227034DF002D8B41 /* MusicPlayer+MPNowPlayingInfo.swift */; };
+		D51816D822703534002D8B41 /* MusicPlayer+RemoteComtrol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51816D722703534002D8B41 /* MusicPlayer+RemoteComtrol.swift */; };
+		D51816DA22703657002D8B41 /* MusicPlayer+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51816D922703657002D8B41 /* MusicPlayer+Types.swift */; };
 		D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8762223F712700B81EE0 /* AppDelegate.swift */; };
 		D51A8765223F712700B81EE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A8764223F712700B81EE0 /* ViewController.swift */; };
 		D51A8768223F712700B81EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51A8766223F712700B81EE0 /* Main.storyboard */; };
@@ -75,6 +80,11 @@
 		D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerControlView.swift; sourceTree = "<group>"; };
 		D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIndicatorView.swift; sourceTree = "<group>"; };
 		D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserControlView.swift; sourceTree = "<group>"; };
+		D51816D12270343F002D8B41 /* SpectrumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
+		D51816D22270343F002D8B41 /* SpectrumAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumAnalysis.swift; sourceTree = "<group>"; };
+		D51816D5227034DF002D8B41 /* MusicPlayer+MPNowPlayingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicPlayer+MPNowPlayingInfo.swift"; sourceTree = "<group>"; };
+		D51816D722703534002D8B41 /* MusicPlayer+RemoteComtrol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicPlayer+RemoteComtrol.swift"; sourceTree = "<group>"; };
+		D51816D922703657002D8B41 /* MusicPlayer+Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicPlayer+Types.swift"; sourceTree = "<group>"; };
 		D51A875F223F712700B81EE0 /* Files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Files.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A8762223F712700B81EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51A8764223F712700B81EE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 		D510430B224331A60014B6E6 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				D51816D02270343F002D8B41 /* Spectrum */,
 				D532D46E2265AE0B00689C21 /* MusicPlayer */,
 				D51044E62243B2740014B6E6 /* View */,
 				D510430C224331B90014B6E6 /* MusicFileType.swift */,
@@ -172,6 +183,15 @@
 				D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D51816D02270343F002D8B41 /* Spectrum */ = {
+			isa = PBXGroup;
+			children = (
+				D51816D12270343F002D8B41 /* SpectrumView.swift */,
+				D51816D22270343F002D8B41 /* SpectrumAnalysis.swift */,
+			);
+			path = Spectrum;
 			sourceTree = "<group>";
 		};
 		D51A8756223F712700B81EE0 = {
@@ -279,6 +299,9 @@
 			isa = PBXGroup;
 			children = (
 				D532D46F2265AE0B00689C21 /* MusicPlayer.swift */,
+				D51816D5227034DF002D8B41 /* MusicPlayer+MPNowPlayingInfo.swift */,
+				D51816D722703534002D8B41 /* MusicPlayer+RemoteComtrol.swift */,
+				D51816D922703657002D8B41 /* MusicPlayer+Types.swift */,
 			);
 			path = MusicPlayer;
 			sourceTree = "<group>";
@@ -421,26 +444,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Files/Pods-Files-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaHTTPServer/CocoaHTTPServer.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/ESTMusicIndicator/ESTMusicIndicator.framework",
-				"${BUILT_PRODUCTS_DIR}/FastImageCache/FastImageCache.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Files/Pods-Files-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaHTTPServer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTMusicIndicator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastImageCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Files/Pods-Files-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,24 +461,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FilesTests/Pods-FilesTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaHTTPServer/CocoaHTTPServer.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/FastImageCache/FastImageCache.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FilesTests/Pods-FilesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaHTTPServer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastImageCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FilesTests/Pods-FilesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -514,10 +509,13 @@
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,
 				D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */,
+				D51816D42270343F002D8B41 /* SpectrumAnalysis.swift in Sources */,
 				D532D4702265AE0B00689C21 /* MusicPlayer.swift in Sources */,
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D53CF8BF22523040009C8C45 /* VideoPlayer.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
+				D51816D822703534002D8B41 /* MusicPlayer+RemoteComtrol.swift in Sources */,
+				D51816D6227034DF002D8B41 /* MusicPlayer+MPNowPlayingInfo.swift in Sources */,
 				D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */,
 				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,
 				D51043132243728D0014B6E6 /* Music.swift in Sources */,
@@ -526,6 +524,8 @@
 				D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */,
 				D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */,
 				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
+				D51816DA22703657002D8B41 /* MusicPlayer+Types.swift in Sources */,
+				D51816D32270343F002D8B41 /* SpectrumView.swift in Sources */,
 				D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */,
 				D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */,
 				D51044EE2244E4100014B6E6 /* DocumentBrowserControlView.swift in Sources */,
