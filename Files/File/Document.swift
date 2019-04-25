@@ -36,8 +36,11 @@ class Document: NSObject {
                     let file = File(url: self.directory.appendingPathComponent(name))
                     files.append(file)
                 }
-                self.contents = files
+                files = files.sorted(by: { (file1, fil2) -> Bool in
+                    return true
+                })
                 DispatchQueue.main.async {
+                    self.contents = files
                     (self.delegates.allObjects as! [DocumentDelegate]).forEach( { $0.document(document: self, contentsDidUpdate: .reloadAll) })
                 }
             } catch {

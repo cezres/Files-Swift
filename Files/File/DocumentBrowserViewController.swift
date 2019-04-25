@@ -24,7 +24,7 @@ class DocumentBrowserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         setupView()
         document.registerDelegate(delegate: self)
         document.loadContents()
@@ -55,12 +55,11 @@ class DocumentBrowserViewController: UIViewController {
 
     private func setupView() {
         flowLayout.delegate = self
-        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = UIColor.clear
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alwaysBounceVertical = true
-        collectionView.register(DocumentCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "file")
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (maker) in
             maker.edges.equalTo(view)
