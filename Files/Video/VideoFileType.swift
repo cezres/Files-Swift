@@ -13,11 +13,12 @@ struct VideoFileType: FileType {
     static var pathExtensions: [String] = ["mp4", "flv"]
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
-        FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage? in
-            return nil
-        }) { (_, image) in
-            completion(image ?? UIImage(named: "icon_video")!)
-        }
+//        FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage? in
+//            return UIImage(named: "icon_video")!
+//        }) { (_, image) in
+//            completion(image ?? UIImage(named: "icon_video")!)
+//        }
+        completion(UIImage(named: "icon_video")!)
     }
 
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
