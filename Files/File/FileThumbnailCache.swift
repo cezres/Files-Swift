@@ -17,26 +17,36 @@ class FileThumbnailCache: NSObject {
     private let imageCache: FICImageCache = FICImageCache.shared()
     private let formatFamily = "ImageFormatFamily"
     private let formatName = "FileIconCacheFormatName"
+    private let queue = OperationQueue()
 
     private override init() {
         super.init()
         let format = FICImageFormat(name: formatName, family: formatFamily, imageSize: CGSize(width: 160, height: 160), style: .style32BitBGR, maximumCount: 200, devices: .phone, protectionMode: .none)!
         imageCache.setFormats([format])
         imageCache.delegate = self
-//        imageCache.reset()
+        imageCache.reset()
+        queue.maxConcurrentOperationCount = 1
     }
 
     func retrieveImage(identifier: String, sourceImage: @escaping () -> UIImage?, completion: @escaping CompletionBlock) {
         let entity = FileThumbnail(identifier: identifier, sourceImage: sourceImage)
         let completionBlock: FICImageCacheCompletionBlock = { (entity, _, image) in
             guard let entity = entity as? FileThumbnail else { return }
-            completion(entity.identifier, image)
+            if Thread.isMainThread {
+                completion(entity.identifier, image)
+            } else {
+                DispatchQueue.main.async {
+                    completion(entity.identifier, image)
+                }
+            }
         }
 
-        if imageCache.imageExists(for: entity, withFormatName: formatName) {
-            imageCache.retrieveImage(for: entity, withFormatName: formatName, completionBlock: completionBlock)
-        } else {
-            imageCache.retrieveImage(for: entity, withFormatName: formatName, completionBlock: completionBlock)
+        queue.addOperation {
+            if self.imageCache.imageExists(for: entity, withFormatName: self.formatName) {
+                self.imageCache.retrieveImage(for: entity, withFormatName: self.formatName, completionBlock: completionBlock)
+            } else {
+                self.imageCache.retrieveImage(for: entity, withFormatName: self.formatName, completionBlock: completionBlock)
+            }
         }
     }
 }
@@ -78,7 +88,7 @@ private class FileThumbnail: NSObject, FICEntity {
                 return
             }
             let contextBounds = CGRect(origin: .zero, size: contextSize)
-            context.clear(contextBounds)
+//            context.clear(contextBounds)
             context.setFillColor(UIColor.white.cgColor)
             context.fill(contextBounds)
 
