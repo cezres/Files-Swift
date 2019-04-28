@@ -12,6 +12,8 @@ import IJKMediaFramework
 
 class MediaPlayerView: UIView {
     private(set) var url: URL?
+    var isControlHidden = false
+    var hideControlTimeinterval: TimeInterval = 6
 
     func play(_ url: URL) {
         if playbackState == .paused && loadState.isDisjoint(with: .playable) && self.url == url {
@@ -40,11 +42,18 @@ class MediaPlayerView: UIView {
     }
 
     func shutdown() {
-
+        controls.forEach { $0.cleanup() }
+        controls.removeAll()
+        player?.shutdown()
+        player?.view.removeFromSuperview()
+        player = nil
     }
 
-    func addControl(_ control: MediaPlayerCtrlAble) {
-
+    func registerControl(_ control: MediaPlayerCtrlAble) {
+        var control = control
+        control.playerView = self
+        control.reset()
+        controls.append(control)
     }
 
     private var player: IJKMediaPlayback?
@@ -53,6 +62,9 @@ class MediaPlayerView: UIView {
     init() {
         super.init(frame: .zero)
 
+        IJKFFMoviePlayerController.setLogLevel(IJKLogLevel(rawValue: 7))
+        IJKFFMoviePlayerController.setLogReport(false)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(playerPlaybackStateDidChange(_:)), name: .IJKMPMoviePlayerPlaybackStateDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(playerLoadStateDidChange(_:)), name: .IJKMPMoviePlayerLoadStateDidChange, object: nil)
     }
@@ -65,12 +77,25 @@ class MediaPlayerView: UIView {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func playerPlaybackStateDidChange(_ notification: Notification) {
+    private var tempBounds: CGRect = .zero
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if tempBounds != bounds {
+            tempBounds = bounds
+            player?.view.frame = bounds
+            controls.forEach({ $0.layoutView(for: bounds) })
+        }
+    }
+
+    @objc func playerPlaybackStateDidChange(_ notification: Notification) {
+        guard let loadState = player?.loadState else { return }
+        self.loadState = LoadState(rawValue: loadState.rawValue)
     }
 
     @objc func playerLoadStateDidChange(_ notification: Notification) {
-
+        guard let playbackState = player?.playbackState else { return }
+        self.playbackState = PlaybackState(playbackState:  playbackState)
     }
 
     func initPlayer(with url: URL) {
@@ -89,18 +114,48 @@ class MediaPlayerView: UIView {
 
 extension MediaPlayerView {
     var currentPlaybackTime: TimeInterval {
-        return player?.currentPlaybackTime ?? 0
+        get {
+            return player?.currentPlaybackTime ?? 0
+        }
+        set {
+            play()
+            player?.currentPlaybackTime = newValue
+        }
     }
 
     var duration: TimeInterval {
         return player?.duration ?? 0
     }
 
-    var playbackState: PlaybackState {
-        return PlaybackState(playbackState: player?.playbackState ?? .stopped)
+    private(set) var playbackState: PlaybackState {
+        get {
+            return PlaybackState(playbackState: player?.playbackState ?? .stopped)
+        }
+        set {
+            controls.forEach { $0.playerDidChangePlayBackState(newValue) }
+
+            if newValue == .stopped {
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(updateControlHideState(_:)), object: NSNumber(booleanLiteral: true))
+            } else if newValue == .playing {
+                if !isControlHidden && hideControlTimeinterval > 0 {
+
+                }
+            }
+        }
     }
 
-    var loadState: LoadState {
-        return LoadState(rawValue: player?.loadState.rawValue ?? 0)
+    private(set) var loadState: LoadState {
+        get {
+            return LoadState(rawValue: player?.loadState.rawValue ?? 0)
+        }
+        set {
+            controls.forEach { $0.playerDidChangeLoadState(newValue) }
+        }
+    }
+}
+
+extension MediaPlayerView {
+    @objc func updateControlHideState(_ state: NSNumber) {
+
     }
 }

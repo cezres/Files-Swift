@@ -13,6 +13,8 @@ protocol MediaPlayerCtrlAble {
 
     func reset()
 
+    func cleanup()
+
     // MAKR: - View
     var isCanHideCtrlView: Bool { get }
 

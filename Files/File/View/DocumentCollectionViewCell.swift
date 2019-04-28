@@ -30,12 +30,12 @@ class DocumentCollectionViewCell: UICollectionViewCell {
     var file: File! {
         didSet {
             iconImageView.image = nil
+            nameLabel.text = file.name
             file.thumbnail { [weak self](file, result) in
                 guard let self = self else { return }
                 guard self.file == file else { return }
                 self.iconImageView.image = result
             }
-            nameLabel.text = file.name
         }
     }
 
@@ -63,7 +63,6 @@ class DocumentCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.isOpaque = true
         imageView.clipsToBounds = true
-
         return imageView
     }()
 
@@ -71,9 +70,9 @@ class DocumentCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.isOpaque = true
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textAlignment = NSTextAlignment.center
+        label.textAlignment = .center
         label.numberOfLines = 2
-        label.lineBreakMode = NSLineBreakMode.byTruncatingMiddle
+        label.lineBreakMode = .byTruncatingMiddle
         return label
     }()
 }

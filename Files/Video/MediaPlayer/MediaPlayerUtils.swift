@@ -13,7 +13,7 @@ extension MediaPlayerView {
     static func MIMEType(with file: URL) -> String? {
         guard FileManager.default.fileExists(atPath: file.path) else { return nil }
         guard let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, file.pathExtension as CFString, nil) else { return nil }
-        let MIMEType = UTTypeCopyPreferredTagWithClass(UTI as! CFString, kUTTagClassMIMEType)
+        let MIMEType = UTTypeCopyPreferredTagWithClass(UTI.takeUnretainedValue() , kUTTagClassMIMEType)
         return MIMEType?.takeUnretainedValue() as String?
     }
 }

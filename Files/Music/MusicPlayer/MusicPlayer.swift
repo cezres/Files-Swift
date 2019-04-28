@@ -104,7 +104,6 @@ class MusicPlayer {
     private init(bufferSize: Int = 2048) {
         self.bufferSize = bufferSize
         engine.attach(player)
-        print(engine.mainMixerNode)
         engine.connect(player, to: engine.mainMixerNode, format: nil)
         engine.prepare()
         try! engine.start()

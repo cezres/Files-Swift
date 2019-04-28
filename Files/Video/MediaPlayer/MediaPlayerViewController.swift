@@ -23,12 +23,14 @@ class MediaPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
 
         // Do any additional setup after loading the view.
         view.addSubview(playerView)
-        topContentView.addSubview(backButton)
-        view.addSubview(topContentView)
+        topView.contentView.addSubview(backButton)
+        view.addSubview(topView)
 
+        playerView.registerControl(MediaPlayerControlView())
         playerView.play(url)
     }
 
@@ -36,26 +38,25 @@ class MediaPlayerViewController: UIViewController {
         super.viewWillLayoutSubviews()
         if view.size != playerView.size {
             playerView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height)
-            topContentView.frame = CGRect(x: 0, y: 0, width: view.width, height: 44)
-            backButton.frame = CGRect(x: 15, y: (topContentView.height - 30) / 2, width: 30, height: 30)
+            topView.frame = CGRect(x: 0, y: 0, width: view.width, height: 44)
+            backButton.frame = CGRect(x: 15, y: (topView.height - 30) / 2, width: 30, height: 30)
         }
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        playerView.shutdown()
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+
     @objc func back() {
-
+        dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    lazy var topContentView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    lazy var topView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -63,5 +64,4 @@ class MediaPlayerViewController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         return button
     }()
-
 }
