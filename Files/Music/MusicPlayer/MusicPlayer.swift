@@ -103,8 +103,8 @@ class MusicPlayer {
 
     private init(bufferSize: Int = 2048) {
         self.bufferSize = bufferSize
-        configRemoteComtrol()
         engine.attach(player)
+        print(engine.mainMixerNode)
         engine.connect(player, to: engine.mainMixerNode, format: nil)
         engine.prepare()
         try! engine.start()
@@ -114,6 +114,7 @@ class MusicPlayer {
             buffer.frameLength = AVAudioFrameCount(self.bufferSize)
             NotificationCenter.default.post(name: Notification.didReceivePCMBuffer, object: nil, userInfo: ["buffer": buffer])
         }
+        configRemoteComtrol()
     }
 
     private func scheduleCompletionHandler() {
