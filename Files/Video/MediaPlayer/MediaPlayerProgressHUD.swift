@@ -9,10 +9,12 @@
 import UIKit
 
 class MediaPlayerProgressHUD: UIVisualEffectView {
-    private static let viewTag = 98127387129
+    private static let viewTag = String(describing: classForCoder()).hash
 
     static func show(with currentTime: TimeInterval, duration: TimeInterval) {
         guard let window = UIApplication.shared.keyWindow else { return }
+
+        print(String(describing: classForCoder()))
 
         var progressHUD = window.viewWithTag(viewTag) as? MediaPlayerProgressHUD
         if progressHUD == nil {
@@ -22,14 +24,14 @@ class MediaPlayerProgressHUD: UIVisualEffectView {
             progressHUD?.snp.makeConstraints({ (maker) in
                 maker.width.equalTo(100)
                 maker.height.equalTo(50)
-                maker.center.equalTo(0)
+                maker.center.equalTo(window.snp.center)
             })
         }
+        progressHUD?.layer.removeAllAnimations()
+        progressHUD?.alpha = 1
+
         progressHUD?.progressView.progress = Float(currentTime / duration)
         progressHUD?.timeLabel.text = "\(currentTime.formatterToTime()) / \(duration.formatterToTime())"
-
-//        let currentTime = Int(currentTime), duration = Int(duration)
-//        progressHUD?.timeLabel.text = String(format: "%02d:%02d / %02d:%02d", currentTime / 60, currentTime % 60, duration / 60, duration % 60)
     }
 
     static func hide() {
@@ -53,7 +55,7 @@ class MediaPlayerProgressHUD: UIVisualEffectView {
             maker.left.equalTo(0)
             maker.right.equalTo(0)
             maker.height.equalTo(16)
-            maker.centerY.equalTo(0)
+            maker.centerY.equalTo(contentView)
         }
         progressView.snp.makeConstraints { (maker) in
             maker.left.equalTo(10)

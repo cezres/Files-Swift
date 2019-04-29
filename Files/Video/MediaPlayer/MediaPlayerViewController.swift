@@ -9,7 +9,7 @@
 import UIKit
 
 class MediaPlayerViewController: UIViewController {
-    lazy var playerView = MediaPlayerView()
+    var playerView: MediaPlayerView!
     let url: URL
 
     init(url: URL) {
@@ -25,7 +25,7 @@ class MediaPlayerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
 
-        // Do any additional setup after loading the view.
+        playerView = MediaPlayerView()
         view.addSubview(playerView)
 
         topView.contentView.addSubview(backButton)
@@ -46,6 +46,8 @@ class MediaPlayerViewController: UIViewController {
         }
 
         playerView.registerControl(MediaPlayerControlView())
+        playerView.registerControl(self)
+        playerView.registerControl(MediaPlayerGestureRecognizer())
 
         playerView.play(url)
         titleLabel.text = url.lastPathComponent
@@ -86,4 +88,38 @@ class MediaPlayerViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+}
+
+extension MediaPlayerViewController: MediaPlayerCtrlAble {
+    func reset() {
+    }
+
+    func cleanup() {
+    }
+
+    var isCanHideCtrlView: Bool {
+        return true
+    }
+
+    func setControlViewHidden(_ hidden: Bool) {
+        topView.layer.removeAllAnimations()
+        if hidden {
+            UIView.animate(withDuration: 0.3) {
+                self.topView.transform = .init(translationX: 0, y: -self.topView.height)
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.topView.transform = .identity
+            }
+        }
+    }
+
+    func layoutView(for bounds: CGRect) {
+    }
+
+    func playerDidChangeLoadState(_ loadState: MediaPlayerView.LoadState) {
+    }
+
+    func playerDidChangePlayBackState(_ backState: MediaPlayerView.PlaybackState) {
+    }
 }

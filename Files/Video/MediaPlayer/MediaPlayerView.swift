@@ -12,8 +12,6 @@ import IJKMediaFramework
 
 class MediaPlayerView: UIView {
     private(set) var url: URL?
-    var isControlHidden = false
-    var hideControlTimeinterval: TimeInterval = 6
 
     func play(_ url: URL) {
         if playbackState == .paused && loadState.isDisjoint(with: .playable) && self.url == url {
@@ -49,15 +47,7 @@ class MediaPlayerView: UIView {
         player = nil
     }
 
-    func registerControl(_ control: MediaPlayerCtrlAble) {
-        var control = control
-        control.playerView = self
-        control.reset()
-        controls.append(control)
-    }
-
     private var player: IJKMediaPlayback?
-    private var controls = [MediaPlayerCtrlAble]()
 
     init() {
         super.init(frame: .zero)
@@ -88,6 +78,52 @@ class MediaPlayerView: UIView {
         }
     }
 
+    func initPlayer(with url: URL) {
+        let MIMEType = MediaPlayerView.MIMEType(with: url) ?? ""
+        if AVURLAsset.isPlayableExtendedMIMEType(MIMEType) {
+            player = IJKAVMoviePlayerController(contentURL: url)
+        } else {
+            player = IJKFFMoviePlayerController(contentURL: url, with: .byDefault())
+        }
+        player?.view.autoresizingMask = AutoresizingMask(arrayLiteral: .flexibleWidth, .flexibleHeight)
+        player?.scalingMode = .aspectFit
+        player?.shouldAutoplay = true
+        insertSubview(player!.view, at: 0)
+    }
+
+    // MARK: Controls
+
+    private var controls = [MediaPlayerCtrlAble]()
+    var hideControlTimeinterval: TimeInterval = 6
+    var isControlHidden = false {
+        didSet {
+            guard oldValue != isControlHidden else { return }
+            if isControlHidden && controls.reduce(true, { $1.isCanHideCtrlView ? $0 : false }) {
+                controls.forEach { $0.setControlViewHidden(isControlHidden) }
+            } else {
+                controls.forEach { $0.setControlViewHidden(isControlHidden) }
+            }
+
+            if !isControlHidden && hideControlTimeinterval > 0 && player?.isPlaying() ?? false {
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(updateControlHideState(_:)), object: NSNumber(value: true))
+                perform(#selector(updateControlHideState(_:)), with: NSNumber(value: true), afterDelay: hideControlTimeinterval)
+            }
+        }
+    }
+
+    func registerControl(_ control: MediaPlayerCtrlAble) {
+        var control = control
+        control.playerView = self
+        control.reset()
+        controls.append(control)
+    }
+
+    @objc func updateControlHideState(_ state: NSNumber) {
+        isControlHidden = state.boolValue
+    }
+
+    // MARK: Notification
+
     @objc func playerPlaybackStateDidChange(_ notification: Notification) {
         guard let playbackState = player?.playbackState else { return }
         self.playbackState = PlaybackState(playbackState:  playbackState)
@@ -98,18 +134,6 @@ class MediaPlayerView: UIView {
         self.loadState = LoadState(rawValue: loadState.rawValue)
     }
 
-    func initPlayer(with url: URL) {
-        let MIMEType = MediaPlayerView.MIMEType(with: url) ?? ""
-        if AVURLAsset.isPlayableExtendedMIMEType(MIMEType) {
-            player = IJKAVMoviePlayerController(contentURL: url)
-        } else {
-            player = IJKFFMoviePlayerController(contentURL: url, with: .byDefault())
-        }
-        player?.view.autoresizingMask = UIView.AutoresizingMask(arrayLiteral: .flexibleWidth, .flexibleHeight)
-        player?.scalingMode = .aspectFit
-        player?.shouldAutoplay = true
-        insertSubview(player!.view, at: 0)
-    }
 }
 
 extension MediaPlayerView {
@@ -135,11 +159,14 @@ extension MediaPlayerView {
             controls.forEach { $0.playerDidChangePlayBackState(newValue) }
 
             if newValue == .stopped {
-                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(updateControlHideState(_:)), object: NSNumber(booleanLiteral: true))
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(updateControlHideState(_:)), object: NSNumber(value: true))
             } else if newValue == .playing {
                 if !isControlHidden && hideControlTimeinterval > 0 {
-
+                    NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(updateControlHideState(_:)), object: NSNumber(value: true))
+                    perform(#selector(updateControlHideState(_:)), with: NSNumber(value: true), afterDelay: hideControlTimeinterval)
                 }
+            } else if newValue == .paused {
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(updateControlHideState(_:)), object: NSNumber(value: true))
             }
         }
     }
@@ -155,6 +182,5 @@ extension MediaPlayerView {
 }
 
 extension MediaPlayerView {
-    @objc func updateControlHideState(_ state: NSNumber) {
-    }
+
 }

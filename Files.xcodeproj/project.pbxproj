@@ -64,6 +64,7 @@
 		D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */; };
 		D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */; };
 		D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */; };
+		D525F85F2276D08800336764 /* MediaPlayerGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D525F85E2276D08800336764 /* MediaPlayerGestureRecognizer.swift */; };
 		D532D4702265AE0B00689C21 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532D46F2265AE0B00689C21 /* MusicPlayer.swift */; };
 		D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C0225305E7009C8C45 /* VideoFileType.swift */; };
 		D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */; };
@@ -170,6 +171,7 @@
 		D51A87A9223FA10500B81EE0 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		D522B6B72255A17D007A592E /* PhotoListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListFlowLayout.swift; sourceTree = "<group>"; };
 		D522B6B9225AF4AB007A592E /* DocumentBrowserFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserFlowLayout.swift; sourceTree = "<group>"; };
+		D525F85E2276D08800336764 /* MediaPlayerGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerGestureRecognizer.swift; sourceTree = "<group>"; };
 		D532D46F2265AE0B00689C21 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		D53CF8C0225305E7009C8C45 /* VideoFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileType.swift; sourceTree = "<group>"; };
 		D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtensions.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				D514D28C227307C600CED9F5 /* MediaPlayerControlView.swift */,
 				D514D29D2275BF4F00CED9F5 /* MediaPlayerProgressHUD.swift */,
 				D514D2A22275C5B200CED9F5 /* MediaPlayerProgressView.swift */,
+				D525F85E2276D08800336764 /* MediaPlayerGestureRecognizer.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */,
 				D51A8765223F712700B81EE0 /* ViewController.swift in Sources */,
 				D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */,
+				D525F85F2276D08800336764 /* MediaPlayerGestureRecognizer.swift in Sources */,
 				D510430622423B1C0014B6E6 /* FileThumbnailCache.swift in Sources */,
 				D51041322241DFE10014B6E6 /* UIImageExtension.swift in Sources */,
 				D51A87AA223FA10500B81EE0 /* DocumentCollectionViewCell.swift in Sources */,

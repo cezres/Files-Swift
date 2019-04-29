@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MediaPlayerCtrlAble {
-    var playerView: MediaPlayerView? { get set }
+    var playerView: MediaPlayerView! { get set }
 
     func reset()
 

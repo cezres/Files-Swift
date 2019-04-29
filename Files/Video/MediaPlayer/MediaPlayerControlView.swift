@@ -9,8 +9,7 @@
 import UIKit
 
 class MediaPlayerControlView: UIView, MediaPlayerCtrlAble {
-
-    weak var playerView: MediaPlayerView? = nil
+    weak var playerView: MediaPlayerView! = nil
     var isCanHideCtrlView: Bool = true
 
     init() {
@@ -79,8 +78,6 @@ class MediaPlayerControlView: UIView, MediaPlayerCtrlAble {
     @objc func sliderDidChangeValue() {
         MediaPlayerProgressHUD.show(with: TimeInterval(progressView!.value), duration: playerView?.duration ?? 0)
     }
-
-
 
     // MARK: CtrlAble
 
