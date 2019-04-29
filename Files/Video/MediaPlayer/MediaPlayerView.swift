@@ -89,13 +89,13 @@ class MediaPlayerView: UIView {
     }
 
     @objc func playerPlaybackStateDidChange(_ notification: Notification) {
-        guard let loadState = player?.loadState else { return }
-        self.loadState = LoadState(rawValue: loadState.rawValue)
+        guard let playbackState = player?.playbackState else { return }
+        self.playbackState = PlaybackState(playbackState:  playbackState)
     }
 
     @objc func playerLoadStateDidChange(_ notification: Notification) {
-        guard let playbackState = player?.playbackState else { return }
-        self.playbackState = PlaybackState(playbackState:  playbackState)
+        guard let loadState = player?.loadState else { return }
+        self.loadState = LoadState(rawValue: loadState.rawValue)
     }
 
     func initPlayer(with url: URL) {
@@ -156,6 +156,5 @@ extension MediaPlayerView {
 
 extension MediaPlayerView {
     @objc func updateControlHideState(_ state: NSNumber) {
-
     }
 }
