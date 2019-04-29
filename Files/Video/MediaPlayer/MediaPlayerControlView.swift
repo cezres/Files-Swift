@@ -129,16 +129,14 @@ class MediaPlayerControlView: UIView, MediaPlayerCtrlAble {
             maker.left.equalTo(0)
             maker.right.equalTo(0)
             maker.bottom.equalTo(0)
-            maker.height.equalTo(100)
+            maker.top.equalTo(playButton.snp.top)
         }
     }
 
     func playerDidChangeLoadState(_ loadState: MediaPlayerView.LoadState) {
-
     }
 
     func playerDidChangePlayBackState(_ backState: MediaPlayerView.PlaybackState) {
-        print("\(#function)  \(backState)")
         switch backState {
         case .playing:
             progressView.maximumValue = Float(playerView!.duration)
@@ -161,55 +159,76 @@ class MediaPlayerControlView: UIView, MediaPlayerCtrlAble {
         }
     }
 
+    // MARK: Views
 
-
+    var controlBackgroundView: UIVisualEffectView!
+    var controlContentView: UIView!
     var progressView: MediaPlayerProgressView!
     var currentTimeLabel: UILabel!
     var durationLabel: UILabel!
     var playButton: UIButton!
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        controlBackgroundView.snp.updateConstraints { (maker) in
+            maker.height.equalTo(50 + safeAreaInsets.bottom)
+        }
+        controlContentView.snp.updateConstraints { (maker) in
+            maker.bottom.equalTo(controlBackgroundView.contentView).offset(-safeAreaInsets.bottom)
+        }
+    }
+
     func setupUI() {
-        let contentView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        addSubview(contentView)
+        controlBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        addSubview(controlBackgroundView)
+
+        controlContentView = UIView()
+        controlBackgroundView.contentView.addSubview(controlContentView)
 
         progressView = MediaPlayerProgressView()
         progressView.isEnabled = false
-        contentView.contentView.addSubview(progressView)
+        controlContentView.addSubview(progressView)
 
         currentTimeLabel = UILabel()
         currentTimeLabel.textColor = .white
         currentTimeLabel.font = UIFont.systemFont(ofSize: 12)
         currentTimeLabel.textAlignment = .right
         currentTimeLabel.text = "--:--"
-        contentView.contentView.addSubview(currentTimeLabel)
+        controlContentView.addSubview(currentTimeLabel)
 
         durationLabel = UILabel()
         durationLabel.textColor = .white
         durationLabel.font = UIFont.systemFont(ofSize: 12)
         durationLabel.textAlignment = .left
         durationLabel.text = "--:--"
-        contentView.contentView.addSubview(durationLabel)
+        controlContentView.addSubview(durationLabel)
 
         playButton = UIButton(type: .custom)
         addSubview(playButton)
 
-        contentView.snp.makeConstraints { (maker) in
+        controlBackgroundView.snp.makeConstraints { (maker) in
             maker.left.equalTo(0)
             maker.right.equalTo(0)
             maker.height.equalTo(50)
             maker.bottom.equalTo(0)
         }
+        controlContentView.snp.makeConstraints { (maker) in
+            maker.left.equalTo(0)
+            maker.right.equalTo(0)
+            maker.height.equalTo(50)
+            maker.bottom.equalTo(controlBackgroundView.contentView)
+        }
         currentTimeLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(15)
             maker.width.equalTo(55)
             maker.height.equalTo(14)
-            maker.centerY.equalTo(contentView.contentView)
+            maker.centerY.equalTo(controlContentView)
         }
         durationLabel.snp.makeConstraints { (maker) in
             maker.right.equalTo(-15)
             maker.width.equalTo(55)
             maker.height.equalTo(14)
-            maker.centerY.equalTo(contentView.contentView)
+            maker.centerY.equalTo(controlContentView)
         }
         progressView.snp.makeConstraints { (maker) in
             maker.left.equalTo(currentTimeLabel.snp.right).offset(15)
@@ -222,7 +241,7 @@ class MediaPlayerControlView: UIView, MediaPlayerCtrlAble {
             maker.width.equalTo(55)
             maker.height.equalTo(50)
             maker.right.equalTo(-10)
-            maker.bottom.equalTo(contentView.snp.top)
+            maker.bottom.equalTo(controlBackgroundView.snp.top)
         }
     }
 }
