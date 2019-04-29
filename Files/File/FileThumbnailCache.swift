@@ -24,7 +24,7 @@ class FileThumbnailCache: NSObject {
         let format = FICImageFormat(name: formatName, family: formatFamily, imageSize: CGSize(width: 160, height: 160), style: .style32BitBGR, maximumCount: 200, devices: .phone, protectionMode: .none)!
         imageCache.setFormats([format])
         imageCache.delegate = self
-        imageCache.reset()
+//        imageCache.reset()
         queue.maxConcurrentOperationCount = 1
     }
 
