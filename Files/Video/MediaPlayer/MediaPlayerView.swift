@@ -44,8 +44,8 @@ class MediaPlayerView: UIView {
     func shutdown() {
         controls.forEach { $0.cleanup() }
         controls.removeAll()
-        player?.shutdown()
         player?.view.removeFromSuperview()
+        player?.shutdown()
         player = nil
     }
 
