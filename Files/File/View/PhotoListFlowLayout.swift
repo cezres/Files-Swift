@@ -26,6 +26,8 @@ class PhotoListFlowLayout: UICollectionViewFlowLayout, DocumentBrowserFlowLayout
 
     var delegate: DocumentBrowserFlowLayoutDelegate?
 
+    var isEditing: Bool = false
+
     func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell {
         if let file = delegate?.flowLayout(self, fileForItemAt: indexPath) {
             if file.type is PhotoFileType {
@@ -90,7 +92,7 @@ class PhotoListFlowLayout: UICollectionViewFlowLayout, DocumentBrowserFlowLayout
             }
 
             columnHeights.append([]) //Adding new Section
-            for _ in 0 ..< self.numberOfColumns {
+            for _ in 0 ..< numberOfColumns {
                 columnHeights[section].append(top)
             }
 

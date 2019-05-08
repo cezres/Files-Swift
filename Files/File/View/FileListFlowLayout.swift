@@ -12,6 +12,13 @@ class FileListFlowLayout: UICollectionViewFlowLayout {
     weak var delegate: DocumentBrowserFlowLayoutDelegate?
     var numberOfColumns: Int = 4
 
+    var isEditing: Bool = false {
+        didSet {
+            guard isEditing != oldValue else { return }
+            collectionView?.tableUpdate(update: .reloadVisible)
+        }
+    }
+
     override init() {
         super.init()
         scrollDirection = .vertical
@@ -39,6 +46,8 @@ extension FileListFlowLayout: DocumentBrowserFlowLayout {
         guard let collectionView = collectionView else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "File", for: indexPath) as! DocumentCollectionViewCell
         cell.file = delegate?.flowLayout(self, fileForItemAt: indexPath)
+        cell.isEditing = isEditing
+        cell.isSelecting = delegate?.flowLayout(self, isSelectedAt: indexPath) ?? false
         return cell
     }
 

@@ -10,6 +10,38 @@ import UIKit
 import SnapKit
 
 class DocumentCollectionViewCell: UICollectionViewCell {
+    var file: File! {
+        didSet {
+            iconImageView.image = nil
+            nameLabel.text = file.name
+            file.thumbnail { [weak self](file, result) in
+                guard let self = self else { return }
+                guard self.file == file else { return }
+                self.iconImageView.image = result
+            }
+        }
+    }
+
+    var isEditing = false {
+        didSet {
+            chooseView.isHidden = !isEditing
+        }
+    }
+
+    var isSelecting = false {
+        didSet {
+            if isSelecting {
+                chooseView.image = UIImage(named: "icon_choose_y")
+            } else {
+                chooseView.image = UIImage(named: "icon_choose_n")
+            }
+        }
+    }
+
+    static func itemSize(for width: CGFloat) -> CGSize {
+        return CGSize(width: width, height: width + UIFont.systemFont(ofSize: 12).lineHeight * 2)
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundView = UIView()
@@ -21,22 +53,6 @@ class DocumentCollectionViewCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    static func itemSize(for width: CGFloat) -> CGSize {
-        return CGSize(width: width, height: width + UIFont.systemFont(ofSize: 12).lineHeight * 2)
-    }
-
-    var file: File! {
-        didSet {
-            iconImageView.image = nil
-            nameLabel.text = file.name
-            file.thumbnail { [weak self](file, result) in
-                guard let self = self else { return }
-                guard self.file == file else { return }
-                self.iconImageView.image = result
-            }
-        }
     }
 
     // MARK: - View
@@ -56,6 +72,13 @@ class DocumentCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(self.snp.width).offset(-20)
             make.top.equalTo(10)
         }
+
+        contentView.addSubview(chooseView)
+        chooseView.snp.makeConstraints({ (make) in
+            make.size.equalTo(CGSize(width: 32, height: 32))
+            make.top.equalTo(0)
+            make.right.equalTo(0)
+        })
     }
 
     private lazy var iconImageView: UIImageView = {
@@ -74,5 +97,12 @@ class DocumentCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingMiddle
         return label
+    }()
+
+    private lazy var chooseView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icon_choose_n")
+        imageView.isHidden = true
+        return imageView
     }()
 }

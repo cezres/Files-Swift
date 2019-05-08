@@ -11,6 +11,7 @@ import SnapKit
 
 class DocumentBrowserViewController: UIViewController {
     private(set) var document: Document!
+    private var selectItems = [IndexPath]()
 
     init(directory: URL = DocumentDirectory) {
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +42,18 @@ class DocumentBrowserViewController: UIViewController {
             maker.bottom.equalTo(collectionView.snp.top).offset(collectionView.safeAreaInsets.top)
         }
     }
+
+    // MARK: event
+
+    @objc func triggerEdit() {
+        flowLayout.isEditing.toggle()
+        if !flowLayout.isEditing {
+            selectItems.removeAll()
+        }
+        updateNavigationBar()
+    }
+
+    // MARK: setup views
 
     private var collectionView: UICollectionView!
     private var controlView: DocumentBrowserControlView!
@@ -81,7 +94,19 @@ class DocumentBrowserViewController: UIViewController {
             maker.edges.equalTo(controlView)
         }
 
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: MusicIndicatorView())]
+        updateNavigationBar()
+    }
+
+    /// navigation bar
+    func updateNavigationBar() {
+        let musicIndicatorNavigationBar = UIBarButtonItem(customView: MusicIndicatorView())
+        if flowLayout.isEditing {
+            let doneNavigationBar = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(triggerEdit))
+            navigationItem.rightBarButtonItems = [doneNavigationBar, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), musicIndicatorNavigationBar]
+        } else {
+            let editNavigationBar = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(triggerEdit))
+            navigationItem.rightBarButtonItems = [editNavigationBar, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), musicIndicatorNavigationBar]
+        }
     }
 }
 
@@ -115,11 +140,24 @@ extension DocumentBrowserViewController: DocumentBrowserFlowLayoutDelegate, UICo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        document.contents[indexPath.row].open(document: document, controller: self)
+        if flowLayout.isEditing {
+            if let index = selectItems.lastIndex(where: { $0 == indexPath }) {
+                selectItems.remove(at: index)
+            } else {
+                selectItems.append(indexPath)
+            }
+            collectionView.reloadItems(at: [indexPath])
+        } else {
+            document.contents[indexPath.row].open(document: document, controller: self)
+        }
     }
 
     func flowLayout(_ flowLayout: DocumentBrowserFlowLayout, fileForItemAt indexPath: IndexPath) -> File {
         return document.contents[indexPath.row]
+    }
+
+    func flowLayout(_ flowLayout: DocumentBrowserFlowLayout, isSelectedAt indexPath: IndexPath) -> Bool {
+        return selectItems.lastIndex(where: { $0 == indexPath }) != nil
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -132,7 +170,7 @@ extension DocumentBrowserViewController: DocumentBrowserFlowLayoutDelegate, UICo
         if scrollView.contentOffset.y + scrollView.adjustedContentInset.top < -(controlView.height) {
             collectionView.contentInset = UIEdgeInsets(top: controlView.bounds.size.height, left: 0, bottom: 0, right: 0)
         } else {
-            collectionView.contentInset = UIEdgeInsets.zero
+            collectionView.contentInset = .zero
         }
     }
 }
