@@ -44,11 +44,23 @@ class DocumentBrowserViewController: UIViewController {
     }
 
     // MARK: event
+    private var toolBar: DocumentBrowserToolBar!
 
     @objc func triggerEdit() {
         flowLayout.isEditing.toggle()
-        if !flowLayout.isEditing {
+        if flowLayout.isEditing {
+            toolBar = DocumentBrowserToolBar()
+            toolBar.delegate = self
+            view.addSubview(toolBar)
+            toolBar.snp.makeConstraints { (maker) in
+                maker.left.equalTo(0)
+                maker.right.equalTo(0)
+                maker.bottom.equalTo(0)
+                maker.height.equalTo(view.safeAreaInsets.bottom + 44)
+            }
+        } else {
             selectItems.removeAll()
+            toolBar.removeFromSuperview()
         }
         updateNavigationBar()
     }
@@ -110,7 +122,7 @@ class DocumentBrowserViewController: UIViewController {
     }
 }
 
-extension DocumentBrowserViewController: DocumentBrowserControlViewEvent {
+extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, DocumentBrowserToolBarDelegate {
     func newDirectory() {
     }
 
@@ -120,6 +132,10 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent {
 
     func fileList() {
         flowLayout = FileListFlowLayout()
+    }
+
+    func toolBar(_ toolBar: DocumentBrowserToolBar, didClickItem item: DocumentBrowserToolBar.ItemType) {
+
     }
 }
 
