@@ -135,7 +135,20 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
     }
 
     func toolBar(_ toolBar: DocumentBrowserToolBar, didClickItem item: DocumentBrowserToolBar.ItemType) {
+        guard selectItems.count > 0 else { return }
 
+        switch item {
+        case .delete:
+            try? document.removeItems(selectItems.map({ $0.row }))
+            selectItems = []
+        case .move:
+            DocumentDirectoryPickerViewController.picker(showIn: self) { (result) in
+                
+            }
+            break
+        default:
+            break
+        }
     }
 }
 

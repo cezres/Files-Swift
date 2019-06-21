@@ -21,6 +21,8 @@
 		D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */; };
 		D51044EC2244B0F40014B6E6 /* MusicIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */; };
 		D51044EE2244E4100014B6E6 /* DocumentBrowserControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */; };
+		D514B46F2289690900620AF5 /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514B46E2289690900620AF5 /* DocumentPickerViewController.swift */; };
+		D514B474228972B800620AF5 /* DocumentDirectoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D514B473228972B800620AF5 /* DocumentDirectoryPickerViewController.swift */; };
 		D514D2452272D44E00CED9F5 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D514D2442272D44E00CED9F5 /* libbz2.tbd */; };
 		D514D2472272D45600CED9F5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D514D2462272D45500CED9F5 /* libz.tbd */; };
 		D514D2492272D45F00CED9F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D514D2482272D45F00CED9F5 /* AVFoundation.framework */; };
@@ -125,6 +127,8 @@
 		D51044E92243B2970014B6E6 /* MusicPlayerControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerControlView.swift; sourceTree = "<group>"; };
 		D51044EB2244B0F30014B6E6 /* MusicIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIndicatorView.swift; sourceTree = "<group>"; };
 		D51044ED2244E4100014B6E6 /* DocumentBrowserControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserControlView.swift; sourceTree = "<group>"; };
+		D514B46E2289690900620AF5 /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
+		D514B473228972B800620AF5 /* DocumentDirectoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDirectoryPickerViewController.swift; sourceTree = "<group>"; };
 		D514D2362272D37100CED9F5 /* IJKMediaPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaPlayer.xcodeproj; path = ijkplayer/ios/IJKMediaPlayer/IJKMediaPlayer.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D514D2442272D44E00CED9F5 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		D514D2462272D45500CED9F5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -370,6 +374,8 @@
 				D51A8796223F8C7B00B81EE0 /* Type */,
 				D51A8795223F8C7B00B81EE0 /* View */,
 				D51A8785223F76E300B81EE0 /* DocumentBrowserViewController.swift */,
+				D514B46E2289690900620AF5 /* DocumentPickerViewController.swift */,
+				D514B473228972B800620AF5 /* DocumentDirectoryPickerViewController.swift */,
 				D51A8789223F7B3C00B81EE0 /* Document.swift */,
 				D51A878B223F7B6300B81EE0 /* File.swift */,
 				D510430522423B1C0014B6E6 /* FileThumbnailCache.swift */,
@@ -658,6 +664,7 @@
 			files = (
 				D514D2852272EB0000CED9F5 /* MediaPlayerControlAble.swift in Sources */,
 				D510412822410AE30014B6E6 /* PhotoBrowserViewController.swift in Sources */,
+				D514B474228972B800620AF5 /* DocumentDirectoryPickerViewController.swift in Sources */,
 				D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */,
 				D51A8765223F712700B81EE0 /* ViewController.swift in Sources */,
 				D53CF8C1225305E7009C8C45 /* VideoFileType.swift in Sources */,
@@ -699,6 +706,7 @@
 				D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */,
 				D51A878F223F7C3A00B81EE0 /* TableUpdate.swift in Sources */,
 				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
+				D514B46F2289690900620AF5 /* DocumentPickerViewController.swift in Sources */,
 				D53CFA9D2254B225009C8C45 /* FileListFlowLayout.swift in Sources */,
 				D51A878A223F7B3C00B81EE0 /* Document.swift in Sources */,
 			);
