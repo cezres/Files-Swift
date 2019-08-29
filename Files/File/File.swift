@@ -8,35 +8,34 @@
 
 import UIKit
 import FastImageCache
+import DifferenceKit
 
 class File {
     let url: URL
-    let name: String
-    let type: FileType
-    let pathExtension: String
+    lazy private(set) var name: String = url.lastPathComponent
+    lazy private(set) var pathExtension: String = url.pathExtension
+    lazy private(set) var relativePath: String = {
+        guard let range = url.path.range(of: HomeDirectory.path) else { return url.path }
+        return String(url.path[range.upperBound...])
+    }()
+    lazy private(set) var identifier: String = {
+        let UUIDBytes = FICUUIDBytesFromMD5HashOfString(relativePath)
+        return FICStringWithUUIDBytes(UUIDBytes)
+    }()
+    lazy private(set) var type: FileType = {
+        var isDirectory: ObjCBool = false
+        FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory)
+        if isDirectory.boolValue {
+            return DirectoryFileType()
+        }
+        return File.types.first { $0.pathExtensions.contains(pathExtension) } ?? UnknownFileType()
+    }()
 
     init(url: URL) {
         self.url = url
-        name = url.lastPathComponent
-
-        var isDirectory: ObjCBool = false
-        FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory)
-        let pathExtension = url.pathExtension.lowercased()
-        if isDirectory.boolValue {
-            type = DirectoryFileType()
-        } else if let result = File.types.first(where: {
-            $0.pathExtensions.first(where: {
-                $0.lowercased() == pathExtension
-            }) != nil
-        }) {
-            type = result
-        } else {
-            type = UnknownFileType()
-        }
-        
-        self.pathExtension = pathExtension
     }
 
+    // MARK: - Thumbnail
     func thumbnail(completion: @escaping (File, UIImage) -> Void) {
         type.thumbnail(file: self) { [weak self](image) in
             guard let self = self else { return }
@@ -44,36 +43,30 @@ class File {
         }
     }
 
+    // MARK: - Open
     func open(document: Document, controller: DocumentBrowserViewController) {
         type.openFile(self, document: document, controller: controller)
     }
 
     // MARK: - Types
-
     private static var types = [FileType]()
 
     static func register(type: FileType) {
         types.append(type)
     }
-
-    // MARK: - Thumbnail
-
-    // Gets
-    lazy var relativePath: String = {
-        guard let range = url.path.range(of: HomeDirectory.path) else { return url.path }
-        return String(url.path[range.upperBound...])
-    }()
-
-    lazy var identifier: String = {
-        let UUIDBytes = FICUUIDBytesFromMD5HashOfString(relativePath)
-        let UUID = FICStringWithUUIDBytes(UUIDBytes)
-        return UUID!
-    }()
 }
 
 extension File: Equatable {
     static func == (lhs: File, rhs: File) -> Bool {
         return lhs.identifier == rhs.identifier
+    }
+}
+
+extension File: Differentiable {
+    typealias DifferenceIdentifier = Int
+
+    var differenceIdentifier: File.DifferenceIdentifier {
+        return url.hashValue
     }
 }
 

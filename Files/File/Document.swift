@@ -7,41 +7,65 @@
 //
 
 import UIKit
+import WatchFolder
+import DifferenceKit
 
 protocol DocumentDelegate: class {
-    func document(document: Document, contentsDidUpdate update: TableUpdate)
+    func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>)
 }
 
 class Document: NSObject {
     let directory: URL
-    var delegateHashTable: NSHashTable<AnyObject>!
-    var delegates: [DocumentDelegate] { return delegateHashTable.allObjects as! [DocumentDelegate] }
+    weak var delegate: DocumentDelegate?
     private(set) var contents = [File]()
 
     /// filter
     typealias Filter = (_ file: File) -> Bool
     var filters = [Filter]()
 
+    /// private
+    private let watch: WatchFolder
+    private let queue: DispatchQueue
+
     init(directory: URL) {
         self.directory = directory
-        delegateHashTable = NSHashTable(options: NSPointerFunctions.Options.weakMemory)
+        watch = WatchFolder(url: directory)
+        queue = DispatchQueue(label: String(describing: Document.self) + directory.hashValue.description)
+        super.init()
+        watch.delegate = self
+        try! watch.start()
+        loadContents()
     }
 
-    func registerDelegate(delegate: DocumentDelegate) {
-        delegateHashTable.add(delegate)
-        delegate.document(document: self, contentsDidUpdate: .reloadAll)
+    deinit {
+        watch.invalidate()
+    }
+}
+
+/// Operations
+extension Document {
+    func removeItems(_ indexs: [Int]) throws {
+        indexs.sorted { $0 > $1 }.forEach {
+            try? FileManager.default.removeItem(at: contents[$0].url)
+        }
     }
 
+    func moveItems(_ indexs: [Int], to directory: URL) {
+        indexs.sorted { $0 > $1 }.forEach {
+            let from = contents[$0].url
+            let to = directory.appendingPathComponent(from.lastPathComponent)
+            try? FileManager.default.moveItem(at: from, to: to)
+        }
+    }
+}
+
+/// Load contents
+extension Document {
     func loadContents() {
-        DispatchQueue.global().async {
-            var files = [File]()
-
+        queue.async {
             /// load contents
-            let contents = try? FileManager.default.contentsOfDirectory(atPath: self.directory.path)
-            for name in contents ?? [] {
-                let file = File(url: self.directory.appendingPathComponent(name))
-                files.append(file)
-            }
+            let contents = try! FileManager.default.contentsOfDirectory(atPath: self.directory.path)
+            var files = contents.map { File(url: self.directory.appendingPathComponent($0)) }
 
             /// sort
             files = files.sorted(by: { (file1, fil2) -> Bool in
@@ -51,38 +75,27 @@ class Document: NSObject {
             /// filter
             self.filters.forEach { files = files.filter($0) }
 
+            /// changeset
+            let changeset = StagedChangeset(source: self.contents, target: files)
+
             DispatchQueue.main.async {
                 self.contents = files
-                self.delegates.forEach( { $0.document(document: self, contentsDidUpdate: .reloadAll) })
+                self.delegate?.document(document: self, contentsDidUpdate: changeset)
             }
         }
     }
+}
 
-    func removeItems(_ indexs: [Int]) throws {
-        var successIndexs = [Int]()
-        indexs.sorted { $0 > $1 }.forEach {
-            do {
-                try FileManager.default.removeItem(at: contents[$0].url)
-                successIndexs.append($0)
-                contents.remove(at: $0)
-            } catch {
-            }
-        }
-        delegates.forEach { $0.document(document: self, contentsDidUpdate: .delete(indexs: successIndexs)) }
+/// Document+WatchFolderDelegate
+extension Document: WatchFolderDelegate {
+    func watchFolderNotification(_ folder: WatchFolder) {
+        loadContents()
     }
+}
 
-    func moveItems(_ indexs: [Int], to directory: URL) {
-        var successIndexs = [Int]()
-        indexs.sorted { $0 > $1 }.forEach {
-            do {
-                let from = contents[$0].url
-                let to = directory.appendingPathComponent(from.lastPathComponent)
-                try FileManager.default.moveItem(at: from, to: to)
-                successIndexs.append($0)
-                contents.remove(at: $0)
-            } catch {
-            }
-        }
-        delegates.forEach { $0.document(document: self, contentsDidUpdate: .delete(indexs: successIndexs)) }
+/// UICollectionView+Reload
+extension UICollectionView {
+    func reload<C>(using stagedChangeset: StagedChangeset<C>) {
+        reload(using: stagedChangeset, interrupt: nil) { _ in }
     }
 }

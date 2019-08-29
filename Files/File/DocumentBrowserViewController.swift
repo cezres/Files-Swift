@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import DifferenceKit
 
 class DocumentBrowserViewController: UIViewController {
     private(set) var document: Document!
@@ -27,8 +28,7 @@ class DocumentBrowserViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupView()
-        document.registerDelegate(delegate: self)
-        document.loadContents()
+        document.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +143,13 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
             selectItems = []
         case .move:
             DocumentDirectoryPickerViewController.picker(showIn: self) { (result) in
-                
+                switch (result) {
+                case .selected(let directory):
+                    self.document.moveItems(self.selectItems.map { $0.row }, to: directory)
+                    self.selectItems = []
+                case .cancel:
+                    break
+                }
             }
             break
         default:
@@ -153,8 +159,8 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
 }
 
 extension DocumentBrowserViewController: DocumentDelegate {
-    func document(document: Document, contentsDidUpdate update: TableUpdate) {
-        collectionView.tableUpdate(update: update)
+    func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>) {
+        collectionView.reload(using: changeset)
     }
 }
 

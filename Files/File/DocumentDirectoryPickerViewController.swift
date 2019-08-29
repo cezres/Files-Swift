@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DifferenceKit
 
 class DocumentDirectoryPickerViewController: UIViewController {
     enum Result {
@@ -16,15 +17,13 @@ class DocumentDirectoryPickerViewController: UIViewController {
     typealias ResultBlock = (Result) -> Void
 
     private var completeBlock: ResultBlock
+    var document: Document!
 
     @discardableResult static func picker(with directory: URL = DocumentDirectory, showIn controller: UIViewController, completeBlock: @escaping ResultBlock) -> DocumentDirectoryPickerViewController {
         let picker = DocumentDirectoryPickerViewController(directory: directory, completeBlock: completeBlock)
         controller.present(UINavigationController(rootViewController: picker), animated: true, completion: nil)
         return picker
     }
-
-    var document: Document!
-
 
     init(directory: URL, completeBlock: @escaping ResultBlock) {
         self.completeBlock = completeBlock
@@ -44,7 +43,7 @@ class DocumentDirectoryPickerViewController: UIViewController {
         view.backgroundColor = .white
         setupUI()
 
-        document.registerDelegate(delegate: self)
+        document.delegate = self
         document.filters.append { (file) -> Bool in
             return type(of: file.type) == type(of: DirectoryFileType())
         }
@@ -109,8 +108,8 @@ class DocumentDirectoryPickerViewController: UIViewController {
 }
 
 extension DocumentDirectoryPickerViewController: DocumentDelegate {
-    func document(document: Document, contentsDidUpdate update: TableUpdate) {
-        collectionView?.tableUpdate(update: update)
+    func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>) {
+        collectionView.reload(using: changeset)
     }
 }
 
