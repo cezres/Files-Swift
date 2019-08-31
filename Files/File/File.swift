@@ -71,18 +71,20 @@ extension File: Differentiable {
 }
 
 protocol FileType {
+    var name: String { get }
     var pathExtensions: [String] { get }
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void)
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController)
 }
 
 struct DirectoryFileType: FileType {
+    let name = "Directory"
+    let pathExtensions: [String] = []
+
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
         let documentBrowser = DocumentBrowserViewController(directory: file.url)
         controller.navigationController?.pushViewController(documentBrowser, animated: true)
     }
-
-    let pathExtensions: [String] = []
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
         completion(UIImage(named: "icon_directory")!)
@@ -90,10 +92,11 @@ struct DirectoryFileType: FileType {
 }
 
 struct UnknownFileType: FileType {
+    let name = "Unknown"
+    let pathExtensions: [String] = []
+
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
     }
-
-    let pathExtensions: [String] = []
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
         completion(UIImage(named: "icon_unknown")!)

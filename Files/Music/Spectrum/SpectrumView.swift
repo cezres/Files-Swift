@@ -6,6 +6,7 @@
 //  Copyright © 2019 cezres. All rights reserved.
 //
 
+/// Adapted from https://github.com/potato04/AudioSpectrum
 import UIKit
 
 class SpectrumView: UIView {

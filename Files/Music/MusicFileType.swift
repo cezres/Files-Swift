@@ -11,7 +11,8 @@ import UIKit
 import AVFoundation
 
 struct MusicFileType: FileType {
-    var pathExtensions: [String] = ["mp3", "wav"]
+    let name = "Music"
+    let pathExtensions = ["mp3", "wav"]
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
         FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage? in

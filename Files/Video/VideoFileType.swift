@@ -10,8 +10,8 @@ import UIKit
 import IJKMediaFramework
 
 struct VideoFileType: FileType {
-    var pathExtensions: [String] = ["mp4", "flv"]
-    static var pathExtensions: [String] = ["mp4", "flv"]
+    let name = "Video"
+    let pathExtensions = ["mp4", "flv"]
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
         FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage? in

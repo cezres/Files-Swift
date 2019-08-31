@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 struct PhotoFileType: FileType {
-    var pathExtensions: [String] = ["jpg",  "png"]
+    let name = "Photo"
+    let pathExtensions = ["jpg",  "png"]
 
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void) {
         FileThumbnailCache.shared.retrieveImage(identifier: file.identifier, sourceImage: { () -> UIImage? in

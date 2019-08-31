@@ -54,7 +54,6 @@ class FileThumbnailCache: NSObject {
 extension FileThumbnailCache: FICImageCacheDelegate {
 }
 
-
 private class FileThumbnail: NSObject, FICEntity {
     var identifier: String
     var sourceImage: () -> UIImage?

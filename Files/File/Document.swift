@@ -57,6 +57,10 @@ extension Document {
             try? FileManager.default.moveItem(at: from, to: to)
         }
     }
+
+    func createItem(name: String) {
+        try! FileManager.default.createDirectory(at: directory.appendingPathComponent(name, isDirectory: true), withIntermediateDirectories: false, attributes: nil)
+    }
 }
 
 /// Load contents
