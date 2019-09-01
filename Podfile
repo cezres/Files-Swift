@@ -9,6 +9,7 @@ target 'Files' do
   pod 'SnapKit'
   pod 'FastImageCache'
   pod 'ESTMusicIndicator'
+  pod 'Toast-Swift'
 
   pod 'WatchFolder', :path => "/Users/tekisen/Documents/GitHub/WatchFolder"
   pod 'DiffableDataSources'
