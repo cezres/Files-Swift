@@ -46,27 +46,36 @@ class Document: NSObject {
 /// Operations
 extension Document {
     func removeItems(_ indexs: [Int]) throws {
-        indexs.sorted { $0 > $1 }.forEach {
-            try? FileManager.default.removeItem(at: contents[$0].url)
+        try indexs.sorted { $0 > $1 }.forEach {
+            try FileManager.default.removeItem(at: contents[$0].url)
         }
     }
 
-    func moveItems(_ indexs: [Int], to directory: URL) {
-        indexs.sorted { $0 > $1 }.forEach {
+    func moveItems(_ indexs: [Int], to directory: URL) throws {
+        try indexs.sorted { $0 > $1 }.forEach {
             let from = contents[$0].url
             let to = directory.appendingPathComponent(from.lastPathComponent)
-            try? FileManager.default.moveItem(at: from, to: to)
+            try FileManager.default.moveItem(at: from, to: to)
         }
     }
 
-    func createItem(name: String) {
-        try! FileManager.default.createDirectory(at: directory.appendingPathComponent(name, isDirectory: true), withIntermediateDirectories: false, attributes: nil)
+    func createItem(name: String) throws {
+        try FileManager.default.createDirectory(at: directory.appendingPathComponent(name, isDirectory: true), withIntermediateDirectories: false, attributes: nil)
+    }
+
+    func copyItems(_ indexs: [Int], to directory: URL) throws {
+        try indexs.forEach {
+            let from = contents[$0].url
+            let to = directory.appendingPathComponent(from.lastPathComponent)
+            try FileManager.default.copyItem(at: from, to: to)
+        }
     }
 }
 
 /// Load contents
 extension Document {
     func loadContents() {
+        print("\(#function) \(directory.lastPathComponent)")
         queue.async {
             /// load contents
             let contents = try! FileManager.default.contentsOfDirectory(atPath: self.directory.path)
@@ -85,7 +94,7 @@ extension Document {
             /// changeset
             let changeset = StagedChangeset(source: self.contents, target: files)
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self.contents = files
                 self.delegate?.document(document: self, contentsDidUpdate: changeset)
             }
@@ -96,6 +105,7 @@ extension Document {
 /// Document+WatchFolderDelegate
 extension Document: WatchFolderDelegate {
     func watchFolderNotification(_ folder: WatchFolder) {
+        print("\(#function) \(directory.lastPathComponent)")
         loadContents()
     }
 }

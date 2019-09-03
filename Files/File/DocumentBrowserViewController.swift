@@ -155,7 +155,34 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
                     self.view.hideToastActivity()
                 }
             }
-            break
+        case .move:
+            DocumentDirectoryPickerViewController(directory: DocumentDirectory, selected: { (directory) in
+                self.view.makeToastActivity(.center)
+                DispatchQueue.global().async {
+                    do {
+                        try self.document.moveItems(self.selectItems.map { $0.row }, to: directory)
+                    } catch {
+                    }
+                    DispatchQueue.main.async {
+                        self.triggerEdit()
+                        self.view.hideToastActivity()
+                    }
+                }
+            }).showIn(self)
+        case .copy:
+            DocumentDirectoryPickerViewController(directory: DocumentDirectory, selected: { (directory) in
+                self.view.makeToastActivity(.center)
+                DispatchQueue.global().async {
+                    do {
+                        try self.document.copyItems(self.selectItems.map { $0.row }, to: directory)
+                    } catch {
+                    }
+                    DispatchQueue.main.async {
+                        self.triggerEdit()
+                        self.view.hideToastActivity()
+                    }
+                }
+            }).showIn(self)
         default:
             break
         }
@@ -164,7 +191,7 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
 
 extension DocumentBrowserViewController: DocumentDelegate {
     func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>) {
-        collectionView.reload(using: changeset)
+        collectionView.visibleCells.count == 0 ? collectionView.reloadData() : collectionView.reload(using: changeset)
     }
 }
 
