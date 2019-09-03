@@ -21,17 +21,18 @@ class Document: NSObject {
 
     /// filter
     typealias Filter = (_ file: File) -> Bool
-    var filters = [Filter]()
+    var filter: Filter?
 
     /// private
     private let watch: WatchFolder
     private let queue: DispatchQueue
 
-    init(directory: URL) {
+    init(directory: URL, filter: Filter? = nil) {
         self.directory = directory
         watch = WatchFolder(url: directory)
         queue = DispatchQueue(label: String(describing: Document.self) + directory.hashValue.description)
         super.init()
+        self.filter = filter
         watch.delegate = self
         try! watch.start()
         loadContents()
@@ -77,7 +78,9 @@ extension Document {
             })
 
             /// filter
-            self.filters.forEach { files = files.filter($0) }
+            if let filter = self.filter {
+                files = files.filter(filter)
+            }
 
             /// changeset
             let changeset = StagedChangeset(source: self.contents, target: files)

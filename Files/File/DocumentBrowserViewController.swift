@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import DifferenceKit
+import Toast_Swift
 
 class DocumentBrowserViewController: UIViewController {
     private(set) var document: Document!
@@ -45,25 +46,6 @@ class DocumentBrowserViewController: UIViewController {
 
     // MARK: event
     private var toolBar: DocumentBrowserToolBar!
-
-    @objc func triggerEdit() {
-        flowLayout.isEditing.toggle()
-        if flowLayout.isEditing {
-            toolBar = DocumentBrowserToolBar()
-            toolBar.delegate = self
-            view.addSubview(toolBar)
-            toolBar.snp.makeConstraints { (maker) in
-                maker.left.equalTo(0)
-                maker.right.equalTo(0)
-                maker.bottom.equalTo(0)
-                maker.height.equalTo(view.safeAreaInsets.bottom + 44)
-            }
-        } else {
-            selectItems.removeAll()
-            toolBar.removeFromSuperview()
-        }
-        updateNavigationBar()
-    }
 
     // MARK: setup views
 
@@ -122,6 +104,29 @@ class DocumentBrowserViewController: UIViewController {
     }
 }
 
+/// Edit
+extension DocumentBrowserViewController {
+    @objc func triggerEdit() {
+        flowLayout.isEditing.toggle()
+        if flowLayout.isEditing {
+            toolBar = DocumentBrowserToolBar()
+            toolBar.delegate = self
+            view.addSubview(toolBar)
+            toolBar.snp.makeConstraints { (maker) in
+                maker.left.equalTo(0)
+                maker.right.equalTo(0)
+                maker.bottom.equalTo(0)
+                maker.height.equalTo(view.safeAreaInsets.bottom + 44)
+            }
+        } else {
+            selectItems.removeAll()
+            toolBar.removeFromSuperview()
+        }
+        updateNavigationBar()
+    }
+}
+
+/// Control
 extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, DocumentBrowserToolBarDelegate {
     func newDirectory() {
     }
@@ -139,16 +144,15 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
 
         switch item {
         case .delete:
-            try? document.removeItems(selectItems.map({ $0.row }))
-            selectItems = []
-        case .move:
-            DocumentDirectoryPickerViewController.picker(showIn: self) { (result) in
-                switch (result) {
-                case .selected(let directory):
-                    self.document.moveItems(self.selectItems.map { $0.row }, to: directory)
-                    self.selectItems = []
-                case .cancel:
-                    break
+            self.view.makeToastActivity(.center)
+            DispatchQueue.global().async {
+                do {
+                    try self.document.removeItems(self.selectItems.map { $0.row })
+                } catch {
+                }
+                DispatchQueue.main.async {
+                    self.triggerEdit()
+                    self.view.hideToastActivity()
                 }
             }
             break

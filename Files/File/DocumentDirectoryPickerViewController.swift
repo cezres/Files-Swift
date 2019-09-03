@@ -10,25 +10,18 @@ import UIKit
 import DifferenceKit
 
 class DocumentDirectoryPickerViewController: UIViewController {
-    enum Result {
-        case selected(directory: URL)
-        case cancel
-    }
-    typealias ResultBlock = (Result) -> Void
+    typealias SelectedBlock = (_ directory: URL) -> Void
+    typealias CancelBlock = () -> Void
 
-    private var completeBlock: ResultBlock
-    var document: Document!
+    private var selectedBlock: SelectedBlock?
+    private var cancelBlock: CancelBlock?
+    private var document: Document!
 
-    @discardableResult static func picker(with directory: URL = DocumentDirectory, showIn controller: UIViewController, completeBlock: @escaping ResultBlock) -> DocumentDirectoryPickerViewController {
-        let picker = DocumentDirectoryPickerViewController(directory: directory, completeBlock: completeBlock)
-        controller.present(UINavigationController(rootViewController: picker), animated: true, completion: nil)
-        return picker
-    }
-
-    init(directory: URL, completeBlock: @escaping ResultBlock) {
-        self.completeBlock = completeBlock
+    init(directory: URL = DocumentDirectory, selected: SelectedBlock? = nil, cancel: CancelBlock? = nil) {
+        self.selectedBlock = selected
+        self.cancelBlock = cancel
         super.init(nibName: nil, bundle: nil)
-        document = Document(directory: directory)
+        document = Document(directory: directory) { type(of: $0.type) == type(of: DirectoryFileType()) }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -37,17 +30,10 @@ class DocumentDirectoryPickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         title = document.directory.lastPathComponent
         view.backgroundColor = .white
         setupUI()
-
         document.delegate = self
-        document.filters.append { (file) -> Bool in
-            return type(of: file.type) == type(of: DirectoryFileType())
-        }
-        document.loadContents()
     }
 
     override func viewDidLayoutSubviews() {
@@ -60,13 +46,17 @@ class DocumentDirectoryPickerViewController: UIViewController {
         }
     }
 
+    func showIn(_ controller: UIViewController) {
+        controller.present(UINavigationController(rootViewController: self), animated: true, completion: nil)
+    }
+
     @objc func cancel() {
-        completeBlock(.cancel)
+        cancelBlock?()
         navigationController?.dismiss(animated: true, completion: nil)
     }
 
     @objc func confirm() {
-        completeBlock(.selected(directory: document.directory))
+        selectedBlock?(document.directory)
         navigationController?.dismiss(animated: true, completion: nil)
     }
 
@@ -134,7 +124,7 @@ extension DocumentDirectoryPickerViewController: UICollectionViewDataSource, UIC
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = DocumentDirectoryPickerViewController(directory: document.contents[indexPath.row].url, completeBlock: completeBlock)
+        let controller = DocumentDirectoryPickerViewController(directory: document.contents[indexPath.row].url, selected: selectedBlock, cancel: cancelBlock)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
