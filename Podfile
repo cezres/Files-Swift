@@ -10,7 +10,7 @@ target 'Files' do
   pod 'FastImageCache'
   pod 'ESTMusicIndicator'
   pod 'Toast-Swift'
-
+  pod 'Zip'
   pod 'WatchFolder', git: "https://github.com/cezres/WatchFolder.git", commit: "b869c3fc7daba4c5a85e7bd56fa7681b49c0ce54"
   pod 'DiffableDataSources'
 end
