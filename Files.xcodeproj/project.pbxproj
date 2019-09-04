@@ -72,6 +72,7 @@
 		D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */; };
 		D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */; };
 		D53CFA9D2254B225009C8C45 /* FileListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */; };
+		D5E167B02327F1E20089D982 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167AF2327F1E20089D982 /* StringExtensions.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +182,7 @@
 		D53CF8C222533926009C8C45 /* UIResponderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtensions.swift; sourceTree = "<group>"; };
 		D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListFlowLayout.swift; sourceTree = "<group>"; };
+		D5E167AF2327F1E20089D982 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 			children = (
 				D51A878E223F7C3A00B81EE0 /* TableUpdate.swift */,
 				D51A8790223F7CF700B81EE0 /* Consts.swift */,
+				D5E167AF2327F1E20089D982 /* StringExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
 				D51816DA22703657002D8B41 /* MusicPlayer+Types.swift in Sources */,
 				D51816D32270343F002D8B41 /* SpectrumView.swift in Sources */,
+				D5E167B02327F1E20089D982 /* StringExtensions.swift in Sources */,
 				D514D2872272EE0C00CED9F5 /* MediaPlayerTypes.swift in Sources */,
 				D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */,
 				D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */,
