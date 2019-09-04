@@ -1,7 +1,7 @@
 inhibit_all_warnings!
 platform :ios, '12.0'
 use_frameworks!
-#install! 'cocoapods', :generate_multiple_pod_projects => true
+install! 'cocoapods', :generate_multiple_pod_projects => true
 
 
 target 'Files' do
