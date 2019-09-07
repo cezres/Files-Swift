@@ -9,6 +9,7 @@
 import UIKit
 import WatchFolder
 import DifferenceKit
+import Zip
 
 protocol DocumentDelegate: class {
     func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>)
@@ -69,6 +70,37 @@ extension Document {
             let to = directory.appendingPathComponent(from.lastPathComponent)
             try FileManager.default.copyItem(at: from, to: to)
         }
+    }
+
+    func quickZipItems(_ indexs: [Int]) throws {
+        let urls = indexs.map { contents[$0].url }
+        try Zip.zipFiles(paths: urls, zipFilePath: generateFilePath("归档.zip"), password: nil) { (progress) in
+            print("quickZipItems: \(progress)")
+        }
+    }
+}
+
+extension Document {
+    /// 防止文件重名
+    ///
+    /// - Parameter lastPathComponent: 文件名称
+    /// - Returns: 不重复的文件路径
+    func generateFilePath(_ lastPathComponent: String) -> URL {
+        return generateFilePath(name: lastPathComponent.deletingPathExtension, pathExtension: lastPathComponent.pathExtension)
+    }
+
+    func generateFilePath(name: String, pathExtension: String) -> URL {
+        var filePath = directory.appendingPathComponent("\(name).\(pathExtension)")
+        var flag = 1
+        while FileManager.default.fileExists(atPath: filePath.path) {
+            if pathExtension == "" {
+                filePath = directory.appendingPathComponent("\(name)\(flag)")
+            } else {
+                filePath = directory.appendingPathComponent("\(name)\(flag).\(pathExtension)")
+            }
+            flag += 1
+        }
+        return filePath
     }
 }
 
