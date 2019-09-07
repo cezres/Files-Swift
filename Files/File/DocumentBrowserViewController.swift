@@ -141,50 +141,40 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
 
     func toolBar(_ toolBar: DocumentBrowserToolBar, didClickItem item: DocumentBrowserToolBar.ItemType) {
         guard selectItems.count > 0 else { return }
+        let indexs = selectItems.map { $0.row }
+        self.triggerEdit()
 
-        switch item {
-        case .delete:
+        let handleControl = { (code: @escaping () throws -> Void) in
+            UIApplication.shared.beginIgnoringInteractionEvents()
             self.view.makeToastActivity(.center)
             DispatchQueue.global().async {
                 do {
-                    try self.document.removeItems(self.selectItems.map { $0.row })
+                    try code()
                 } catch {
+                    DispatchQueue.main.async {
+                        self.view.makeToast(error.localizedDescription)
+                    }
                 }
                 DispatchQueue.main.async {
-                    self.triggerEdit()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                     self.view.hideToastActivity()
                 }
             }
+        }
+
+        switch item {
+        case .delete:
+            handleControl { try self.document.removeItems(indexs) }
         case .move:
             DocumentDirectoryPickerViewController(directory: DocumentDirectory, selected: { (directory) in
-                self.view.makeToastActivity(.center)
-                DispatchQueue.global().async {
-                    do {
-                        try self.document.moveItems(self.selectItems.map { $0.row }, to: directory)
-                    } catch {
-                    }
-                    DispatchQueue.main.async {
-                        self.triggerEdit()
-                        self.view.hideToastActivity()
-                    }
-                }
+                handleControl { try self.document.moveItems(indexs, to: directory) }
             }).showIn(self)
         case .copy:
             DocumentDirectoryPickerViewController(directory: DocumentDirectory, selected: { (directory) in
-                self.view.makeToastActivity(.center)
-                DispatchQueue.global().async {
-                    do {
-                        try self.document.copyItems(self.selectItems.map { $0.row }, to: directory)
-                    } catch {
-                    }
-                    DispatchQueue.main.async {
-                        self.triggerEdit()
-                        self.view.hideToastActivity()
-                    }
-                }
+                handleControl { try self.document.copyItems(indexs, to: directory) }
             }).showIn(self)
-        default:
-            break
+        case .zip:
+            handleControl { try self.document.quickZipItems(indexs) }
         }
     }
 }
