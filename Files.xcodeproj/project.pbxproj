@@ -343,6 +343,7 @@
 		D51A8761223F712700B81EE0 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				D51A878D223F7C0E00B81EE0 /* Common */,
 				D51A8792223F7D6300B81EE0 /* Extensions */,
 				D51A8784223F73D400B81EE0 /* File */,
 				D5103BDB224087C70014B6E6 /* Photo */,
@@ -370,7 +371,6 @@
 		D51A8784223F73D400B81EE0 /* File */ = {
 			isa = PBXGroup;
 			children = (
-				D51A878D223F7C0E00B81EE0 /* Common */,
 				D51A8796223F8C7B00B81EE0 /* Type */,
 				D51A8795223F8C7B00B81EE0 /* View */,
 				D51A8785223F76E300B81EE0 /* DocumentBrowserViewController.swift */,
