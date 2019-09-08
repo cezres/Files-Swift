@@ -73,6 +73,8 @@
 		D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */; };
 		D53CFA9D2254B225009C8C45 /* FileListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */; };
 		D5E167B02327F1E20089D982 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167AF2327F1E20089D982 /* StringExtensions.swift */; };
+		D5E167BA2327F1E20089D982 /* ZipFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167B92327F1E20089D982 /* ZipFileType.swift */; };
+		D5E167BC2327F1E20089D982 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167BB2327F1E20089D982 /* Utils.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +185,8 @@
 		D53CF8C4225364ED009C8C45 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D53CFA9C2254B225009C8C45 /* FileListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListFlowLayout.swift; sourceTree = "<group>"; };
 		D5E167AF2327F1E20089D982 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		D5E167B92327F1E20089D982 /* ZipFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipFileType.swift; sourceTree = "<group>"; };
+		D5E167BB2327F1E20089D982 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +353,7 @@
 				D5103BDB224087C70014B6E6 /* Photo */,
 				D510430B224331A60014B6E6 /* Music */,
 				D53CF8B12251FCD9009C8C45 /* Video */,
+				D5E167B82327F1E20089D982 /* Zip */,
 				D51A8762223F712700B81EE0 /* AppDelegate.swift */,
 				D51A8764223F712700B81EE0 /* ViewController.swift */,
 				D51A8766223F712700B81EE0 /* Main.storyboard */,
@@ -388,6 +393,7 @@
 				D51A878E223F7C3A00B81EE0 /* TableUpdate.swift */,
 				D51A8790223F7CF700B81EE0 /* Consts.swift */,
 				D5E167AF2327F1E20089D982 /* StringExtensions.swift */,
+				D5E167BB2327F1E20089D982 /* Utils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -444,6 +450,14 @@
 				D53CF8C0225305E7009C8C45 /* VideoFileType.swift */,
 			);
 			path = Video;
+			sourceTree = "<group>";
+		};
+		D5E167B82327F1E20089D982 /* Zip */ = {
+			isa = PBXGroup;
+			children = (
+				D5E167B92327F1E20089D982 /* ZipFileType.swift */,
+			);
+			path = Zip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -663,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D514D2852272EB0000CED9F5 /* MediaPlayerControlAble.swift in Sources */,
+				D5E167BA2327F1E20089D982 /* ZipFileType.swift in Sources */,
 				D510412822410AE30014B6E6 /* PhotoBrowserViewController.swift in Sources */,
 				D514B474228972B800620AF5 /* DocumentDirectoryPickerViewController.swift in Sources */,
 				D51044EA2243B2970014B6E6 /* MusicPlayerControlView.swift in Sources */,
@@ -685,6 +700,7 @@
 				D514D2A52275D13A00CED9F5 /* TimeIntervalExtension.swift in Sources */,
 				D51043132243728D0014B6E6 /* Music.swift in Sources */,
 				D510430F224361850014B6E6 /* MusicPlayerViewController.swift in Sources */,
+				D5E167BC2327F1E20089D982 /* Utils.swift in Sources */,
 				D514D2A32275C5B200CED9F5 /* MediaPlayerProgressView.swift in Sources */,
 				D51A878C223F7B6300B81EE0 /* File.swift in Sources */,
 				D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */,

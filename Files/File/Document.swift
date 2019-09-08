@@ -90,7 +90,7 @@ extension Document {
     }
 
     func generateFilePath(name: String, pathExtension: String) -> URL {
-        var filePath = directory.appendingPathComponent("\(name).\(pathExtension)")
+        var filePath = directory.appendingPathComponent(name + (pathExtension.count > 0 ? ".\(pathExtension)" : ""))
         var flag = 1
         while FileManager.default.fileExists(atPath: filePath.path) {
             if pathExtension == "" {
