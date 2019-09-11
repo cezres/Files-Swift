@@ -85,8 +85,8 @@ class MusicPlayerInfoView: UIView, UIGestureRecognizerDelegate {
     }
 
     func setup() {
-        songLabel.text = MusicPlayer.shared.music?.song
-        singerLabel.text = MusicPlayer.shared.music?.singer
+        songLabel.text = MusicPlayer.shared.music?.metadata.song
+        singerLabel.text = MusicPlayer.shared.music?.metadata.singer
         currentTime = MusicPlayer.shared.currentTime
         duration = MusicPlayer.shared.duration
         handleTimer()

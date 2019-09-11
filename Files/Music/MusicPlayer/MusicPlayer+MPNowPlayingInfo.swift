@@ -15,13 +15,13 @@ extension MusicPlayer {
         defer {
             MPNowPlayingInfoCenter.default().nowPlayingInfo = info
         }
-        guard let music = music else { return }
-        info[MPMediaItemPropertyTitle] = music.song
-        info[MPMediaItemPropertyArtist] = music.singer
-        info[MPMediaItemPropertyAlbumTitle] = music.albumName
-        info[MPMediaItemPropertyPlaybackDuration] = NSNumber(value: music.duration)
+        guard let metadata = music?.metadata else { return }
+        info[MPMediaItemPropertyTitle] = metadata.song
+        info[MPMediaItemPropertyArtist] = metadata.singer
+        info[MPMediaItemPropertyAlbumTitle] = metadata.albumName
+        info[MPMediaItemPropertyPlaybackDuration] = NSNumber(value: metadata.duration)
         info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: currentTime)
-        if let artworkImage = music.artwork {
+        if let artworkImage = metadata.artwork {
             info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size, requestHandler: { _ in artworkImage })
         }
     }

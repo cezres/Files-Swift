@@ -73,7 +73,7 @@ class MusicPlayerViewController: UIViewController {
         }
     }
     @objc func handlePlayerMusicChangedNotification() {
-        backgroundView.image = MusicPlayer.shared.music?.artwork
+        backgroundView.image = MusicPlayer.shared.music?.metadata.artwork
         artworkView.image = backgroundView.image
     }
 

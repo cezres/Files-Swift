@@ -23,8 +23,7 @@ struct MusicFileType: FileType {
     }
 
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
-        guard let music = Music(url: file.url) else { return }
-
+        let music = Music(url: file.url)
         if MusicPlayer.shared.music == music {
             if MusicPlayer.shared.state == .paused {
                 MusicPlayer.shared.play()

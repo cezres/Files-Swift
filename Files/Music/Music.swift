@@ -11,43 +11,51 @@ import AVFoundation
 
 class Music {
     let url: URL
-    let song: String
-    let singer: String
-    let albumName: String
-    let duration: Double
-    let artwork: UIImage?
+    private(set) lazy var metadata: Metadata = Metadata(url: url)
 
-    init?(url: URL) {
+    init(url: URL) {
         self.url = url
+    }
+}
 
-        let asset = AVURLAsset(url: url)
-        duration = TimeInterval(asset.duration.value) / TimeInterval(asset.duration.timescale)
-        guard duration > 0 else { return nil }
+extension Music {
+    struct Metadata {
+        let url: URL
+        let duration: Double
+        let song: String
+        let singer: String
+        let albumName: String
+        let artwork: UIImage?
 
-        var song: String?
-        var singer: String?
-        var albumName: String?
-        var artwork: UIImage?
-
-        asset.availableMetadataFormats.forEach { (format) in
-            asset.metadata(forFormat: format).forEach({ (metadataItem) in
-                if metadataItem.commonKey == .commonKeyTitle {
-                    song = metadataItem.value as? String
-                }  else if metadataItem.commonKey == .commonKeyArtist {
-                    singer = metadataItem.value as? String
-                } else if metadataItem.commonKey == .commonKeyAlbumName {
-                    albumName = metadataItem.value as? String
-                } else if metadataItem.commonKey == .commonKeyArtwork {
-                    if let data = metadataItem.value as? Data {
-                        artwork = UIImage(data: data)
+        init(url: URL) {
+            self.url = url
+            let asset = AVURLAsset(url: url)
+            var song: String?
+            var singer: String?
+            var albumName: String?
+            var artwork: UIImage?
+            asset.availableMetadataFormats.forEach { (format) in
+                asset.metadata(forFormat: format).forEach({ (metadataItem) in
+                    if metadataItem.commonKey == .commonKeyTitle {
+                        song = metadataItem.value as? String
+                    }  else if metadataItem.commonKey == .commonKeyArtist {
+                        singer = metadataItem.value as? String
+                    } else if metadataItem.commonKey == .commonKeyAlbumName {
+                        albumName = metadataItem.value as? String
+                    } else if metadataItem.commonKey == .commonKeyArtwork {
+                        if let data = metadataItem.value as? Data {
+                            artwork = UIImage(data: data)
+                        }
                     }
-                }
-            })
+                })
+            }
+
+            duration = TimeInterval(asset.duration.value) / TimeInterval(asset.duration.timescale)
+            self.song = song ?? url.deletingPathExtension().lastPathComponent
+            self.singer = singer ?? "未知"
+            self.albumName = albumName ?? "未知"
+            self.artwork = artwork
         }
-        self.song = song ?? url.deletingPathExtension().lastPathComponent
-        self.singer = singer ?? "未知"
-        self.albumName = albumName ?? "未知"
-        self.artwork = artwork
     }
 }
 
