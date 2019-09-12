@@ -37,6 +37,6 @@ extension String {
         guard let range = range(of: DocumentDirectory.path) else {
             return ""
         }
-        return substring(from: range.upperBound)
+        return String(suffix(from: range.upperBound))
     }
 }
