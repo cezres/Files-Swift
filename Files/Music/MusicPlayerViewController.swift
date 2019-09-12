@@ -79,7 +79,7 @@ class MusicPlayerViewController: UIViewController {
     @objc func didReceivePCMBuffer(node: Notification) {
         guard let buffer = node.userInfo?["buffer"] as? AVAudioPCMBuffer else { return }
         DispatchQueue.main.async {
-             let spectra = self.analyzer.analyse(with: buffer)
+            let spectra = self.analyzer.analyse(with: buffer)
             self.spectrumView.spectra = spectra
         }
     }
