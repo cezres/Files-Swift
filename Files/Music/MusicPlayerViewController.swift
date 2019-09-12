@@ -56,7 +56,6 @@ class MusicPlayerViewController: UIViewController {
 
     @objc func dismissViewController() {
         _ = navigationController?.popViewController(animated: true)
-//        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Notification

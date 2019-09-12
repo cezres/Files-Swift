@@ -36,14 +36,16 @@ class MusicPlayerControlView: UIView {
             MusicPlayer.shared.pause()
         }
         else {
-            MusicPlayer.shared.play()
+            makeToastToWindow { try MusicPlayer.shared.resume() }
         }
     }
 
     @objc func clickNext() {
+        makeToastToWindow { try MusicPlayer.shared.next() }
     }
 
     @objc func clickPrev() {
+        makeToastToWindow { try MusicPlayer.shared.previous() }
     }
 
     @objc func handlePlayStateChangedNotification() {

@@ -11,34 +11,39 @@ import MediaPlayer
 
 extension MusicPlayer {
     func configRemoteComtrol() {
-        MPRemoteCommandCenter.shared().pauseCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-            self?.pause()
+        MPRemoteCommandCenter.shared().pauseCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            MusicPlayer.shared.pause()
             return MPRemoteCommandHandlerStatus.success
         }
-        MPRemoteCommandCenter.shared().playCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-            guard let weakself = self else {
-                return MPRemoteCommandHandlerStatus.commandFailed
-            }
-            if weakself.play() {
-                return MPRemoteCommandHandlerStatus.success
-            }
-            else {
-                return MPRemoteCommandHandlerStatus.commandFailed
+        MPRemoteCommandCenter.shared().playCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            do {
+                try MusicPlayer.shared.resume()
+                return .success
+            } catch {
+                return .commandFailed
             }
         }
-        MPRemoteCommandCenter.shared().stopCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-            self?.stop()
+        MPRemoteCommandCenter.shared().stopCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            MusicPlayer.shared.stop()
             return MPRemoteCommandHandlerStatus.success
         }
 
-        // MARK: Previous/Next
-        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-//            self?.next()
-            return MPRemoteCommandHandlerStatus.success
+        /// Previous/Next
+        MPRemoteCommandCenter.shared().nextTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            do {
+                try MusicPlayer.shared.next()
+                return .success
+            } catch {
+                return .commandFailed
+            }
         }
-        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { [weak self](event) -> MPRemoteCommandHandlerStatus in
-//            self?.previous()
-            return MPRemoteCommandHandlerStatus.success
+        MPRemoteCommandCenter.shared().previousTrackCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            do {
+                try MusicPlayer.shared.previous()
+                return .success
+            } catch {
+                return .commandFailed
+            }
         }
     }
 }

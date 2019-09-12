@@ -6,4 +6,12 @@
 //  Copyright © 2019 cezres. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+func makeToastToWindow(code: () throws -> Void) {
+    do {
+        try code()
+    } catch {
+        UIApplication.shared.keyWindow?.makeToast(error.localizedDescription)
+    }
+}
