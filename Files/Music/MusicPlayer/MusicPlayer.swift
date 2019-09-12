@@ -139,7 +139,10 @@ extension MusicPlayer {
 
         audioFile = try AVAudioFile(forReading: music.url)
         player.scheduleFile(audioFile!, at: nil) { [weak self] in
-            self?.playerDidFinishPlaying()
+            /// There will be an error when you stop syncing here.
+            DispatchQueue.main.async {
+                self?.playerDidFinishPlaying()
+            }
         }
         player.play()
 
@@ -158,7 +161,10 @@ extension MusicPlayer {
         guard framestoplay > 1000 else { return }
         player.stop()
         player.scheduleSegment(audioFile, startingFrame: newSampleTime, frameCount: framestoplay, at: nil) { [weak self] in
-            self?.playerDidFinishPlaying()
+            /// There will be an error when you stop syncing here.
+            DispatchQueue.main.async {
+                self?.playerDidFinishPlaying()
+            }
         }
         player.play()
         startingFrame = newSampleTime
