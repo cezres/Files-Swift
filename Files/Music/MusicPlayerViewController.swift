@@ -63,11 +63,9 @@ class MusicPlayerViewController: UIViewController {
         let state = MusicPlayer.shared.state
         if state == .playing {
             infoView.start()
-        }
-        else if state == .paused {
+        } else if state == .paused {
             infoView.pause()
-        }
-        else if state == .stopped {
+        } else if state == .stopped {
             infoView.stop()
         }
     }

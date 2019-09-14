@@ -114,9 +114,7 @@ extension MusicPlayer {
     }
 
     func stop() {
-        if isPlaying {
-            player.stop()
-        }
+        player.stop()
         state = .stopped
         UIApplication.shared.beginReceivingRemoteControlEvents()
     }
@@ -129,7 +127,7 @@ extension MusicPlayer {
 
 
     private func play(music: Music) throws {
-        if player.isPlaying {
+        if (state != .stopped) {
             stop()
         }
 
