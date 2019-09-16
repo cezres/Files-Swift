@@ -76,6 +76,11 @@
 		D5E167BA2327F1E20089D982 /* ZipFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167B92327F1E20089D982 /* ZipFileType.swift */; };
 		D5E167BC2327F1E20089D982 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167BB2327F1E20089D982 /* Utils.swift */; };
 		D5E167C0232A30EC0089D982 /* AVAudioExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167BF232A30EC0089D982 /* AVAudioExtensions.swift */; };
+		D5E167C5232D621E0089D982 /* FileHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167C4232D621E0089D982 /* FileHTTPServer.swift */; };
+		D5E167C9232D62640089D982 /* FileHTTPConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167C8232D62640089D982 /* FileHTTPConnection.swift */; };
+		D5E167D1232D66E90089D982 /* build in Resources */ = {isa = PBXBuildFile; fileRef = D5E167D0232D66E90089D982 /* build */; };
+		D5E167D5232E83CB0089D982 /* NetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E167D4232E83CB0089D982 /* NetworkInfo.m */; };
+		D5E16A1E232F887F0089D982 /* HTTPDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -189,6 +194,13 @@
 		D5E167B92327F1E20089D982 /* ZipFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipFileType.swift; sourceTree = "<group>"; };
 		D5E167BB2327F1E20089D982 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D5E167BF232A30EC0089D982 /* AVAudioExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioExtensions.swift; sourceTree = "<group>"; };
+		D5E167C4232D621E0089D982 /* FileHTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHTTPServer.swift; sourceTree = "<group>"; };
+		D5E167C8232D62640089D982 /* FileHTTPConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHTTPConnection.swift; sourceTree = "<group>"; };
+		D5E167D0232D66E90089D982 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = "files-web/build"; sourceTree = SOURCE_ROOT; };
+		D5E167D2232E83CA0089D982 /* Files-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Files-Bridging-Header.h"; sourceTree = "<group>"; };
+		D5E167D3232E83CB0089D982 /* NetworkInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkInfo.h; sourceTree = "<group>"; };
+		D5E167D4232E83CB0089D982 /* NetworkInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkInfo.m; sourceTree = "<group>"; };
+		D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPDataResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +368,7 @@
 				D510430B224331A60014B6E6 /* Music */,
 				D53CF8B12251FCD9009C8C45 /* Video */,
 				D5E167B82327F1E20089D982 /* Zip */,
+				D5E167C3232D61F40089D982 /* DataTransfer */,
 				D51A8762223F712700B81EE0 /* AppDelegate.swift */,
 				D51A8764223F712700B81EE0 /* ViewController.swift */,
 				D51A8766223F712700B81EE0 /* Main.storyboard */,
@@ -463,6 +476,28 @@
 			path = Zip;
 			sourceTree = "<group>";
 		};
+		D5E167C3232D61F40089D982 /* DataTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				D5E16A1A232F68E20089D982 /* Utils */,
+				D5E167D0232D66E90089D982 /* build */,
+				D5E167C4232D621E0089D982 /* FileHTTPServer.swift */,
+				D5E167C8232D62640089D982 /* FileHTTPConnection.swift */,
+				D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */,
+				D5E167D3232E83CB0089D982 /* NetworkInfo.h */,
+				D5E167D4232E83CB0089D982 /* NetworkInfo.m */,
+				D5E167D2232E83CA0089D982 /* Files-Bridging-Header.h */,
+			);
+			path = DataTransfer;
+			sourceTree = "<group>";
+		};
+		D5E16A1A232F68E20089D982 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -517,6 +552,7 @@
 				TargetAttributes = {
 					D51A875E223F712700B81EE0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 					};
 					D51A8772223F712900B81EE0 = {
 						CreatedOnToolsVersion = 10.1;
@@ -579,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D51A876D223F712800B81EE0 /* LaunchScreen.storyboard in Resources */,
+				D5E167D1232D66E90089D982 /* build in Resources */,
 				D51A876A223F712800B81EE0 /* Assets.xcassets in Resources */,
 				D51A8768223F712700B81EE0 /* Main.storyboard in Resources */,
 			);
@@ -696,6 +733,7 @@
 				D51044E82243B28A0014B6E6 /* MusicPlayerInfoView.swift in Sources */,
 				D5103F682240EEFF0014B6E6 /* PhotoFileType.swift in Sources */,
 				D51816D822703534002D8B41 /* MusicPlayer+RemoteComtrol.swift in Sources */,
+				D5E167C5232D621E0089D982 /* FileHTTPServer.swift in Sources */,
 				D51816D6227034DF002D8B41 /* MusicPlayer+MPNowPlayingInfo.swift in Sources */,
 				D53CF8C322533926009C8C45 /* UIResponderExtensions.swift in Sources */,
 				D51A8791223F7CF700B81EE0 /* Consts.swift in Sources */,
@@ -709,6 +747,7 @@
 				D522B6B82255A17D007A592E /* PhotoListFlowLayout.swift in Sources */,
 				D53CF8C5225364ED009C8C45 /* UIViewExtensions.swift in Sources */,
 				D514D2832272E8A300CED9F5 /* MediaPlayerViewController.swift in Sources */,
+				D5E167C9232D62640089D982 /* FileHTTPConnection.swift in Sources */,
 				D51656E82285658F00905FF8 /* DocumentBrowserToolBar.swift in Sources */,
 				D514D2812272E88A00CED9F5 /* MediaPlayerView.swift in Sources */,
 				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
@@ -719,11 +758,13 @@
 				D514D2872272EE0C00CED9F5 /* MediaPlayerTypes.swift in Sources */,
 				D522B6BA225AF4AB007A592E /* DocumentBrowserFlowLayout.swift in Sources */,
 				D51A8786223F76E300B81EE0 /* DocumentBrowserViewController.swift in Sources */,
+				D5E16A1E232F887F0089D982 /* HTTPDataResponse.swift in Sources */,
 				D51044EE2244E4100014B6E6 /* DocumentBrowserControlView.swift in Sources */,
 				D51A8763223F712700B81EE0 /* AppDelegate.swift in Sources */,
 				D514D28D227307C600CED9F5 /* MediaPlayerControlView.swift in Sources */,
 				D514D2892272FABC00CED9F5 /* MediaPlayerUtils.swift in Sources */,
 				D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */,
+				D5E167D5232E83CB0089D982 /* NetworkInfo.m in Sources */,
 				D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */,
 				D51A878F223F7C3A00B81EE0 /* TableUpdate.swift in Sources */,
 				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
@@ -891,6 +932,7 @@
 			baseConfigurationReference = 7854526AC75D5750F1586C58 /* Pods-Files.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PBL67DWM43;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -929,6 +971,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cezres.files;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Files/DataTransfer/Files-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -939,6 +983,7 @@
 			baseConfigurationReference = 1BF9B0867EA78FCC62D27AC3 /* Pods-Files.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PBL67DWM43;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -977,6 +1022,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cezres.files;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Files/DataTransfer/Files-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
