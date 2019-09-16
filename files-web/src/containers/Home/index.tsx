@@ -1,13 +1,8 @@
-import React from 'react'
-import { HomePanel } from './styled'
-import DocumentBrowser from '../../components/DocumentBrowser'
+import React, { useEffect } from 'react'
 
 export default () => {
-  return (
-    <HomePanel>
-      <div className='home__content'>
-        <DocumentBrowser></DocumentBrowser>
-      </div>
-    </HomePanel>
-  )
+  useEffect(() => {
+    window.location.href = `/files`
+  }, [])
+  return <div />
 }
