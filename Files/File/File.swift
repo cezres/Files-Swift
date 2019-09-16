@@ -30,6 +30,7 @@ class File {
         }
         return File.types.first { $0.pathExtensions.contains(pathExtension) } ?? UnknownFileType()
     }()
+    lazy private(set) var attributes = Attributes(url: url)
 
     init(url: URL) {
         self.url = url
@@ -53,6 +54,25 @@ class File {
 
     static func register(type: FileType) {
         types.append(type)
+    }
+}
+
+extension File {
+    struct Attributes {
+        let url: URL
+        let attributes: [FileAttributeKey: Any]
+
+        var size: UInt? {
+            return (attributes[.size] as? NSNumber)?.uintValue
+        }
+        var modificationDate: Date? {
+            return attributes[.modificationDate] as? Date
+        }
+
+        init(url: URL) {
+            self.url = url
+            attributes = (try? FileManager.default.attributesOfItem(atPath: url.path)) ?? [:]
+        }
     }
 }
 
