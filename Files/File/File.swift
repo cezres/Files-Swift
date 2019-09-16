@@ -15,7 +15,7 @@ class File {
     lazy private(set) var name: String = url.lastPathComponent
     lazy private(set) var pathExtension: String = url.pathExtension
     lazy private(set) var relativePath: String = {
-        guard let range = url.path.range(of: HomeDirectory.path) else { return url.path }
+        guard let range = url.path.range(of: DocumentDirectory.path) else { return url.path }
         return String(url.path[range.upperBound...])
     }()
     lazy private(set) var identifier: String = {
