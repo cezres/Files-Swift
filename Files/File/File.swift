@@ -28,7 +28,7 @@ class File {
         if isDirectory.boolValue {
             return DirectoryFileType()
         }
-        return File.types.first { $0.pathExtensions.contains(pathExtension) } ?? UnknownFileType()
+        return File.types.first { $0.pathExtensions.contains(pathExtension.lowercased()) } ?? UnknownFileType()
     }()
     lazy private(set) var attributes = Attributes(url: url)
 

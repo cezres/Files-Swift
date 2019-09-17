@@ -19,7 +19,7 @@ struct ZipFileType: FileType {
     }
 
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
-        let destination = document.generateFilePath(file.name.deletingPathExtension)
+        let destination = document.createFilePath(file.name.deletingPathExtension)
 
         UIApplication.shared.beginIgnoringInteractionEvents()
         controller.view.makeToastActivity(.center)
