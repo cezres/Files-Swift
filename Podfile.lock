@@ -20,7 +20,7 @@ PODS:
   - Zip (1.1.0)
 
 DEPENDENCIES:
-  - CocoaHTTPServer (from `https://github.com/cezres/CocoaHTTPServer.git`, commit `90f330afefa757ec3f7ebfa6c7bf51eeebf42169`)
+  - CocoaHTTPServer (from `https://github.com/cezres/CocoaHTTPServer.git`, commit `d25f6f1384c4222763260d7f597d4e304c507631`)
   - DiffableDataSources
   - ESTMusicIndicator
   - FastImageCache
@@ -43,7 +43,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   CocoaHTTPServer:
-    :commit: 90f330afefa757ec3f7ebfa6c7bf51eeebf42169
+    :commit: d25f6f1384c4222763260d7f597d4e304c507631
     :git: https://github.com/cezres/CocoaHTTPServer.git
   WatchFolder:
     :commit: b869c3fc7daba4c5a85e7bd56fa7681b49c0ce54
@@ -51,7 +51,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CocoaHTTPServer:
-    :commit: 90f330afefa757ec3f7ebfa6c7bf51eeebf42169
+    :commit: d25f6f1384c4222763260d7f597d4e304c507631
     :git: https://github.com/cezres/CocoaHTTPServer.git
   WatchFolder:
     :commit: b869c3fc7daba4c5a85e7bd56fa7681b49c0ce54
@@ -70,6 +70,6 @@ SPEC CHECKSUMS:
   WatchFolder: 7b59d3707f746b90eda1705ee36c0422ea4c7534
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: 10a017eaca56c7c50b8be70a4ed0ed32823095fc
+PODFILE CHECKSUM: 6b21de00a3f36fa03065c2c3dcf1ec5f4f4ac414
 
 COCOAPODS: 1.7.5

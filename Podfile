@@ -5,7 +5,7 @@ use_frameworks!
 
 
 target 'Files' do
-  pod 'CocoaHTTPServer', git: "https://github.com/cezres/CocoaHTTPServer.git", commit: "90f330afefa757ec3f7ebfa6c7bf51eeebf42169"
+  pod 'CocoaHTTPServer', git: "https://github.com/cezres/CocoaHTTPServer.git", commit: "d25f6f1384c4222763260d7f597d4e304c507631"
   pod 'SnapKit'
   pod 'FastImageCache'
   pod 'ESTMusicIndicator'
@@ -16,8 +16,5 @@ target 'Files' do
 end
 
 target 'FilesTests' do
-  pod 'CocoaHTTPServer', git: "https://github.com/cezres/CocoaHTTPServer.git", commit: "90f330afefa757ec3f7ebfa6c7bf51eeebf42169"
-  pod 'SnapKit'
-  pod 'FastImageCache'
 end
 

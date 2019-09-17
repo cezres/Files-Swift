@@ -79,7 +79,6 @@
 		D5E167C5232D621E0089D982 /* FileHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167C4232D621E0089D982 /* FileHTTPServer.swift */; };
 		D5E167C9232D62640089D982 /* FileHTTPConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167C8232D62640089D982 /* FileHTTPConnection.swift */; };
 		D5E167D1232D66E90089D982 /* build in Resources */ = {isa = PBXBuildFile; fileRef = D5E167D0232D66E90089D982 /* build */; };
-		D5E167D5232E83CB0089D982 /* NetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E167D4232E83CB0089D982 /* NetworkInfo.m */; };
 		D5E16A1E232F887F0089D982 /* HTTPDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
@@ -198,8 +197,6 @@
 		D5E167C8232D62640089D982 /* FileHTTPConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHTTPConnection.swift; sourceTree = "<group>"; };
 		D5E167D0232D66E90089D982 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = "files-web/build"; sourceTree = SOURCE_ROOT; };
 		D5E167D2232E83CA0089D982 /* Files-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Files-Bridging-Header.h"; sourceTree = "<group>"; };
-		D5E167D3232E83CB0089D982 /* NetworkInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkInfo.h; sourceTree = "<group>"; };
-		D5E167D4232E83CB0089D982 /* NetworkInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkInfo.m; sourceTree = "<group>"; };
 		D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPDataResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -371,6 +368,7 @@
 				D5E167C3232D61F40089D982 /* DataTransfer */,
 				D51A8762223F712700B81EE0 /* AppDelegate.swift */,
 				D51A8764223F712700B81EE0 /* ViewController.swift */,
+				D5E167D2232E83CA0089D982 /* Files-Bridging-Header.h */,
 				D51A8766223F712700B81EE0 /* Main.storyboard */,
 				D51A8769223F712800B81EE0 /* Assets.xcassets */,
 				D51A876B223F712800B81EE0 /* LaunchScreen.storyboard */,
@@ -484,9 +482,6 @@
 				D5E167C4232D621E0089D982 /* FileHTTPServer.swift */,
 				D5E167C8232D62640089D982 /* FileHTTPConnection.swift */,
 				D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */,
-				D5E167D3232E83CB0089D982 /* NetworkInfo.h */,
-				D5E167D4232E83CB0089D982 /* NetworkInfo.m */,
-				D5E167D2232E83CA0089D982 /* Files-Bridging-Header.h */,
 			);
 			path = DataTransfer;
 			sourceTree = "<group>";
@@ -528,7 +523,6 @@
 				D51A876F223F712900B81EE0 /* Sources */,
 				D51A8770223F712900B81EE0 /* Frameworks */,
 				D51A8771223F712900B81EE0 /* Resources */,
-				9F2B851D8917B692BC4B295E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -670,23 +664,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Files/Pods-Files-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F2B851D8917B692BC4B295E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FilesTests/Pods-FilesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FilesTests/Pods-FilesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FilesTests/Pods-FilesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A6B8E897F91F34B6A99F2FAF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -764,7 +741,6 @@
 				D514D28D227307C600CED9F5 /* MediaPlayerControlView.swift in Sources */,
 				D514D2892272FABC00CED9F5 /* MediaPlayerUtils.swift in Sources */,
 				D51A8794223F7D9500B81EE0 /* StringExtension.swift in Sources */,
-				D5E167D5232E83CB0089D982 /* NetworkInfo.m in Sources */,
 				D510430D224331B90014B6E6 /* MusicFileType.swift in Sources */,
 				D51A878F223F7C3A00B81EE0 /* TableUpdate.swift in Sources */,
 				D510413022411E1D0014B6E6 /* ArrayExtension.swift in Sources */,
@@ -971,7 +947,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cezres.files;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Files/DataTransfer/Files-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Files/Files-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1022,7 +998,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cezres.files;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Files/DataTransfer/Files-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Files/Files-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
