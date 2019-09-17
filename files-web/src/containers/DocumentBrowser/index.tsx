@@ -3,28 +3,7 @@ import { DocumentBrowserPanel } from './styled'
 import { baseURL, fetchFiles } from '../../services/fetcher'
 import { File } from '../../types/File'
 import { Routes } from '../../components/Router'
-import { getUrlParams } from '../../utils/util'
-
-const parseDataSize = (size: number) => {
-  if (size < 1024) {
-    return `${size}B`
-  } else if (size < 1024 * 1024) {
-    return `${(size / 1024).toFixed(2)}KB`
-  } else if (size < 1024 * 1024 * 1024) {
-    return `${(size / 1024 / 1024).toFixed(2)}MB`
-  } else {
-    return `${(size / 1024 / 1024 / 1024).toFixed(2)}GB`
-  }
-}
-
-const deletingLastPathComponent = (path: string) => {
-  const index = path.indexOf('/', 1)
-  if (index === -1) {
-    return '/'
-  } else {
-    return path.slice(0, index)
-  }
-}
+import { getUrlParams, parseDataSize, deletingLastPathComponent } from '../../utils/util'
 
 export default (props: any) => {
   const [contents, setContents] = useState([] as File[])

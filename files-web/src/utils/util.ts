@@ -15,3 +15,24 @@ export const getUrlParams = (location: Location) => {
   }  
   return params
 }
+
+export const parseDataSize = (size: number) => {
+  if (size < 1024) {
+    return `${size}B`
+  } else if (size < 1024 * 1024) {
+    return `${(size / 1024).toFixed(2)}KB`
+  } else if (size < 1024 * 1024 * 1024) {
+    return `${(size / 1024 / 1024).toFixed(2)}MB`
+  } else {
+    return `${(size / 1024 / 1024 / 1024).toFixed(2)}GB`
+  }
+}
+
+export const deletingLastPathComponent = (path: string) => {
+  const index = path.indexOf('/', 1)
+  if (index === -1) {
+    return '/'
+  } else {
+    return path.slice(0, index)
+  }
+}
