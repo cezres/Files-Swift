@@ -15,3 +15,17 @@ func makeToastToWindow(code: () throws -> Void) {
         UIApplication.shared.keyWindow?.makeToast(error.localizedDescription)
     }
 }
+
+func generateFilePath(name: String, pathExtension: String, directory: URL) -> URL {
+    var filePath = directory.appendingPathComponent(name + (pathExtension.count > 0 ? ".\(pathExtension)" : ""))
+    var flag = 1
+    while FileManager.default.fileExists(atPath: filePath.path) {
+        if pathExtension == "" {
+            filePath = directory.appendingPathComponent("\(name)\(flag)")
+        } else {
+            filePath = directory.appendingPathComponent("\(name)\(flag).\(pathExtension)")
+        }
+        flag += 1
+    }
+    return filePath
+}

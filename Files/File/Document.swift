@@ -74,7 +74,7 @@ extension Document {
 
     func quickZipItems(_ indexs: [Int]) throws {
         let urls = indexs.map { contents[$0].url }
-        try Zip.zipFiles(paths: urls, zipFilePath: generateFilePath("归档.zip"), password: nil) { (progress) in
+        try Zip.zipFiles(paths: urls, zipFilePath: createFilePath("归档.zip"), password: nil) { (progress) in
             print("quickZipItems: \(progress)")
         }
     }
@@ -85,22 +85,8 @@ extension Document {
     ///
     /// - Parameter lastPathComponent: 文件名称
     /// - Returns: 不重复的文件路径
-    func generateFilePath(_ lastPathComponent: String) -> URL {
-        return generateFilePath(name: lastPathComponent.deletingPathExtension, pathExtension: lastPathComponent.pathExtension)
-    }
-
-    func generateFilePath(name: String, pathExtension: String) -> URL {
-        var filePath = directory.appendingPathComponent(name + (pathExtension.count > 0 ? ".\(pathExtension)" : ""))
-        var flag = 1
-        while FileManager.default.fileExists(atPath: filePath.path) {
-            if pathExtension == "" {
-                filePath = directory.appendingPathComponent("\(name)\(flag)")
-            } else {
-                filePath = directory.appendingPathComponent("\(name)\(flag).\(pathExtension)")
-            }
-            flag += 1
-        }
-        return filePath
+    func createFilePath(_ lastPathComponent: String) -> URL {
+        return generateFilePath(name: lastPathComponent.deletingPathExtension, pathExtension: lastPathComponent.pathExtension, directory: directory)
     }
 }
 
