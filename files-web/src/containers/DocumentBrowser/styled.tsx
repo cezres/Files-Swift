@@ -35,7 +35,7 @@ export const DocumentBrowserPanel = styled.div`
       margin-top: 10px;
       display: flex;
       flex-direction: row;
-      height: 20px;
+      height: 40px;
       padding-top: 10px;
       padding-bottom: 10px;
       .name {
