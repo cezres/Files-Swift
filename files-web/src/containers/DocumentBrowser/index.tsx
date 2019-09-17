@@ -44,9 +44,51 @@ export default (props: any) => {
     }
   }
 
+  const onClickUpload = () => {
+    const element = document.getElementById('upload')!
+    element.click()
+  }
+  const onSelectedFile = () => {
+    const element = document.getElementById('upload')! as any
+    const file = element.files[0]
+    if (file === undefined) {
+      return
+    }
+    console.log(file);
+
+    // upload file
+    var formdata = new FormData()
+    formdata.append('file', file)
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('post', `${baseURL}/upload?directory=${directory}`)
+    xhr.onreadystatechange = (res) => {
+      console.log(res);
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log('上传成功');
+        fetchFiles(directory).then((res) => {
+          if (res) {
+            setContents(res)
+          }
+        })
+      }
+    }
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        var percent = event.loaded / event.total * 100
+        console.log(`progress = ${percent}`);
+      }
+    }
+    xhr.send(formdata)
+  }
+
   return (
     <DocumentBrowserPanel>
       <div className='content'>
+        <div className='upload' onClick={onClickUpload}>
+          <input id='upload' type='file' name='uploda' onChange={onSelectedFile}></input>
+          <div className='text'>上传文件</div>
+        </div>
         <div className='title'>
           <div className='left'>全部文件</div>
           <div className='right'>{`共${contents.length}个文件`}</div>

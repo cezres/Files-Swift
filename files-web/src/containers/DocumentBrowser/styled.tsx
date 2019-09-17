@@ -18,13 +18,36 @@ export const DocumentBrowserPanel = styled.div`
     padding: 20px;
     flex-direction: column;
 
+    .upload {
+      background: rgb(73, 169, 248);
+      width: 90px;
+      height: 35px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      .text {
+        margin-top: 7px;
+        margin-bottom: 8px;
+        height: 20px;
+        color: white;
+        text-align: center;
+      }
+      &:hover {
+        background: rgb(0, 153, 229);
+      }
+      >input {
+        display: none;
+      }
+    }
+
     .title {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      font-size: 12px;
+      color: rgb(140, 140, 140);
       .left {
-
       }
       .right {
         text-align: right;
@@ -50,6 +73,7 @@ export const DocumentBrowserPanel = styled.div`
     }
     .table {
       overflow-y: scroll;
+      margin-bottom: 0px;
 
       .separation_line {
         height: 1px;
