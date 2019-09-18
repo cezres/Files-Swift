@@ -1,6 +1,17 @@
 import React from 'react'
 import { getUrlParams } from '../../utils/util'
 import { baseURL } from '../../services/request'
+import styled from 'styled-components'
+
+const PhotoPanel = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  >img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+`
 
 export default (props: any) => {
   let path: string | undefined
@@ -13,6 +24,8 @@ export default (props: any) => {
   console.log(`path = ${path}`);
 
   return (
-    <img src={`${baseURL}/document/data?path=${path}`}></img>
+    <PhotoPanel>
+      <img src={`${baseURL}/document/data?path=${path}`} />
+    </PhotoPanel>
   )
 }
