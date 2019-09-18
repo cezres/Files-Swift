@@ -47,8 +47,8 @@ export const splitDirectoryPath = (directory: string) => {
   })
 
   let offset = 0
-  let index = 0
-  while (index = directory.indexOf('/', offset), index >= 0) {
+  let index = directory.indexOf('/', offset)
+  while (index >= 0) {
     let name = directory.slice(offset, index)
     if (name.length > 0) {
       name = name.replace(/\\/g, '%')
@@ -59,6 +59,7 @@ export const splitDirectoryPath = (directory: string) => {
       })
     }
     offset = index + 1
+    index = directory.indexOf('/', offset)
   }
   if (offset < directory.length) {
     let name = directory.slice(offset, directory.length)

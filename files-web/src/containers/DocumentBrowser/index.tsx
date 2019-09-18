@@ -25,6 +25,8 @@ export default (props: any) => {
       window.open(`${Routes.DocumentBrowser}?directory=${file.path}`, '_self')
     } else if (file.type === 'Photo') {
       window.open(`${Routes.Photo}?path=${file.path}`, '_self')
+    } else if (file.type === 'Video') {
+      window.open(`${Routes.Video}?path=${file.path}`, '_self')
     } else {
       window.open(`${baseURL}/document/data/${file.name}?path=${file.path}`, '_blank')
     }
