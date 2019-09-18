@@ -80,6 +80,7 @@
 		D5E167C9232D62640089D982 /* FileHTTPConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E167C8232D62640089D982 /* FileHTTPConnection.swift */; };
 		D5E167D1232D66E90089D982 /* build in Resources */ = {isa = PBXBuildFile; fileRef = D5E167D0232D66E90089D982 /* build */; };
 		D5E16A1E232F887F0089D982 /* HTTPDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */; };
+		D5E16A2923323FB30089D982 /* HTTPAsyncFileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E16A2823323FB30089D982 /* HTTPAsyncFileResponse.swift */; };
 		FBE69CC5FE22AE40D30D8726 /* Pods_Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C943B72D50EECA540CC89945 /* Pods_Files.framework */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +199,7 @@
 		D5E167D0232D66E90089D982 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = "files-web/build"; sourceTree = SOURCE_ROOT; };
 		D5E167D2232E83CA0089D982 /* Files-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Files-Bridging-Header.h"; sourceTree = "<group>"; };
 		D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPDataResponse.swift; sourceTree = "<group>"; };
+		D5E16A2823323FB30089D982 /* HTTPAsyncFileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPAsyncFileResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +484,7 @@
 				D5E167C4232D621E0089D982 /* FileHTTPServer.swift */,
 				D5E167C8232D62640089D982 /* FileHTTPConnection.swift */,
 				D5E16A1D232F887F0089D982 /* HTTPDataResponse.swift */,
+				D5E16A2823323FB30089D982 /* HTTPAsyncFileResponse.swift */,
 			);
 			path = DataTransfer;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				D510430A224271A50014B6E6 /* PhotoPrefetchManager.swift in Sources */,
 				D51816DA22703657002D8B41 /* MusicPlayer+Types.swift in Sources */,
 				D51816D32270343F002D8B41 /* SpectrumView.swift in Sources */,
+				D5E16A2923323FB30089D982 /* HTTPAsyncFileResponse.swift in Sources */,
 				D5E167B02327F1E20089D982 /* StringExtensions.swift in Sources */,
 				D5E167C0232A30EC0089D982 /* AVAudioExtensions.swift in Sources */,
 				D514D2872272EE0C00CED9F5 /* MediaPlayerTypes.swift in Sources */,

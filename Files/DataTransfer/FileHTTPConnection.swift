@@ -103,12 +103,7 @@ class FileHTTPConnection: HTTPConnection {
             } else if path.hasPrefix("/document/data") {
                 let parameters = path.urlParametersDecode
                 let filePath = DocumentDirectory.appendingPathComponent(parameters["path"] ?? "/")
-                do {
-                    let data = try Data(contentsOf: filePath)
-                    return HTTPDataResponse(data: data)
-                } catch {
-                    return HTTPDataResponse(data: error.localizedDescription.data(using: .utf8))
-                }
+                return HTTPAsyncFileResponse(filePath: filePath.path, for: self)
             }
             /// html
             if path == "/" {
