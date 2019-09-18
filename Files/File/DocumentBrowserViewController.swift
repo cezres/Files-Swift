@@ -181,7 +181,7 @@ extension DocumentBrowserViewController: DocumentBrowserControlViewEvent, Docume
 
 extension DocumentBrowserViewController: DocumentDelegate {
     func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>) {
-        collectionView.visibleCells.count == 0 ? collectionView.reloadData() : collectionView.reload(using: changeset)
+        collectionView.visibleCells.count == 0 ? collectionView.reloadData() : collectionView.reload(using: changeset, document: document)
     }
 }
 

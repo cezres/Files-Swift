@@ -18,7 +18,7 @@ protocol DocumentDelegate: class {
 class Document: NSObject {
     let directory: URL
     weak var delegate: DocumentDelegate?
-    private(set) var contents = [File]()
+    fileprivate(set) var contents = [File]()
 
     /// filter
     typealias Filter = (_ file: File) -> Bool
@@ -130,7 +130,7 @@ extension Document: WatchFolderDelegate {
 
 /// UICollectionView+Reload
 extension UICollectionView {
-    func reload<C>(using stagedChangeset: StagedChangeset<C>) {
-        reload(using: stagedChangeset, interrupt: nil) { _ in }
+    func reload(using stagedChangeset: StagedChangeset<[File]>, document: Document) {
+        reload(using: stagedChangeset, interrupt: nil) { document.contents = $0 }
     }
 }

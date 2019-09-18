@@ -99,7 +99,7 @@ class DocumentDirectoryPickerViewController: UIViewController {
 
 extension DocumentDirectoryPickerViewController: DocumentDelegate {
     func document(document: Document, contentsDidUpdate changeset: StagedChangeset<[File]>) {
-        collectionView.reload(using: changeset)
+        collectionView.reload(using: changeset, document: document)
     }
 }
 
