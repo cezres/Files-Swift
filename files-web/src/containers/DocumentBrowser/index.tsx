@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { DocumentBrowserPanel } from './styled'
-import { baseURL, fetchFiles } from '../../services/fetcher'
-import { File } from '../../types/File'
+import React, { useEffect, useState } from 'react'
 import { Routes } from '../../components/Router'
-import { getUrlParams, parseDataSize, deletingLastPathComponent } from '../../utils/util'
+import { baseURL, fetchFiles, uploadFile } from '../../services/request'
+import { File } from '../../types/File'
+import { getUrlParams, parseDataSize, splitDirectoryPath } from '../../utils/util'
+import { DirectoryPathPanel, DocumentBrowserPanel } from './styled'
 
 export default (props: any) => {
   const [contents, setContents] = useState([] as File[])
@@ -12,25 +12,11 @@ export default (props: any) => {
   if (params.directory) {
     directory = params.directory
   }
-  console.log(`directory = ${directory}`);
-  console.log(`xxx ${deletingLastPathComponent(directory)}`);
-  
+  let paths = splitDirectoryPath(directory)
 
   useEffect(() => {
     fetchFiles(directory).then((res) => {
-      if (res) {
-        if (directory !== '' && directory !== '/') {
-          res = [{
-            path: deletingLastPathComponent(directory),
-            icon: '',
-            type: 'Directory',
-            name: '..',
-            size: 0,
-            modificationDate: 0
-          }].concat(res)
-        }
-        setContents(res)
-      }
+      setContents(res || [])
     })
   }, [directory])
   
@@ -43,7 +29,6 @@ export default (props: any) => {
       window.open(`${baseURL}/document/data/${file.name}?path=${file.path}`, '_blank')
     }
   }
-
   const onClickUpload = () => {
     const element = document.getElementById('upload')!
     element.click()
@@ -56,30 +41,13 @@ export default (props: any) => {
     }
     console.log(file);
 
-    // upload file
-    var formdata = new FormData()
-    formdata.append('file', file)
-
-    var xhr = new XMLHttpRequest()
-    xhr.open('post', `${baseURL}/upload?directory=${directory}`)
-    xhr.onreadystatechange = (res) => {
-      console.log(res);
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log('上传成功');
-        fetchFiles(directory).then((res) => {
-          if (res) {
-            setContents(res)
-          }
-        })
-      }
-    }
-    xhr.upload.onprogress = (event) => {
-      if (event.lengthComputable) {
-        var percent = event.loaded / event.total * 100
-        console.log(`progress = ${percent}`);
-      }
-    }
-    xhr.send(formdata)
+    uploadFile(file, directory, () => {
+      fetchFiles(directory).then((res) => {
+        if (res) {
+          setContents(res)
+        }
+      })
+    })
   }
 
   return (
@@ -90,7 +58,22 @@ export default (props: any) => {
           <div className='text'>上传文件</div>
         </div>
         <div className='title'>
-          <div className='left'>全部文件</div>
+          <DirectoryPathPanel>
+            {paths.length > 1 && (
+              <div className='item'>
+                <a href={`${Routes.DocumentBrowser}?directory=${paths[paths.length - 2].path}`}>返回上一级</a>
+                <div className='separator'>{'|'}</div>
+              </div>
+            )}
+            {paths.map((item, index) => {
+              return (
+                <div className='item' key={item.name}>
+                  <a href={index === paths.length - 1 ? undefined : item.path}>{item.name}</a>
+                  {index !== paths.length -1 && <div className='separator'>{'>'}</div>}
+                </div>
+              )
+            })}
+          </DirectoryPathPanel>
           <div className='right'>{`共${contents.length}个文件`}</div>
         </div>
         <div className='header'>
@@ -105,7 +88,7 @@ export default (props: any) => {
                 {index > 0 && <div className='separation_line'></div>}
                 <div className='cell' onClick={() => onClickItem(file)}>
                   <div className='icon'>
-                    {file.icon.length > 0 && <img src={`${baseURL}${file.icon}`} alt='icon' />}
+                    <img src={`${baseURL}${file.icon}`} alt='icon' />
                   </div>
                   <div className='name'>{file.name}</div>
                   <div className='size'>{file.size > 0 && (file.type === 'Directory' ? '-' : parseDataSize(file.size))}</div>

@@ -48,6 +48,12 @@ export const DocumentBrowserPanel = styled.div`
       font-size: 12px;
       color: rgb(140, 140, 140);
       .left {
+        display: flex;
+        flex-direction: row;
+        .item {
+          cursor: pointer;
+          color: rgb(85, 175, 248);
+        }
       }
       .right {
         text-align: right;
@@ -100,7 +106,7 @@ export const DocumentBrowserPanel = styled.div`
           }
         }
         .name {
-          width: calc(60% - 80px);
+          width: calc(60% - 40px);
           margin-top: 15px;
           height: 20px;
           overflow: hidden;
@@ -119,6 +125,26 @@ export const DocumentBrowserPanel = styled.div`
           height: 20px;
         }
       }
+    }
+  }
+`
+
+export const DirectoryPathPanel = styled.div`
+  display: flex;
+  flex-direction: row;
+  .item {
+    display: flex;
+    flex-direction: row;
+    
+    >a {
+      :visited {
+        color: rgb(85, 175, 248);
+      }
+    }
+
+    .separator {
+      margin-left: 5px;
+      margin-right: 5px;
     }
   }
 `

@@ -1,6 +1,6 @@
 import React from 'react'
 import { getUrlParams } from '../../utils/util'
-import { baseURL } from '../../services/fetcher'
+import { baseURL } from '../../services/request'
 
 export default (props: any) => {
   let path: string | undefined

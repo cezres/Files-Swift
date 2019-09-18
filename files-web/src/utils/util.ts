@@ -1,7 +1,7 @@
 
 export const getUrlParams = (location: Location) => {
   let params: any = {}
-  let search = location.search.slice(1)
+  let search = decodeURI(location.search.slice(1))
   console.log(`search = ${location.search}`);
   while(search.indexOf('=') && search.length) {
     const keyIndex = search.indexOf('=')
@@ -35,4 +35,39 @@ export const deletingLastPathComponent = (path: string) => {
   } else {
     return path.slice(0, index)
   }
+}
+
+export const splitDirectoryPath = (directory: string) => {
+  console.log(directory);
+  
+  let paths: {name: string, path: string}[] = []
+  paths.push({
+    name: '全部文件',
+    path: '/'
+  })
+
+  let offset = 0
+  let index = 0
+  while (index = directory.indexOf('/', offset), index >= 0) {
+    let name = directory.slice(offset, index)
+    if (name.length > 0) {
+      name = name.replace(/\\/g, '%')
+
+      paths.push({
+        name: unescape(name),
+        path: directory.slice(0, index)
+      })
+    }
+    offset = index + 1
+  }
+  if (offset < directory.length) {
+    let name = directory.slice(offset, directory.length)
+    if (name.length > 0) {
+      paths.push({
+        name: name,
+        path: directory
+      })
+    }
+  }
+  return paths
 }
