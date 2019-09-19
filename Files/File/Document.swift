@@ -100,9 +100,7 @@ extension Document {
             var files = contents.map { File(url: self.directory.appendingPathComponent($0)) }
 
             /// sort
-            files = files.sorted(by: { (file1, fil2) -> Bool in
-                return true
-            })
+            files = files.sorted { $0.type.sortIndex < $1.type.sortIndex }
 
             /// filter
             if let filter = self.filter {

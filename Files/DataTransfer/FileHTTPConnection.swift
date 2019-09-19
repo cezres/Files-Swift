@@ -70,7 +70,9 @@ class FileHTTPConnection: HTTPConnection {
                 let directory = DocumentDirectory.appendingPathComponent(parameters["directory"] ?? "")
                 do {
                     let contents = try FileManager.default.contentsOfDirectory(atPath: directory.path)
-                    let dict = contents.map({ File(url: directory.appendingPathComponent($0)) }).map { (file) -> [String: Any] in
+                    let dict = contents.map({ File(url: directory.appendingPathComponent($0)) }).sorted(by: {
+                        $0.type.sortIndex < $1.type.sortIndex
+                    }).map { (file) -> [String: Any] in
                         return [
                             "path": file.relativePath,
                             "icon": "/document/icon?path=\(file.relativePath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)",

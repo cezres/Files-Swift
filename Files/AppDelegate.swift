@@ -16,16 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        File.register(type: DirectoryFileType())
+        File.register(type: PhotoFileType())
+        File.register(type: MusicFileType())
+        File.register(type: VideoFileType())
+        File.register(type: ZipFileType())
 
         FileHTTPServer.sharedInstance.start()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: DocumentBrowserViewController())
         window?.makeKeyAndVisible()
-
-        File.register(type: PhotoFileType())
-        File.register(type: MusicFileType())
-        File.register(type: VideoFileType())
-        File.register(type: ZipFileType())
         return true
     }
 

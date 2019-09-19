@@ -50,7 +50,7 @@ class File {
     }
 
     // MARK: - Types
-    private static var types = [FileType]()
+    fileprivate static var types = [FileType]()
 
     static func register(type: FileType) {
         types.append(type)
@@ -90,16 +90,29 @@ extension File: Differentiable {
     }
 }
 
+extension File: CustomStringConvertible {
+    var description: String {
+        return "\(name) \(type.name))"
+    }
+}
+
 protocol FileType {
     var name: String { get }
+    var sortIndex: Int { get }
     var pathExtensions: [String] { get }
     func thumbnail(file: File, completion: @escaping (UIImage) -> Void)
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController)
 }
 
+extension FileType {
+    var sortIndex: Int {
+        return File.types.lastIndex(where: { $0.name == self.name }) ?? Int.max
+    }
+}
+
 struct DirectoryFileType: FileType {
     let name = "Directory"
-    let pathExtensions: [String] = []
+    let pathExtensions: [String] = [""]
 
     func openFile(_ file: File, document: Document, controller: DocumentBrowserViewController) {
         let documentBrowser = DocumentBrowserViewController(directory: file.url)
