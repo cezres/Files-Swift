@@ -11,18 +11,12 @@ const VideoPanel = styled.div`
 `
 
 export default (props: any) => {
-  let path: string | undefined
   const params = getUrlParams(props.location)
-  if (params.path) {
-    path = params.path
-  } else {
-    path = ''
-  }
-  console.log(`path = ${path}`);
+  let path = params.path
 
   return (
     <VideoPanel>
-      <Player autoPlay>
+      <Player autoPlay fluid={false} width='100%' height='100%'>
         <source src={`${baseURL}/document/data?path=${path}`} />
       </Player>
     </VideoPanel>
