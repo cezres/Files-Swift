@@ -479,7 +479,6 @@
 		D5E167C3232D61F40089D982 /* DataTransfer */ = {
 			isa = PBXGroup;
 			children = (
-				D5E16A1A232F68E20089D982 /* Utils */,
 				D5E167D0232D66E90089D982 /* build */,
 				D5E167C4232D621E0089D982 /* FileHTTPServer.swift */,
 				D5E167C8232D62640089D982 /* FileHTTPConnection.swift */,
@@ -487,13 +486,6 @@
 				D5E16A2823323FB30089D982 /* HTTPAsyncFileResponse.swift */,
 			);
 			path = DataTransfer;
-			sourceTree = "<group>";
-		};
-		D5E16A1A232F68E20089D982 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
