@@ -20,16 +20,9 @@ export default (props: any) => {
   }
   console.log(`path = ${path}`);
 
-  const video = useRef(Player)
-
-  useLayoutEffect(() => {
-    console.log(video);
-    video.current.play()
-  }, [])
-
   return (
     <VideoPanel>
-      <Player playsInline ref={video}>
+      <Player autoPlay>
         <source src={`${baseURL}/document/data?path=${path}`} />
       </Player>
     </VideoPanel>
