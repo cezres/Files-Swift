@@ -25,7 +25,7 @@ $ cd ios
 $ ./compile-ffmpeg.sh clean
 $ ./compile-ffmpeg.sh all
 
-# open Files.xcworkspace
+# open Files.xcworkspace with Xcode, build and run the Files target.
 ```
 
 ## 截图
