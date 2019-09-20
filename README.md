@@ -11,6 +11,9 @@ node v12.9.0
 $ git clone -b develop https://github.com/cezres/Files.git && cd Files/
 $ git submodule update --init
 
+# install pods
+$ pod install
+
 # build files-web
 $ cd files-web/
 $ yarn && yarn build
@@ -21,9 +24,6 @@ $ ./init-ios.sh
 $ cd ios
 $ ./compile-ffmpeg.sh clean
 $ ./compile-ffmpeg.sh all
-
-# install pods
-$ pod install
 
 # open Files.xcworkspace
 ```
