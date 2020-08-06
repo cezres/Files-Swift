@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from 'axios'
 import camelcaseKeys from 'camelcase-keys'
 import { File } from '../types/File'
 
-// export const baseURL = document.baseURI
-export const baseURL = 'http://192.168.101.13:22333'
+export const baseURL = document.location.origin
+// export const baseURL = 'http://192.168.101.13:22333'
 
 export const axiosIns = axios.create({
   baseURL: baseURL,
